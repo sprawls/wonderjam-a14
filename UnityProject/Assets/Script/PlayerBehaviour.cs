@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour {
 	private BeatManager bm;
-	private bool createNewGem;
+	private bool createNewGem = false;
 	private List<Transform> gems = new List<Transform>();
 	private float bpm;
 
@@ -22,7 +22,11 @@ public class PlayerBehaviour : MonoBehaviour {
 	void Update () {
 		// Create new gem at end of line
 		if (createNewGem) {
-			gems.Add (GameObject.Instantiate (gemPrefab) as Transform);
+			Transform newGem = Transform.Instantiate(gemPrefab) as Transform;
+			newGem.parent = this.transform;
+			newGem.position = Vector3(0, 0, 0);
+			gems.Add (newGem);
+
 			createNewGem = false;
 		}
 		

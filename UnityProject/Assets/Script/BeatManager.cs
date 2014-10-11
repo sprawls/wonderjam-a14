@@ -127,7 +127,7 @@ public class BeatManager : Singleton<BeatManager> {
         {
             IbeatReceiverRef.OnBeat(p2Input, p1Input, p1Turn);
         }
-        //Debug.Log("tour de p1:"+ p1Turn+" | "+ beatCpt);
+
         p1Input = BeatEnum.Missed;
         p2Input = BeatEnum.Missed;
     }
