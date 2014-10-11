@@ -19,11 +19,6 @@ public class TileAnimation: MonoBehaviour, IBeatReceiver{
 	void Start () {
         rend = GetComponentInParent<MeshRenderer>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
 
     public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1)
     {
@@ -53,4 +48,12 @@ public class TileAnimation: MonoBehaviour, IBeatReceiver{
         }
     }
 
+    public void setColor(int i)
+    {
+        if(i >= 0 && i <= 2)
+        {
+            state = i;
+        }
+
+    }
 }

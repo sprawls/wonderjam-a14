@@ -1,39 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlancherCreator : MonoBehaviour {
+public class PlancherCreator  {
+    
 
-    public GameObject black;
-    public GameObject white;
-
-	// Use this for initialization
-	void Start () {
+    public static TileAnimation[] CreatePlancher(GameObject black, GameObject white)
+    {
         float x = 0;
         float y = 0;
         float z = 0;
 
-        GameManager gm = FindObjectOfType<GameManager>();
+        GameManager gm = GameManager.Instance;
+        TileAnimation[] tiles = new TileAnimation[40];
 
-        for(int i = 0; i < 40; i++)
+        for (int i = 0; i < 40; i++)
         {
-            GameObject go = Instantiate(i % 2 ==0 ? black : white) as GameObject;
+            GameObject go = Object.Instantiate(i % 2 == 0 ? black : white) as GameObject;
             TileAnimation ta = go.GetComponent<TileAnimation>();
+            tiles[i] = ta;
             gm.requestBeat(ta);
-            go.transform.parent = transform;
-            go.transform.localPosition = new Vector3(x, y, z);
-            
+            go.transform.position = new Vector3(x-10, y, z);
+
             x += 10;
-            if(x > 40)
+            if (x > 40)
             {
                 x = 0;
                 z += 10;
             }
         }
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        return tiles;
+    }
 }

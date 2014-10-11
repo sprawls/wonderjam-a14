@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>, IBeatReceiver {
+
+    public GameObject black;
+    public GameObject white;
+
 	protected GameManager () {} // guarantee this will be always a singleton only - can't use the constructor!
 
     private BeatManager BeatManagerRef;
 	private ZombieFactory ZombieFactoryRef;
 
-    List<IUpdate> component = new List<IUpdate>();
-    List<IBeatReceiver> beats = new List<IBeatReceiver>();
+    private List<IUpdate> component = new List<IUpdate>();
+    private List<IBeatReceiver> beats = new List<IBeatReceiver>();
+    private TileAnimation[] tiles;
 
 	// Use this for initialization
 	void Start () {
         BeatManagerRef = new BeatManager(this);
 		ZombieFactoryRef = new ZombieFactory(this);
         beats.Add(ZombieFactoryRef);
+        tiles = PlancherCreator.CreatePlancher(black, white);
 	}
 	
 	// Update is called once per frame
@@ -75,6 +81,11 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         {
             n.OnBeat(p1, p2, turnP1);
         }
+    }
+
+    public TileAnimation getTile(int  i)
+    {
+        return tiles[i];
     }
     
 }
