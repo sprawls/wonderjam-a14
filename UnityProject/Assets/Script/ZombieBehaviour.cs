@@ -27,7 +27,7 @@ public class ZombieBehaviour : MonoBehaviour {
 			Vector2 randomChange = new Vector2(Random.Range(-1f,1f), Random.Range (-1f,1f)).normalized;
 			Vector2 ResultChange = playerChange + randomChange;
 
-			Debug.Log ("pChange : " + playerChange + "   rChange " + randomChange + "   tChange " + ResultChange);
+			//Debug.Log ("pChange : " + playerChange + "   rChange " + randomChange + "   tChange " + ResultChange);
 			
 			ChangePosition(ResultChange); //Change Position on grid
 			MoveToPosition (); //Move and Clamp
