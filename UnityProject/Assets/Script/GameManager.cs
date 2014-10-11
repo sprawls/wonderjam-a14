@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour, IBeatReceiver {
 
     public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1)
     {
-		ZombieFactoryRef.OnBeat (p1,p2);
+		ZombieFactoryRef.OnBeat (p1,p2, turnP1);
     }
     
 }

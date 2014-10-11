@@ -120,7 +120,7 @@ public class BeatManager {
         {
             IbeatReceiverRef.OnBeat(p2Input, p1Input, p1Turn);
         }
-        //Debug.Log("tour de p1:"+ p1Turn+" | "+ beatCpt);
+        Debug.Log("tour de p1:"+ p1Turn+" | "+ beatCpt);
     }
 	
     public void changeTempo(int newTempo=140)
