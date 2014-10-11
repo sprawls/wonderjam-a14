@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 
 public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
+
 	private BeatManager bm;
 	private bool createNewGem = false;
 	private bool createActiveGem = false;
@@ -15,7 +16,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public GUISkin gSkin;
 
-	public int paddingZeroes = 7;
+	public int paddingZeroes = 7;   
 	public int score = 0;
 	public float zLimit = 100;
 	public float speed;
