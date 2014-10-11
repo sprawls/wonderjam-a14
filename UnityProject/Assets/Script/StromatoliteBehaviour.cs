@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class StromatoliteBehaviour : MonoBehaviour, IBeatReceiver {
 	private float bpm;
+<<<<<<< HEAD
 	private BeatManager bm;
 	private bool createNewGem;
 	private List<Transform> gems = new List<Transform>();
@@ -10,8 +11,12 @@ public class StromatoliteBehaviour : MonoBehaviour, IBeatReceiver {
 	public Transform gemPrefab;
 	public float xLimit = 100;
 
+=======
+    private BeatManager beatManagerRef;
+>>>>>>> 2731701e7178701da67642d2505a90ba2149e988
 	// Use this for initialization
 	void Start () {
+        beatManagerRef = BeatManager.Instance;
 		GameManager.Instance.requestBeat (this);
 		bm = BeatManager.Instance;
 	}
