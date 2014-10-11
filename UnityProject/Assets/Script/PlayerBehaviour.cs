@@ -16,6 +16,9 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public GUISkin gSkin;
 
+    public string Part1;
+    public string Part2;
+
 	public int paddingZeroes = 7;   
 	public int score = 0;
 	public float zLimit = 100;
@@ -87,5 +90,29 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 		// Show score
 		GUI.TextArea (new Rect (0, 0, Screen.width, 40), this.score.ToString().PadLeft(paddingZeroes, '0'), GUI.skin.GetStyle("score"));
+
+        Vector3 v = transform.position;
+       
+        Vector3 start = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().WorldToScreenPoint(v);
+        start.x += 450 * (whoami() == 1 ? -1 : 1) - 80;
+        start.y += 50;
+        GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part1, GUI.skin.GetStyle("score"));
+        start.y += 50;
+        GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part2, GUI.skin.GetStyle("score"));
+
+
 	}
+
+    int whoami()
+    {
+        if (tag == "Player1")
+        {
+            return 1;
+
+        }
+        else
+        {
+            return 2;
+        }
+    }
 }

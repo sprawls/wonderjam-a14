@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour {
         //GUI.skin = Arrow_Up;
         curWidth = 20;
         curHeight = 20;
-        if (BPMModifier<2.9f && GUI.Button(new Rect(((Swidth - curWidth - 40) / 2.0f) + 230, ((Sheight - curHeight) / 2.0f) - 20, curWidth, curHeight), "^"))
+        if (BPMModifier<2.0f && GUI.Button(new Rect(((Swidth - curWidth - 40) / 2.0f) + 230, ((Sheight - curHeight) / 2.0f) - 20, curWidth, curHeight), "^"))
         {
             ChangeBPM(0.1f);
         }
@@ -96,7 +96,7 @@ public class MenuManager : MonoBehaviour {
 
     public void ChangeBPM(float value)
     {
-        if (BPMModifier + value > 0 && BPMModifier + value <= 3) 
+        if (BPMModifier + value > 0 && BPMModifier + value <= 2) 
         {
             BPMModifier += value;
         }
