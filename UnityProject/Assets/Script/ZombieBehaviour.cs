@@ -38,7 +38,7 @@ public class ZombieBehaviour : MonoBehaviour {
 		xPosition = Random.Range (0, xBoardSize);
 		yPosition = Random.Range (0, yBoardSize);
 		MoveToPosition();
-		DEBUG_TESTCOLORS(); //Test colors, TO REMOVE LATER !!
+		//DEBUG_TESTCOLORS(); //Test colors, TO REMOVE LATER !!
 	}
 
 	public void LateUpdate() {
