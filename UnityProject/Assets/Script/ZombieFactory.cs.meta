@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: a99a62782ba792c4dadec7907e533788
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ZombiePrefab: {fileID: 100000, guid: febcc9005f2e24a45a9622eaa451cb88, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
