@@ -22,9 +22,9 @@ public class MenuManager : MonoBehaviour {
     private float Sheight;
 	// Use this for initialization
 	void Start () {
-        addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",140);
-        addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 150);
-        addSong("Music/bitch-clap", "Truxton - Bitch Clap", 150);
+        addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",128);
+        addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
+        addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
 
 
 
