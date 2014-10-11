@@ -7,11 +7,13 @@ public class GameManager : MonoBehaviour, IBeatReceiver {
 	private ZombieFactory ZombieFactoryRef;
 
     List<IUpdate> component = new List<IUpdate>();
+    List<IBeatReceiver> beats = new List<IBeatReceiver>();
 
 	// Use this for initialization
 	void Start () {
         BeatManagerRef = new BeatManager(this);
 		ZombieFactoryRef = new ZombieFactory(this);
+        beats.Add(ZombieFactoryRef);
 	}
 	
 	// Update is called once per frame
@@ -59,13 +61,19 @@ public class GameManager : MonoBehaviour, IBeatReceiver {
         {
             n.OnUpdate();
         }
-
-
 	}
+
+    public void requestBeat(IBeatReceiver b)
+    {
+        beats.Add(b);
+    }
 
     public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1)
     {
-		ZombieFactoryRef.OnBeat (p1,p2, turnP1);
+        foreach (var n in beats)
+        {
+            n.OnBeat(p1, p2, turnP1);
+        }
     }
     
 }

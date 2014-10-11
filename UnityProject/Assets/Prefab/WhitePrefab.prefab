@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: WhitePrefab
   m_TagString: Untagged
@@ -56,6 +57,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a1b4fea91fafa49a2c1f42c64db262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mats_base:
+  - {fileID: 2100000, guid: e0f6e5d10ed4077428869b77307edc07, type: 2}
+  - {fileID: 2100000, guid: aadc00406d026ca40804fae584d916f5, type: 2}
+  - {fileID: 2100000, guid: 465cdc55fefb84a499f0548a2bf0e8ef, type: 2}
+  - {fileID: 2100000, guid: f959f6ab696e9b94a87c1f3af4d185b1, type: 2}
+  mats_bleu:
+  - {fileID: 2100000, guid: eaf4531ed81521a4e93c1cb45a25dccc, type: 2}
+  - {fileID: 2100000, guid: f932fc3ed8e8664439005a5437a194a4, type: 2}
+  - {fileID: 2100000, guid: 490b39dfb1ff23342822800c6c5f8865, type: 2}
+  - {fileID: 2100000, guid: 1a8859e8467ce034ea75f8ab1cbb1656, type: 2}
+  mats_vert:
+  - {fileID: 2100000, guid: b79a2b9957bf12e4dac25bbb0f87a532, type: 2}
+  - {fileID: 2100000, guid: 9013c56db4071c8429ac54179284dc2e, type: 2}
+  - {fileID: 2100000, guid: ce69f4d5b11a5c2419aa4ed17cf26526, type: 2}
+  - {fileID: 2100000, guid: 12738d4d2bc89474b939ebb9df7e5044, type: 2}
+  state: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
