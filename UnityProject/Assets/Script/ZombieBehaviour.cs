@@ -20,9 +20,15 @@ public class ZombieBehaviour : MonoBehaviour {
 	private BeatEnum mainInput;
 	private BeatEnum otherInput;
 	private SpriteRenderer sprRenderer;
+	private PlayerBehaviour player1;
+	private PlayerBehaviour player2;
 
 	public void Start(){
+		//GetComponents
 		sprRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+		player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerBehaviour>();
+		player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerBehaviour>();
+
 		if(Random.Range (0,100) > 50) isUp = !isUp; //random change to start animation
 		if(Random.Range (0,100) > 50) isRight = !isRight; //random change tofacing 
 
@@ -47,14 +53,15 @@ public class ZombieBehaviour : MonoBehaviour {
 			randomChange *= randomWeight;
 			Vector2 ResultChange = playerChange + randomChange;
 
-			//Debug.Log ("pChange : " + playerChange + "   rChange " + randomChange + "   tChange " + ResultChange);
-
 			//Execute Mouvment
 			ChangePosition(ResultChange); //Change Position on grid
 			MoveToPosition (); //Move and Clamp
 
 			//Update Sprite
 			UpdateSprite();
+
+			//Add Score
+			AddScore();
 
 			isOnBeat = false;
 		}
@@ -69,6 +76,10 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	}
 
+	private void AddScore(){
+		if(currentType == 1) player1.score += 10;
+		else if(currentType ==2) player2.score += 10;
+	}
 
 	private void  UpdateSprite(){
 		//Change Up or Down
