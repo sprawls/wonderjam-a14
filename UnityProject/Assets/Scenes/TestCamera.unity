@@ -835,6 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: b3fafdde37baf4a1ea4b56f3199708e0, type: 2}
+  gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: DJ Jerry Oz
   Part2: 
   paddingZeroes: 7
@@ -1493,6 +1494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   black: {fileID: 100000, guid: 685dd5eca1488b8459b5c9618514c0f9, type: 2}
   white: {fileID: 100000, guid: 68718533a15a616408369083b5feb5d4, type: 2}
+  winScore: 4000
 --- !u!81 &868515002
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2558,6 +2560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: 0cd8575a2fd944867a3609444f39378e, type: 2}
+  gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: "DJ Guylaine grosse-soir\xE9e"
   Part2: 
   paddingZeroes: 7
@@ -3674,6 +3677,10 @@ Prefab:
     - target: {fileID: 100000, guid: 3c35561c8a1bc5244ab6ae0eb41fd0f4, type: 2}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3c35561c8a1bc5244ab6ae0eb41fd0f4, type: 2}
+      propertyPath: winScore
+      value: 4000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c35561c8a1bc5244ab6ae0eb41fd0f4, type: 2}

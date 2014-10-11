@@ -6,6 +6,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     public GameObject black;
     public GameObject white;
 
+    public int winScore;
+
 	protected GameManager () {} // guarantee this will be always a singleton only - can't use the constructor!
 
     private BeatManager BeatManagerRef;
@@ -133,14 +135,14 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     {
         if(p1.score > p2.score)
         {
-            if(p1.score > 30000)
+            if (p1.score > winScore)
             {
                 return 1;
             }
         }
         else
         {
-            if (p2.score > 30000)
+            if (p2.score > winScore)
             {
                 return 2;
             }
