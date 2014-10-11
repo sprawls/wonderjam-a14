@@ -19,7 +19,7 @@ public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
 	public ZombieFactory(IBeatReceiver Beat){
 		IbeatReceiverRef = Beat;
 
-		ZombiePrefab = (GameObject) Resources.Load ("prefab/zombie");
+		ZombiePrefab = (GameObject) Resources.Load ("prefab/ZombiePrefab");
 		Zombies = new List<ZombieBehaviour>();
 		//instantiate empty game object for grid
 		//emptyObject = (GameObject) Instantiate (new GameObject(), Vector3.zero, Quaternion.identity);
