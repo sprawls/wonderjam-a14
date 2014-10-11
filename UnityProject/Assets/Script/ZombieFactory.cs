@@ -59,10 +59,10 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 		Vector3[] tilesPositions = GetTileList(tile);
 		for(int i = 0; i < Zombies.Count; i++) {
 			for(int j = 0; j < tilesPositions.Length; j++){
-				if(Zombies[i].transform.position.x < (tilesPositions[i].x+5) 
-				   && Zombies[i].transform.position.x > (tilesPositions[i].x-5)
-				   && Zombies[i].transform.position.y < (tilesPositions[i].y+5) 
-				   && Zombies[i].transform.position.y > (tilesPositions[i].y-5)) {
+				if(Zombies[i].transform.position.x < (tilesPositions[j].x+5) 
+				   && Zombies[i].transform.position.x > (tilesPositions[j].x-5)
+				   && Zombies[i].transform.position.y < (tilesPositions[j].y+5) 
+				   && Zombies[i].transform.position.y > (tilesPositions[j].y-5)) {
 					Zombies[i].ChangeType(cur_col);
 					Debug.Log ("Changed Type of " + Zombies[i].GetInstanceID() + "    to Type : " + cur_col);
 				}
@@ -73,7 +73,7 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	private Vector3[] GetTileList(int[] tiles) {
 		Vector3[] myTilesPositions = new Vector3[tiles.Length];
 		for(int i=0; i< tiles.Length; i++){
-			myTilesPositions[i] = GameManager.Instance.getTile(i).transform.position;
+			myTilesPositions[i] = GameManager.Instance.getTile(tiles[i]).transform.position;
 		}
 		return myTilesPositions;
 	}
