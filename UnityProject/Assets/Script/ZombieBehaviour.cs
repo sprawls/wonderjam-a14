@@ -169,7 +169,4 @@ public class ZombieBehaviour : MonoBehaviour {
 		                                                      Mathf.Lerp(startingPosition.z, endingPosition.z, (1f )));
 	}
 
-    public void OnPeinture(int[] tile,int cur_col){
-
-    }
 }
