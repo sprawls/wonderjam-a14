@@ -17,9 +17,9 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
 	// Use this for initialization
 	void Start () {
-        BeatManagerRef = new BeatManager(this);
-		ZombieFactoryRef = new ZombieFactory(this);
-        beats.Add(ZombieFactoryRef);
+      	BeatManager.Instance.SetBeat(this);
+		ZombieFactory.Instance.SetBeat(this);
+
         tiles = PlancherCreator.CreatePlancher(black, white);
 	}
 	
