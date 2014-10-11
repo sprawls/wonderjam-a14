@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ZombieBehaviour : MonoBehaviour, IBeatReceiver , IUpdate {
+public class ZombieBehaviour : MonoBehaviour {
 	
 	public float xPosition; //Size of the board on the scene on X
 	public float yPosition; //Size of the board on the scene on Y
