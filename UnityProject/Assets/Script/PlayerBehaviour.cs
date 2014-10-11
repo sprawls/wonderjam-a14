@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private List<Transform> gems = new List<Transform>();
 	private List<int> gemsToDestroy = new List<int> ();
 	private float bpm;
+	private float totalDistance;
 	private bool turnP1 = false;
 	private string tag;
 
@@ -39,8 +40,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		GameManager.Instance.requestBeat (this);
 		tag = gameObject.tag;
 
-		float totalGemDistance = Math.Abs(gemSpawningPoint.z - zLimit);
-		float timeToReach = totalGemDistance / speed;
+		totalDistance = Math.Abs(gemSpawningPoint.z - zLimit);
 	}
 
 	// Update is called once per frame
@@ -64,7 +64,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		
 		foreach (Transform g in gems) {
 			// Move all gems towards stromatolite
-			g.Translate(new Vector3(0, 0, speed) * Time.deltaTime);
+			float speed = (bpm * totalDistance * Time.deltaTime)/240;
+			if (gameObject.tag == "Player2") speed *= -1;
+
+			g.Translate(new Vector3(0, 0, speed));
 			
 			// Destroy gems on stromatolite
 			if (Mathf.Abs(g.position.z - zLimit) < 0.5 ) {
@@ -136,4 +139,14 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
             return 2;
         }
     }
+
+	public int Score {
+		get {
+			return this.score;
+		}
+		set {
+			if (!GameManager.Instance.IsAnimating && !GameManager.Instance.Finished)
+				this.score = value;
+		}
+	}
 }
