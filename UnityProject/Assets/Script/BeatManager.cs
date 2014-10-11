@@ -6,8 +6,8 @@ public class BeatManager {
     
     private IBeatReceiver IbeatReceiverRef;
     private int tempo;
-    private BeatEnum p1Input;
-    private BeatEnum p2Input;
+    private BeatEnum p1Input=BeatEnum.Missed;
+    private BeatEnum p2Input=BeatEnum.Missed;
     private bool p1Turn=true;
     private int beatCpt = 0;
     private float interval;
@@ -70,7 +70,7 @@ public class BeatManager {
     public void setInputP2(int value)
     {
 
-        if (intervalCpt >= interval * 0.9f || intervalCpt <= interval * 0.1f)
+        if (intervalCpt >= interval * 0.8f)
         {
             switch (value)
             {
@@ -121,6 +121,8 @@ public class BeatManager {
             IbeatReceiverRef.OnBeat(p2Input, p1Input, p1Turn);
         }
         Debug.Log("tour de p1:"+ p1Turn+" | "+ beatCpt);
+        p1Input = BeatEnum.Missed;
+        p2Input = BeatEnum.Missed;
     }
 	
     public void changeTempo(int newTempo=140)
