@@ -63,7 +63,7 @@ public class BeatManager {
         {
             p1Input = BeatEnum.Missed;
         }
-        Debug.Log(p1Input);
+       // Debug.Log(p1Input);
 
     }
 
@@ -92,7 +92,7 @@ public class BeatManager {
         {
             p2Input = BeatEnum.Missed;
         }
-        Debug.Log(p2Input);
+        //Debug.Log(p2Input);
     }
 
     private void doBeat(object source, ElapsedEventArgs e)
