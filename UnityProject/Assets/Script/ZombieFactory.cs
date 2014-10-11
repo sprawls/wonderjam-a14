@@ -12,7 +12,7 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	private GameObject zombieAnchorObject;
 	private IBeatReceiver IbeatReceiverRef;
 	private int NumZombies = 50;
-	
+
 
 	public void OnUpdate(){
 
@@ -56,7 +56,26 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	}
 
 	public void OnPeinture(int[] tile,int cur_col){
-		
+		Vector3[] tilesPositions = GetTileList(tile);
+		for(int i = 0; i < Zombies.Count; i++) {
+			for(int j = 0; j < tilesPositions.Length; j++){
+				if(Zombies[i].transform.position.x < (tilesPositions[j].x+5) 
+				   && Zombies[i].transform.position.x > (tilesPositions[j].x-5)
+				   && Zombies[i].transform.position.z < (tilesPositions[j].z+5) 
+				   && Zombies[i].transform.position.z > (tilesPositions[j].z-5)) {
+					Zombies[i].ChangeType(cur_col);
+					Debug.Log ("Changed Type of " + i+ "    to Type : " + cur_col);
+				}
+			}
+		}
+	} 
+
+	private Vector3[] GetTileList(int[] tiles) {
+		Vector3[] myTilesPositions = new Vector3[tiles.Length];
+		for(int i=0; i< tiles.Length; i++){
+			myTilesPositions[i] = GameManager.Instance.getTile(tiles[i]).transform.position;
+		}
+		return myTilesPositions;
 	}
 
 
