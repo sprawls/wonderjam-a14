@@ -26,6 +26,7 @@ public class BeatManager {
 
     private void doBeat(object source, ElapsedEventArgs e)
     {
+
         if (p1Turn)
         {
             IbeatReceiverRef.OnBeat(p1Input, p2Input);
