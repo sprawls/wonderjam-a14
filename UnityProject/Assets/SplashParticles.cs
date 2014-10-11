@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SplashParticles : MonoBehaviour {
 
+	ParticleSystem newParticle;
+
 	// Use this for initialization
 	void Start () {
 	
