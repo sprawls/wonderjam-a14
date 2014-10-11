@@ -32,7 +32,7 @@ public class BeatManager {
         }
         else
         {
-            IbeatReceiverRef.OnBeat(p1Input, p2Input);
+            IbeatReceiverRef.OnBeat(p2Input, p1Input);
         }
     }
 	

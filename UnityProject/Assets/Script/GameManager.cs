@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, IBeatReceiver {
 
     public void OnBeat(BeatEnum p1, BeatEnum p2)
     {
+        
     }
     
 }
