@@ -15,7 +15,6 @@ public class BeatManager : Singleton<BeatManager> {
     private bool p1Turn=false;
     private int beatCpt = 0;
 
-
     private float _interval;
     public float interval { get { return this._interval; } }
 
@@ -165,7 +164,7 @@ public class BeatManager : Singleton<BeatManager> {
 
 	public bool aboutToSwitch { 
 		get { 
-			return (beatCpt >= 11);
+			return (beatCpt >= 12);
 		}
 	}
 }
