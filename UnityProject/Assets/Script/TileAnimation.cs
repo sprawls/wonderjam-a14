@@ -9,7 +9,18 @@ public class TileAnimation: MonoBehaviour, IBeatReceiver{
 
     bool changeUpdate = false;
 
-    public int state = 0;
+    private int _state;
+    public int color
+    {
+        get { return _state; }
+        set
+        {
+            if (value >= 0 && value <= 2)
+            {
+                _state = value;
+            }
+        }
+    }
 
     private int number = 0;
 
@@ -32,7 +43,7 @@ public class TileAnimation: MonoBehaviour, IBeatReceiver{
             int i = number % 4;
             number++;
             //i = Random.Range(0, 4);
-            switch (state)
+            switch (color)
             {
                 case 0:
                     rend.material = mats_base[i];
@@ -46,14 +57,5 @@ public class TileAnimation: MonoBehaviour, IBeatReceiver{
             }
             changeUpdate = false;
         }
-    }
-
-    public void setColor(int i)
-    {
-        if(i >= 0 && i <= 2)
-        {
-            state = i;
-        }
-
     }
 }
