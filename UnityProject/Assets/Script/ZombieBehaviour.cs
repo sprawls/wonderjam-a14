@@ -49,9 +49,9 @@ public class ZombieBehaviour : MonoBehaviour {
 		} else if(pInput == BeatEnum.Left) {
 			return -Vector2.right;
 		} else if(pInput == BeatEnum.Down) {
-			return Vector2.up;
-		} else {
 			return -Vector2.up;
+		} else {
+			return Vector2.up;
 		}
 	}
 
