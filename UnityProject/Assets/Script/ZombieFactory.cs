@@ -6,6 +6,8 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	protected ZombieFactory () {}
 
 	public List<ZombieBehaviour>  Zombies;
+	public GameObject TileParticlesColor_blue;
+	public GameObject TileParticlesColor_green;
 
 	private GameObject ZombiePrefab;
 	private GameObject emptyObject;
@@ -13,6 +15,11 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	private IBeatReceiver IbeatReceiverRef;
 	private int NumZombies = 50;
 
+
+	public void Start(){
+		TileParticlesColor_green = (GameObject) Resources.Load("TileSplash_green");
+		TileParticlesColor_blue = (GameObject) Resources.Load("TileSplash_blue");
+	}
 
 	public void OnUpdate(){
 
@@ -57,6 +64,7 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 
 	public void OnPeinture(int[] tile,int cur_col){
 		Vector3[] tilesPositions = GetTileList(tile);
+		CreateTileParticles(tilesPositions, cur_col);
 		for(int i = 0; i < Zombies.Count; i++) {
 			for(int j = 0; j < tilesPositions.Length; j++){
 				if(Zombies[i].transform.position.x < (tilesPositions[j].x+5) 
@@ -78,5 +86,16 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 		return myTilesPositions;
 	}
 
+	private void CreateTileParticles(Vector3[] positions, int blueOrGreen){
+		GameObject ToInstantiate;
+		if(blueOrGreen == 1) {
+			ToInstantiate = TileParticlesColor_green;
+		} else {
+			ToInstantiate = TileParticlesColor_blue;
+		}
+		for(int i=0; i< positions.Length; i++) {
+			Instantiate (ToInstantiate, positions[i], Quaternion.identity);
+		}
+	}
 
 }
