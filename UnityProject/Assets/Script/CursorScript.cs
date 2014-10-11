@@ -135,6 +135,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
             }
         }
         ZombieFactory.Instance.OnPeinture(tile, cur_col);
+        colored = new Queue<int>();
     }
 
     private void EnqueueCurrent()
