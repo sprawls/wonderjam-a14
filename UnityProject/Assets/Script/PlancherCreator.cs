@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlancherCreator  {
+public class PlancherCreator{
     
 
     public static TileAnimation[] CreatePlancher(GameObject black, GameObject white)
