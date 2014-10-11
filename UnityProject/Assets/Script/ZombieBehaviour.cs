@@ -26,8 +26,10 @@ public class ZombieBehaviour : MonoBehaviour {
 	public void Start(){
 		//GetComponents
 		sprRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-		player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerBehaviour>();
-		player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerBehaviour>();
+		GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player1");
+		if(tempPlayer != null) player1 = tempPlayer.GetComponent<PlayerBehaviour>();
+		tempPlayer = GameObject.FindGameObjectWithTag("Player2");
+		if(tempPlayer != null) player2 = tempPlayer.GetComponent<PlayerBehaviour>();
 
 		if(Random.Range (0,100) > 50) isUp = !isUp; //random change to start animation
 		if(Random.Range (0,100) > 50) isRight = !isRight; //random change tofacing 
