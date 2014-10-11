@@ -28,6 +28,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public Transform gemPrefab;
 	public Transform neutralGemPrefab;
+	//Player score 
+	public float P1Combo = 0;
+	public float P2Combo = 0;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -83,9 +87,25 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		createNewGem = true;
-		turnP1 = turnP1;
-
+		turnP1 = turnP1; //You wut mate ?
 		createActiveGem = (((turnP1 && !aboutToSwitch) || (!turnP1 && aboutToSwitch)) && tag == "Player1") || (((!turnP1 && !aboutToSwitch) || (turnP1 && aboutToSwitch)) && tag == "Player2");
+
+		//Look For P1 Combo
+		if(turnP1 && p1 != BeatEnum.Missed){
+			P1Combo ++;
+		} else if(!turnP1 && p2 != BeatEnum.Missed) {
+			P1Combo ++;
+		} else {
+			P1Combo = 0;
+		}
+		//Look For P2 Combo
+		if(turnP1 && p2 != BeatEnum.Missed){
+			P2Combo ++;
+		} else if(!turnP1 && p1 != BeatEnum.Missed) {
+			P2Combo ++;
+		} else {
+			P2Combo = 0;
+		}
 	}
 
 	void OnGUI() {
@@ -102,6 +122,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part1, GUI.skin.GetStyle("score"));
         start.y += 50;
         GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part2, GUI.skin.GetStyle("score"));
+
 
 
 	}

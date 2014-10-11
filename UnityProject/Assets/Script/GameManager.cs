@@ -157,8 +157,6 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
 	public bool IsAnimating {
 		get {
-			//Debug.Log ("Idle: " + Animator.StringToHash("Idle"));
-			//Debug.Log ("Current state: " + camAnim.GetCurrentAnimatorStateInfo(0).nameHash);
 			return !(camAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 		}
 	}
