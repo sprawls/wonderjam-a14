@@ -6,11 +6,11 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	public GUISkin gSkin;
 	public int framesUntilAnim = 2;
 	public int paddingZeroes = 7;
+	public int score = 0;
 
 	private int i = 0;
 	private int currentFrame = 0;
 	private SpriteRenderer sRenderer;
-	private int score = 0;
 
 	// Use this for initialization
 	void Start () {
