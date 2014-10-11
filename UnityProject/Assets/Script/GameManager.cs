@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour, IBeatReceiver {
+public class GameManager : Singleton<GameManager>, IBeatReceiver {
+	protected GameManager () {} // guarantee this will be always a singleton only - can't use the constructor!
 
     private BeatManager BeatManagerRef;
 	private ZombieFactory ZombieFactoryRef;
