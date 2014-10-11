@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         BeatManager.Instance.SetBeat(this);
         ZombieFactory.Instance.SetBeat(this);
 
-
+        BeatManagerRef.changeTempo(PersistentScript.songBPM);
       	
 
 
