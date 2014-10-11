@@ -55,5 +55,9 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	
 	}
 
+	public void OnPeinture(int[] tile,int cur_col){
+		
+	}
+
 
 }
