@@ -127,7 +127,7 @@ public class BeatManager {
         p2Input = BeatEnum.Missed;
     }
 	
-    public void changeTempo(int newTempo=140)
+    public void changeTempo(int newTempo =140)
     {
         tempo = newTempo;
         interval = (60 * 1000) / tempo;

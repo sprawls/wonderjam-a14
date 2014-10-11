@@ -1,22 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ZombieBehaviour : MonoBehaviour {
-	
+
+	public List<Sprite> spriteList;
 	public float xPosition; //Size of the board on the scene on X
 	public float yPosition; //Size of the board on the scene on Y
 	public bool isOnBeat = false;
-	private float randomWeight = 1.5f;
-	private float playerWeight = 3.5f;
+	public int currentType; //0 : neutral, 1 : P1 , 2 :P2
 
+	private bool isUp = true; // is the zombie in up stance (while dancing)
+	private bool isRight = true; //is the zombie facing right (while dancing)
+	private float randomWeight = 1.5f; //Weight of the mouvement
+	private float playerWeight = 3.5f; //Weight of the mouvment
 	private float xBoardSize = 78; //Board from 0 to this on x Axis
 	private float yBoardSize = 48; //Board from 0 to this on y Axis
-
-
 	private BeatEnum mainInput;
 	private BeatEnum otherInput;
+	private SpriteRenderer sprRenderer;
 
 	public void Start(){
+		sprRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+		if(Random.Range (0,100) > 50) isUp = !isUp; //random change to start animation
+		if(Random.Range (0,100) > 50) isRight = !isRight; //random change tofacing 
+
 		transform.position = new Vector2(0f,0f);
 		xPosition = Random.Range (0, xBoardSize);
 		yPosition = Random.Range (0, yBoardSize);
@@ -25,6 +33,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	public void LateUpdate() {
 		if(isOnBeat == true) {
+			//Calculate Mouvement
 			Vector2 playerChange = CreatePlayerChange(otherInput);
 			playerChange *= playerWeight;
 			Vector2 randomChange = new Vector2(Random.Range(-1f,1f), Random.Range (-1f,1f)).normalized;
@@ -32,14 +41,40 @@ public class ZombieBehaviour : MonoBehaviour {
 			Vector2 ResultChange = playerChange + randomChange;
 
 			//Debug.Log ("pChange : " + playerChange + "   rChange " + randomChange + "   tChange " + ResultChange);
-			
+
+			//Execute Mouvment
 			ChangePosition(ResultChange); //Change Position on grid
 			MoveToPosition (); //Move and Clamp
+
+			//Update Sprite
+			UpdateSprite();
+
 			isOnBeat = false;
 		}
 	}
 
+	private void  UpdateSprite(){
+		//Update  Sprite
+		if(currentType == 0){
+			if(isUp == true) sprRenderer.sprite = spriteList[0];
+			else sprRenderer.sprite = spriteList[1];
+		} else if(currentType == 1){
+			if(isUp == true) sprRenderer.sprite = spriteList[2];
+			else sprRenderer.sprite = spriteList[3];
+		} else {
+			if(isUp == true) sprRenderer.sprite = spriteList[4];
+			else sprRenderer.sprite = spriteList[5];
+		}
+		//Update Facing
+		if(isRight == true) {
+			sprRenderer.transform.localScale = new Vector3(1,1,1);
+		} else {
+			sprRenderer.transform.localScale = new Vector3(-1,1,1);
+		}
+	}
+
 	public void OnBeat(BeatEnum p1, BeatEnum p2) { 
+		isUp = !isUp;
 		mainInput = p1;
 		otherInput = p2;
 		isOnBeat = true;
@@ -69,6 +104,10 @@ public class ZombieBehaviour : MonoBehaviour {
 	public void MoveToPosition() { //Move to position of current
 		//transform.localPosition = new Vector2(xPosition,yPosition,1f/2.033f);
 		StartCoroutine (PlaySmoothAnimation(transform.localPosition,new Vector2(xPosition,yPosition),1f/2.033f));
+	}
+
+	public void ChangeType(int newType) {
+		currentType = newType;
 	}
 
 	//Coroutine that smooths the mouvement animation

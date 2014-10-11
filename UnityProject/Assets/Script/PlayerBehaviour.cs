@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	public List<Sprite> frames = new List<Sprite>();
+	public GUISkin gSkin;
 	public int framesUntilAnim = 2;
+	public int paddingZeroes = 7;
+	public int score = 0;
 
 	private int i = 0;
 	private int currentFrame = 0;
@@ -30,7 +33,13 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			i = 0;
 			currentFrame++;
 			if (currentFrame == frames.Count) currentFrame = 0;
-			Debug.Log ("Current frame : " + currentFrame);
 		}
+	}
+
+	void OnGUI() {
+		GUI.skin = gSkin;
+
+		// Show score
+		GUI.TextArea (new Rect (0, 0, Screen.width, 40), this.score.ToString().PadLeft(paddingZeroes, '0'), GUI.skin.GetStyle("score"));
 	}
 }
