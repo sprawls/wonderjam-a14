@@ -1224,13 +1224,13 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Margin:
-      m_Left: 12
-      m_Right: 12
+      m_Left: 0
+      m_Right: 0
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 0
-      m_Right: 0
+      m_Left: 12
+      m_Right: 12
       m_Top: 0
       m_Bottom: 0
     m_Overflow:
@@ -1239,7 +1239,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 12800000, guid: 5d0455f8e3ef0ca4695be10a901e2992, type: 3}
-    m_FontSize: 24
+    m_FontSize: 36
     m_FontStyle: 0
     m_Alignment: 3
     m_WordWrap: 0
