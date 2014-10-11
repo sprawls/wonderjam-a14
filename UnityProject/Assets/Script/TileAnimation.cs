@@ -31,6 +31,10 @@ public class TileAnimation: MonoBehaviour, IBeatReceiver{
         rend = GetComponentInParent<MeshRenderer>();
 	}
 
+    public void OnQuarterBeat()
+    {
+    }
+
     public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1)
     {
         changeUpdate = true;

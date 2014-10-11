@@ -20,23 +20,21 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     private Persistent PersistentScript;
 	// Use this for initialization
 	void Start () {
-        BeatManagerRef = BeatManager.Instance;
-        ZombieFactoryRef = ZombieFactory.Instance;
 
         GameObject persistentObj = GameObject.Find("persistent");
         PersistentScript = persistentObj.GetComponent("Persistent") as Persistent;
-
         song = Resources.Load(PersistentScript.songPath) as AudioClip;
         audio.clip = song;
         audio.pitch = PersistentScript.songMulti;
         audio.Play();
 
+		BeatManagerRef = BeatManager.Instance;
+		ZombieFactoryRef = ZombieFactory.Instance;
+
         BeatManager.Instance.SetBeat(this);
         ZombieFactory.Instance.SetBeat(this);
 
-
-      	
-
+        BeatManagerRef.changeTempo(PersistentScript.songBPM);
 
         tiles = PlancherCreator.CreatePlancher(black, white);
 	}
@@ -98,6 +96,14 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         foreach (var n in beats)
         {
             n.OnBeat(mainPlayer, offPlayer, turnP1);
+        }
+    }
+
+    public void OnQuarterBeat()
+    {
+        foreach (var n in beats)
+        {
+            n.OnQuarterBeat();
         }
     }
 
