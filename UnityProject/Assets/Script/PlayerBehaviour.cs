@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerBehaviour : MonoBehaviour {
+public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private BeatManager bm;
 	private bool createNewGem = false;
 	private List<Transform> gems = new List<Transform>();
@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		bm = BeatManager.Instance;
+		GameManager.Instance.requestBeat (this);
 	}
 
 	// Update is called once per frame
@@ -32,7 +33,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		
 		foreach (Transform g in gems) {
 			// Move all gems towards stromatolite
-			g.Translate(new Vector3(1, 0, 0) * Time.deltaTime);
+			g.Translate(new Vector3(0, 0, 1) * Time.deltaTime);
 			
 			// Destroy gems on stromatolite
 			if (g.position.x > xLimit) {
