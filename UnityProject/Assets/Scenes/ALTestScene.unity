@@ -475,8 +475,11 @@ MonoBehaviour:
   gSkin: {fileID: 11400000, guid: b3fafdde37baf4a1ea4b56f3199708e0, type: 2}
   paddingZeroes: 7
   score: 0
-  gemPrefab: {fileID: 0}
-  xLimit: 0
+  zLimit: 100
+  speed: 0
+  gemSpawningPoint: {x: 0, y: 0, z: 0}
+  gemPrefab: {fileID: 400004, guid: 36c0585269a0a4bc897c3f9af927b5cd, type: 2}
+  neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
 --- !u!212 &1134040098
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -744,8 +747,11 @@ MonoBehaviour:
   gSkin: {fileID: 11400000, guid: 0cd8575a2fd944867a3609444f39378e, type: 2}
   paddingZeroes: 7
   score: 0
-  gemPrefab: {fileID: 0}
-  xLimit: 0
+  zLimit: 100
+  speed: 0
+  gemSpawningPoint: {x: 0, y: 0, z: 0}
+  gemPrefab: {fileID: 400004, guid: 47d60bdc3f94249d9bc2c0f556bb8a8e, type: 2}
+  neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
 --- !u!212 &1469833786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -810,7 +816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pos: 2
-  player: 0
+  player: 1
 --- !u!4 &1853704435
 Transform:
   m_ObjectHideFlags: 0
