@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, IBeatReceiver {
 	// Update is called once per frame
     void Update()
     {
+		// @TODO
         if (Input.GetKeyDown("w"))
         {
             BeatManagerRef.setInputP2(0);
