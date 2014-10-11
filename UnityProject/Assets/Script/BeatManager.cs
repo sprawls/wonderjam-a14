@@ -21,6 +21,7 @@ public class BeatManager : Singleton<BeatManager> {
     private Timer t_Beat_update = new Timer();
     private Timer t_Beat_acuracy = new Timer();
 
+	private float sweet = 0.5f;
 
     public void SetBeat(IBeatReceiver Beat)
     {
@@ -53,7 +54,7 @@ public class BeatManager : Singleton<BeatManager> {
 
     public void setInputP1(int value)
     {
-        if (intervalCpt >= interval * 0.8f)
+        if (intervalCpt >= interval * sweet)
         {
             switch (value)
             {
@@ -82,7 +83,7 @@ public class BeatManager : Singleton<BeatManager> {
     public void setInputP2(int value)
     {
 
-        if (intervalCpt >= interval * 0.8f)
+        if (intervalCpt >= interval * sweet)
         {
             switch (value)
             {

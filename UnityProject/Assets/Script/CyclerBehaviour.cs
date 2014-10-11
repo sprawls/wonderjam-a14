@@ -22,14 +22,10 @@ public class CyclerBehaviour : MonoBehaviour, IBeatReceiver {
 	}
 	
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
-		//if(gameObject.name == "P1")
-		Debug.Log ("beat");
+
 	}
 
 	public void OnQuarterBeat() {
-		//if(gameObject.name == "P1")
-		Debug.Log ("quarter");
-
 		if (i < quarterFramesUntilAnim)
 			i++;
 		
