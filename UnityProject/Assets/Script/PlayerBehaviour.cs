@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private BeatManager bm;
@@ -29,6 +30,9 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		bpm = bm.interval;
 		GameManager.Instance.requestBeat (this);
 		tag = gameObject.tag;
+
+		float totalGemDistance = Math.Abs(gemSpawningPoint.z - zLimit);
+		float timeToReach = totalGemDistance / speed;
 	}
 
 	// Update is called once per frame
@@ -74,7 +78,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		createNewGem = true;
 		turnP1 = turnP1;
 
-		createActiveGem = ((turnP1 || (!turnP1 && aboutToSwitch)) ^ tag == "Player1");
+		createActiveGem = (((turnP1 && !aboutToSwitch) || (!turnP1 && aboutToSwitch)) && tag == "Player1") || (((!turnP1 && !aboutToSwitch) || (turnP1 && aboutToSwitch)) && tag == "Player2");
 	}
 
 	void OnGUI() {

@@ -61,10 +61,10 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 			for(int j = 0; j < tilesPositions.Length; j++){
 				if(Zombies[i].transform.position.x < (tilesPositions[j].x+5) 
 				   && Zombies[i].transform.position.x > (tilesPositions[j].x-5)
-				   && Zombies[i].transform.position.y < (tilesPositions[j].y+5) 
-				   && Zombies[i].transform.position.y > (tilesPositions[j].y-5)) {
+				   && Zombies[i].transform.position.z < (tilesPositions[j].z+5) 
+				   && Zombies[i].transform.position.z > (tilesPositions[j].z-5)) {
 					Zombies[i].ChangeType(cur_col);
-					Debug.Log ("Changed Type of " + Zombies[i].GetInstanceID() + "    to Type : " + cur_col);
+					Debug.Log ("Changed Type of " + i+ "    to Type : " + cur_col);
 				}
 			}
 		}
