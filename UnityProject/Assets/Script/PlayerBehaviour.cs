@@ -23,7 +23,11 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		// Refresh frame
 		sRenderer.sprite = frames[currentFrame];
 	}
-	
+
+    public void OnQuarterBeat()
+    {
+    }
+
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		if (i < framesUntilAnim)
 			i++;

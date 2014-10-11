@@ -14,6 +14,8 @@ public class BeatManager : Singleton<BeatManager> {
     private float _interval;
     public float interval { get { return this._interval; } }
 
+    private int subQuarter = 1;
+
     private float intervalCpt = 0;
 
     private Timer t_Beat_update = new Timer();
@@ -42,6 +44,11 @@ public class BeatManager : Singleton<BeatManager> {
     private void IncreaseInvervalCpt(object source, ElapsedEventArgs e)
     {
         intervalCpt += 50;
+        if (intervalCpt>=(_interval / 4)*subQuarter)
+        {
+            subQuarter++;
+            IbeatReceiverRef.OnQuarterBeat();
+        }
     }
 
     public void setInputP1(int value)
@@ -103,6 +110,7 @@ public class BeatManager : Singleton<BeatManager> {
     private void doBeat(object source, ElapsedEventArgs e)
     {
         intervalCpt = 0;
+        subQuarter = 1;
         beatCpt++;
         if (beatCpt >= 16)
         {

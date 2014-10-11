@@ -15,6 +15,10 @@ public class StromatoliteBehaviour : MonoBehaviour, IBeatReceiver {
 		
 	}
 
+    public void OnQuarterBeat()
+    {
+    }
+
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		//Debug.Log ("dick");
         bpm = beatManagerRef.interval;
