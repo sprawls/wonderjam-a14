@@ -9,7 +9,7 @@ public class ZombieBehaviour : MonoBehaviour {
 	private float xBoardSize = 16; //Board from 0 to this on x Axis
 	private float yBoardSize = 10; //Board from 0 to this on y Axis
 
-	public ZombieBehaviour(){
+	public void Start(){
 		transform.position = new Vector2(0f,0f);
 		xPosition = Random.Range (0, xBoardSize);
 		yPosition = Random.Range (0, yBoardSize);
