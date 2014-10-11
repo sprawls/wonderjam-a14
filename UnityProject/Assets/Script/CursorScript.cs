@@ -68,29 +68,36 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
         else 
         {
             int old = pos;
+            int n = pos;
             switch (p)
             {
                 case BeatEnum.Up:
-                    pos --;
-                    if (pos/5 != (pos +1)/5)
-                        pos ++;
+                    if (old % 5 != 0)
+                    {
+                        n = old - 1;
+                    }
                     break;
                 case BeatEnum.Down:
-                    pos ++;
-                    if (pos/5 != (pos -1)/5)
-                        pos --;
+                    if (old % 5 != 4)
+                    {
+                        n = old+1;
+                    }
                     break;
                 case BeatEnum.Right:
-                    pos+=5;
-                    if (pos > 40)
-                        pos -= 5;
+                    if (old < 35)
+                    {
+                        n = old + 5;
+                    }
                     break;
                 case BeatEnum.Left:
-                    pos-=5;
-                    if (pos < 0)
-                        pos += 5;
+                    if (old > 4)
+                    {
+                        n = old - 5;
+                    }
                     break;
             }
+            pos = n;
+            Debug.Log(pos);
             if (old != pos)
             {
                 EnqueueCurrent();
