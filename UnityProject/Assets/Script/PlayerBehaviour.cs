@@ -4,10 +4,13 @@ using System.Collections.Generic;
 public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private BeatManager bm;
 	private bool createNewGem = false;
+	private bool createActiveGem = false;
+	private bool aboutToSwitch = false;
 	private List<Transform> gems = new List<Transform>();
 	private List<int> gemsToDestroy = new List<int> ();
 	private float bpm;
 	private bool turnP1 = false;
+	private string tag;
 
 	public GUISkin gSkin;
 
@@ -25,13 +28,21 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		bm = BeatManager.Instance;
 		bpm = bm.interval;
 		GameManager.Instance.requestBeat (this);
+		tag = gameObject.tag;
 	}
 
 	// Update is called once per frame
 	void Update () {
+		aboutToSwitch = bm.aboutToSwitch;
+
 		// Create new gem at end of line
 		if (createNewGem) {
-			Transform newGem = Transform.Instantiate(gemPrefab) as Transform;
+			Transform newGem;
+			if (createActiveGem)
+				newGem = Transform.Instantiate(gemPrefab) as Transform;
+			else
+				newGem = Transform.Instantiate(neutralGemPrefab) as Transform;
+
 			newGem.parent = this.transform;
 			newGem.position = gemSpawningPoint;
 			gems.Add (newGem);
@@ -44,7 +55,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			g.Translate(new Vector3(0, 0, speed) * Time.deltaTime);
 			
 			// Destroy gems on stromatolite
-			if (Mathf.Abs(g.position.z - zLimit) < 0.3 ) {
+			if (Mathf.Abs(g.position.z - zLimit) < 0.5 ) {
 				gemsToDestroy.Add (gems.IndexOf (g));
 			}
 		}
@@ -63,6 +74,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		createNewGem = true;
 		turnP1 = turnP1;
 
+		createActiveGem = ((turnP1 || (!turnP1 && aboutToSwitch)) ^ tag == "Player1");
 	}
 
 	void OnGUI() {
