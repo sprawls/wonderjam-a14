@@ -41,6 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: b3fafdde37baf4a1ea4b56f3199708e0, type: 2}
+  Part1: DJ Jerry Oz
+  Part2: 
   paddingZeroes: 7
   score: 0
   zLimit: 100
