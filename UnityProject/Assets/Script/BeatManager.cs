@@ -9,6 +9,8 @@ public class BeatManager : Singleton<BeatManager> {
     private int tempo;
     private BeatEnum p1Input=BeatEnum.Missed;
     private BeatEnum p2Input=BeatEnum.Missed;
+    private bool p1miss = false;
+    private bool p2miss = false;
     private bool p1Turn=true;
     private int beatCpt = 0;
     private float _interval;
@@ -53,27 +55,31 @@ public class BeatManager : Singleton<BeatManager> {
 
     public void setInputP1(int value)
     {
-        if (intervalCpt >= interval * 0.8f)
+        if (!p1miss)
         {
-            switch (value)
+            if (intervalCpt >= interval * 0.0f && p1Input == BeatEnum.Missed)
             {
-                case 0:
+                switch (value)
+                {
+                    case 0:
                         p1Input = BeatEnum.Up;
-                    break;
-                case 1:
+                        break;
+                    case 1:
                         p1Input = BeatEnum.Left;
-                    break;
-                case 2:
+                        break;
+                    case 2:
                         p1Input = BeatEnum.Down;
-                    break;
-                case 3:
+                        break;
+                    case 3:
                         p1Input = BeatEnum.Right;
-                    break;
+                        break;
+                }
             }
-        }
-        else
-        {
-            p1Input = BeatEnum.Missed;
+            else
+            {
+                p1Input = BeatEnum.Missed;
+                p1miss = true;
+            }
         }
        // Debug.Log(p1Input);
 
@@ -81,28 +87,31 @@ public class BeatManager : Singleton<BeatManager> {
 
     public void setInputP2(int value)
     {
-
-        if (intervalCpt >= interval * 0.8f)
+        if (!p2miss)
         {
-            switch (value)
+            if (intervalCpt >= interval * 0.0f && p2Input == BeatEnum.Missed)
             {
-                case 0:
-                    p2Input = BeatEnum.Up;
-                    break;
-                case 1:
-                    p2Input = BeatEnum.Left;
-                    break;
-                case 2:
-                    p2Input = BeatEnum.Down;
-                    break;
-                case 3:
-                    p2Input = BeatEnum.Right;
-                    break;
+                switch (value)
+                {
+                    case 0:
+                        p2Input = BeatEnum.Up;
+                        break;
+                    case 1:
+                        p2Input = BeatEnum.Left;
+                        break;
+                    case 2:
+                        p2Input = BeatEnum.Down;
+                        break;
+                    case 3:
+                        p2Input = BeatEnum.Right;
+                        break;
+                }
             }
-        }
-        else
-        {
-            p2Input = BeatEnum.Missed;
+            else
+            {
+                p2Input = BeatEnum.Missed;
+                p2miss = true;
+            }
         }
         //Debug.Log(p2Input);
     }
@@ -138,6 +147,8 @@ public class BeatManager : Singleton<BeatManager> {
 
         p1Input = BeatEnum.Missed;
         p2Input = BeatEnum.Missed;
+        p1miss = false;
+        p2miss = false;
     }
 	
     public void changeTempo(int newTempo =140)
