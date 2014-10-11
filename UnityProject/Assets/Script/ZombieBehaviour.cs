@@ -12,6 +12,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	private bool isUp = true; // is the zombie in up stance (while dancing)
 	private bool isRight = true; //is the zombie facing right (while dancing)
+	private bool isP1Turn = true; //is it currently P1's turn;
 	private float randomWeight = 1.5f; //Weight of the mouvement
 	private float playerWeight = 3.5f; //Weight of the mouvment
 	private float xBoardSize = 78; //Board from 0 to this on x Axis
@@ -29,12 +30,18 @@ public class ZombieBehaviour : MonoBehaviour {
 		xPosition = Random.Range (0, xBoardSize);
 		yPosition = Random.Range (0, yBoardSize);
 		MoveToPosition();
+		DEBUG_TESTCOLORS(); //Test colors, TO REMOVE LATER !!
 	}
 
 	public void LateUpdate() {
 		if(isOnBeat == true) {
 			//Calculate Mouvement
-			Vector2 playerChange = CreatePlayerChange(otherInput);
+			Vector2 playerChange = Vector2.zero;
+			if(isP1Turn == true && currentType == 2) {
+				playerChange = CreatePlayerChange(otherInput);
+			} else if(isP1Turn == false && currentType == 1) {
+				playerChange = CreatePlayerChange(otherInput);
+			}
 			playerChange *= playerWeight;
 			Vector2 randomChange = new Vector2(Random.Range(-1f,1f), Random.Range (-1f,1f)).normalized;
 			randomChange *= randomWeight;
@@ -53,8 +60,22 @@ public class ZombieBehaviour : MonoBehaviour {
 		}
 	}
 
+	private void DEBUG_TESTCOLORS(){ //Randomly setr some sprites as set color at the start for testing purposes.
+		for(int i=0; i < spriteList.Count; i++){
+			int randValue = Random.Range(0,3);
+			ChangeType (randValue);
+
+		}
+
+	}
+
+
 	private void  UpdateSprite(){
-		//Update  Sprite
+		//Change Up or Down
+		if(Random.Range (0,10) > 4) { //50% change happenning
+			isUp = !isUp;
+		}
+		//Update Sprite
 		if(currentType == 0){
 			if(isUp == true) sprRenderer.sprite = spriteList[0];
 			else sprRenderer.sprite = spriteList[1];
@@ -65,18 +86,22 @@ public class ZombieBehaviour : MonoBehaviour {
 			if(isUp == true) sprRenderer.sprite = spriteList[4];
 			else sprRenderer.sprite = spriteList[5];
 		}
-		//Update Facing
-		if(isRight == true) {
-			sprRenderer.transform.localScale = new Vector3(1,1,1);
-		} else {
-			sprRenderer.transform.localScale = new Vector3(-1,1,1);
+		//Update Facing maybe
+		if(Random.Range (0,10) > 7) { //20% change happening
+			isRight = !isRight;
+			if(isRight == true) {
+				sprRenderer.transform.localScale = new Vector3(1,1,1);
+			} else {
+				sprRenderer.transform.localScale = new Vector3(-1,1,1);
+			}
 		}
 	}
 
-	public void OnBeat(BeatEnum p1, BeatEnum p2) { 
-		isUp = !isUp;
+	public void OnBeat(BeatEnum p1, BeatEnum p2,bool P1Turn) { 
+
 		mainInput = p1;
 		otherInput = p2;
+		isP1Turn = P1Turn;
 		isOnBeat = true;
 	}
 

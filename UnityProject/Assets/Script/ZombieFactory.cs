@@ -40,7 +40,7 @@ public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool p1turn){
 		for(int i = 0; i < Zombies.Count; i++) {
-			Zombies[i].OnBeat (p1,p2);
+			Zombies[i].OnBeat (p1,p2,p1turn);
 		}
 	}
 
