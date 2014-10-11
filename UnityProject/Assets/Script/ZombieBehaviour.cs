@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ZombieBehaviour : MonoBehaviour {
+public class ZombieBehaviour : MonoBehaviour, IBeatReceiver , IUpdate {
 	
 	public float xPosition; //Size of the board on the scene on X
 	public float yPosition; //Size of the board on the scene on Y
@@ -9,14 +9,14 @@ public class ZombieBehaviour : MonoBehaviour {
 	private float xBoardSize = 16; //Board from 0 to this on x Axis
 	private float yBoardSize = 10; //Board from 0 to this on y Axis
 
-	void Awake(){
+	public ZombieBehaviour(){
 		transform.position = new Vector2(0f,0f);
 		xPosition = Random.Range (0, xBoardSize);
 		yPosition = Random.Range (0, yBoardSize);
 		MoveToPosition();
 	}
 
-	void OnBeat(BeatEnum mainInput, BeatEnum otherInput) { 
+	public void OnBeat(BeatEnum mainInput, BeatEnum otherInput) { 
 		Vector2 playerChange = CreatePlayerChange(mainInput);
 		Vector2 randomChange = new Vector2(Random.Range(-1f,1f), Random.Range (-1f,1f)).normalized;
 		Vector2 ResultChange = playerChange + randomChange;
@@ -49,7 +49,6 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	public void MoveToPosition() { //Move to position of current
 		transform.localScale = new Vector2(xPosition,yPosition);
-		
 	}
 
 

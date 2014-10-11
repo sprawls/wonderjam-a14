@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\ZombieBehaviour.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\Alexis\Documents\Github\wonderjam-a14\UnityProject\Assets\Script\BeatManager.cs">
     <Files>
-      <File FileName="Assets\Script\ZombieBehaviour.cs" Line="44" Column="15" />
+      <File FileName="Assets\Script\ZombieBehaviour.cs" Line="17" Column="3" />
+      <File FileName="c:\Users\Alexis\Documents\Github\wonderjam-a14\UnityProject\Assets\Script\BeatManager.cs" Line="39" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
