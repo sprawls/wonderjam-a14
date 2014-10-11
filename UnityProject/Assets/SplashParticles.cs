@@ -25,7 +25,6 @@ public class SplashParticles : MonoBehaviour, IBeatReceiver {
 	}
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
-		Debug.Log ("called");
 		if(isTurnP1 != turnP1 && isP1 != turnP1) {
 			spawnParticles = true;
 		}
