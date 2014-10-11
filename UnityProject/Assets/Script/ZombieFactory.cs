@@ -8,6 +8,7 @@ public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
 
 	private GameObject ZombiePrefab;
 	private GameObject emptyObject;
+	private GameObject zombieAnchorObject;
 	private IBeatReceiver IbeatReceiverRef;
 	private int NumZombies = 50;
 	
@@ -20,12 +21,16 @@ public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
 		IbeatReceiverRef = Beat;
 
 		ZombiePrefab = (GameObject) Resources.Load ("prefab/ZombiePrefab");
+		zombieAnchorObject = (GameObject) Resources.Load ("prefab/ZombieAnchor");
 		Zombies = new List<ZombieBehaviour>();
 		//instantiate empty game object for grid
-		//emptyObject = (GameObject) Instantiate (new GameObject(), Vector3.zero, Quaternion.identity);
-		emptyObject = GameObject.Find("Zombie Anchor");
+		Instantiate (zombieAnchorObject);
+		emptyObject = GameObject.Find("ZombieAnchor(Clone)");
+
+
 
 		for(int i = 0; i < NumZombies; i++) {
+			Debug.Log (ZombiePrefab + "  " + zombieAnchorObject);
 			Zombies.Add (((GameObject)Instantiate(ZombiePrefab,emptyObject.transform.position, emptyObject.transform.rotation)).GetComponent<ZombieBehaviour>());
 			Zombies[i].transform.parent = emptyObject.transform;
 		}
