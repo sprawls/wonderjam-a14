@@ -32,7 +32,6 @@ public class BackgroundBehaviour : MonoBehaviour, IBeatReceiver {
 			i = 0;
 			currentFrame++;
 			if (currentFrame == frames.Count) currentFrame = 0;
-			Debug.Log ("Current frame : " + currentFrame);
 		}
 	}
 }

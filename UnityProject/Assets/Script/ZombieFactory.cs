@@ -30,7 +30,6 @@ public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
 
 
 		for(int i = 0; i < NumZombies; i++) {
-			Debug.Log (ZombiePrefab + "  " + zombieAnchorObject);
 			Zombies.Add (((GameObject)Instantiate(ZombiePrefab)).GetComponent<ZombieBehaviour>());
 			Zombies[i].transform.parent = emptyObject.transform;
 			Zombies[i].transform.localRotation = Quaternion.Euler(new Vector3(90,180,0)); //Orient sprites with camera
