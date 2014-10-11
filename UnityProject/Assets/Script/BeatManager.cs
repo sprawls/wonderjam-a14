@@ -162,7 +162,7 @@ public class BeatManager : Singleton<BeatManager> {
 
 	public bool aboutToSwitch { 
 		get { 
-			return (beatCpt >= 11);
+			return (beatCpt >= 12);
 		}
 	}
 }
