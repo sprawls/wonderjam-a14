@@ -7,15 +7,19 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private List<Transform> gems = new List<Transform>();
 	private List<int> gemsToDestroy = new List<int> ();
 	private float bpm;
+	private bool turnP1 = false;
 
 	public GUISkin gSkin;
+
 	public int paddingZeroes = 7;
 	public int score = 0;
-	public Transform gemPrefab;
 	public float zLimit = 100;
-	public Vector3 gemSpawningPoint;
 	public float speed;
+	public Vector3 gemSpawningPoint;
 
+	public Transform gemPrefab;
+	public Transform neutralGemPrefab;
+	
 	// Use this for initialization
 	void Start () {
 		bm = BeatManager.Instance;
@@ -57,6 +61,8 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		createNewGem = true;
+		turnP1 = turnP1;
+
 	}
 
 	void OnGUI() {
