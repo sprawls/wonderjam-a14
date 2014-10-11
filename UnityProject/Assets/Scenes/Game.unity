@@ -934,6 +934,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 218650695}
   m_RootOrder: 1
+--- !u!1 &746096902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+  m_PrefabInternal: {fileID: 1747331517}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 746096904}
+  - 114: {fileID: 746096903}
+  m_Layer: 0
+  m_Name: persistent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &746096903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 24fe181bbf5dfa146b5e20ae279a9479,
+    type: 2}
+  m_PrefabInternal: {fileID: 1747331517}
+  m_GameObject: {fileID: 746096902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0882fcfe828cd504a9bec80afbbf47a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  songPath: Music/approaching-nirvana-305
+  songBPM: 140
+  songMulti: 1
+--- !u!4 &746096904
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+  m_PrefabInternal: {fileID: 1747331517}
+  m_GameObject: {fileID: 746096902}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.8246002, y: -2.77128601, z: 59.2781677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &775965529
 GameObject:
   m_ObjectHideFlags: 0
@@ -4307,6 +4350,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurnP1: 1
   isP1: 0
+--- !u!1001 &1747331517
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -19.8246002
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.77128601
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 59.2781677
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 24fe181bbf5dfa146b5e20ae279a9479, type: 2}
+  m_RootGameObject: {fileID: 746096902}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1777518543
 GameObject:
   m_ObjectHideFlags: 0
