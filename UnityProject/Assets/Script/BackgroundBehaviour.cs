@@ -23,6 +23,10 @@ public class BackgroundBehaviour : MonoBehaviour, IBeatReceiver {
 		}
 	}
 
+    public void OnQuarterBeat()
+    {
+    }
+
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		if (i < framesUntilAnim)
 			i++;
@@ -34,4 +38,6 @@ public class BackgroundBehaviour : MonoBehaviour, IBeatReceiver {
 			if (currentFrame == frames.Count) currentFrame = 0;
 		}
 	}
+
+    
 }

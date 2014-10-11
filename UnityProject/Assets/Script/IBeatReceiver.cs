@@ -2,6 +2,8 @@
 using System.Collections;
 
 public interface IBeatReceiver {
-    void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1);
+    void OnBeat(BeatEnum mainPlayer, BeatEnum offPlayer, bool turnP1);
+    void OnQuarterBeat();
 }
- 
+
+

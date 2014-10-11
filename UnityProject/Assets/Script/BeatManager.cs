@@ -2,16 +2,19 @@
 using System.Collections;
 using System.Timers;
 
-public class BeatManager {
-    
+public class BeatManager : Singleton<BeatManager> {
+	protected BeatManager () {}
+
     private IBeatReceiver IbeatReceiverRef;
     private int tempo;
     private BeatEnum p1Input=BeatEnum.Missed;
     private BeatEnum p2Input=BeatEnum.Missed;
     private bool p1Turn=true;
     private int beatCpt = 0;
-    private float interval;
-    public float _interval { get { return this.interval; } }
+    private float _interval;
+    public float interval { get { return this._interval; } }
+
+    private int subQuarter = 1;
 
     private float intervalCpt = 0;
 
@@ -19,7 +22,7 @@ public class BeatManager {
     private Timer t_Beat_acuracy = new Timer();
 
 
-    public BeatManager(IBeatReceiver Beat)
+    public void SetBeat(IBeatReceiver Beat)
     {
         IbeatReceiverRef = Beat;
         t_Beat_update.Elapsed += new ElapsedEventHandler(doBeat);
@@ -31,12 +34,21 @@ public class BeatManager {
         t_Beat_update.Enabled = true;
         t_Beat_update.Start();
         t_Beat_acuracy.Start();
-
     }
+
+	public void OnDestroy() {
+		t_Beat_update.Stop ();
+		t_Beat_acuracy.Stop ();
+	}
 
     private void IncreaseInvervalCpt(object source, ElapsedEventArgs e)
     {
         intervalCpt += 50;
+        if (intervalCpt>=(_interval / 4)*subQuarter)
+        {
+            subQuarter++;
+            IbeatReceiverRef.OnQuarterBeat();
+        }
     }
 
     public void setInputP1(int value)
@@ -63,7 +75,7 @@ public class BeatManager {
         {
             p1Input = BeatEnum.Missed;
         }
-        Debug.Log(p1Input);
+       // Debug.Log(p1Input);
 
     }
 
@@ -92,12 +104,13 @@ public class BeatManager {
         {
             p2Input = BeatEnum.Missed;
         }
-        Debug.Log(p2Input);
+        //Debug.Log(p2Input);
     }
 
     private void doBeat(object source, ElapsedEventArgs e)
     {
         intervalCpt = 0;
+        subQuarter = 1;
         beatCpt++;
         if (beatCpt >= 16)
         {
@@ -122,7 +135,7 @@ public class BeatManager {
         {
             IbeatReceiverRef.OnBeat(p2Input, p1Input, p1Turn);
         }
-        //Debug.Log("tour de p1:"+ p1Turn+" | "+ beatCpt);
+
         p1Input = BeatEnum.Missed;
         p2Input = BeatEnum.Missed;
     }
@@ -130,7 +143,7 @@ public class BeatManager {
     public void changeTempo(int newTempo =140)
     {
         tempo = newTempo;
-        interval = (60 * 1000) / tempo;
+        _interval = (60 * 1000) / tempo;
         t_Beat_update.Interval = ((60*1000)/tempo);
     }
 

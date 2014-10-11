@@ -2,110 +2,140 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CursorScript : MonoBehaviour, IBeatReceiver {
+public class CursorScript : MonoBehaviour, IBeatReceiver 
+{
 
     MeshRenderer rend;
     public int pos = 2;
+    public bool player;
 
-    public int switch_pos = 37;
     Queue<int> colored = new Queue<int>();
 
-    BeatEnum dir = BeatEnum.Missed;
-    bool want_switch = false;
     bool curr = true;
+
+    delegate void UpdateDelegate();
+    Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
+    
 
 	// Use this for initialization
 	void Start () {
-        //GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
+        GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
         rend = GetComponentInChildren<MeshRenderer>();
 	}
 
+    public void OnQuarterBeat()
+    { 
+    }   
+
     public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1)
     {
-        Debug.Log("DEB");
-        if(turnP1)
-        {
-            dir = p1;
-            if(curr)
+        update.Enqueue(
+            delegate()
             {
-                Debug.Log("beyond start");
-                continuetogototheinfinityandbeyong(p1);
-                Debug.Log("Beyond end");
-            }
-            else
-            {
-                want_switch = true;
+                beat_work(p1, p2, turnP1);
+            });
+    }
 
-            }
-        }
-        else
+    private void beat_work(BeatEnum snake, BeatEnum other, bool turnP1)
+    {
+        bool isMe = turnP1 == player;
+        
+        if (curr & isMe)
         {
-            dir = p2;
-            if(!curr)
-            {
-                continuetogototheinfinityandbeyong(p2);
-            }
-            else
-            {
-                want_switch = true;
-            }
+            continuetogototheinfinityandbeyong(snake);
         }
-        curr = turnP1;
+        else if (curr & !isMe)
+        {
+            revoke_access();
+        }
+        else if (!curr & isMe)
+        {
+            gain_access(snake);
+        }
+  
     }
 
     private void continuetogototheinfinityandbeyong(BeatEnum p)
     {
-        
         if(p == BeatEnum.Missed)
         {
             if (colored.Count > 0)
             {
                 int torem = colored.Dequeue();
-                GameManager.Instance.getTile(torem).setColor(0);
+                GameManager.Instance.getTile(torem).color = 0;
             }
         }
         else 
         {
+            int old = pos;
             switch (p)
             {
                 case BeatEnum.Up:
                     pos --;
+                    if (pos/5 != (pos +1)/5)
+                        pos ++;
                     break;
                 case BeatEnum.Down:
                     pos ++;
+                    if (pos/5 != (pos -1)/5)
+                        pos --;
                     break;
                 case BeatEnum.Right:
                     pos+=5;
+                    if (pos > 40)
+                        pos -= 5;
                     break;
                 case BeatEnum.Left:
                     pos-=5;
+                    if (pos < 0)
+                        pos += 5;
                     break;
             }
-            Debug.Log(pos);
-            colored.Enqueue(pos);
-            GameManager.Instance.getTile(pos).setColor(curr ? 1 : 2);
+            if (old != pos)
+            {
+                EnqueueCurrent();
+            }
         }
     }
 
     void LateUpdate()
     {
-        if(want_switch)
+        while(update.Count != 0)
         {
-            switchCursor();
-            want_switch = false;
+            update.Dequeue()();
         }
-        else 
+        var p = GameManager.Instance.getTile(pos).transform.position;
+        if(p != transform.position)
         {
-            var p = GameManager.Instance.getTile(pos).transform.position;
-            //if(p != transform.position)
+            transform.position = new Vector3(p.x,transform.position.y,p.z);
+        }
+    }
+
+    private void gain_access(BeatEnum p)
+    {
+        Debug.Log("Gain" + (player?"1":"2"));
+        curr = true;
+        EnqueueCurrent();
+        continuetogototheinfinityandbeyong(p);
+    }
+
+    private void revoke_access()
+    {
+        curr = false;
+        int cur_col = player?1:2;
+        while(colored.Count != 0)
+        {
+            var ta = GameManager.Instance.getTile(colored.Dequeue());
+            if(ta.color == cur_col)
             {
-                transform.position = p;
+                ta.color = 0;
             }
         }
     }
 
-    void switchCursor()
+    private void EnqueueCurrent()
     {
-
+        colored.Enqueue(pos);
+        GameManager.Instance.getTile(pos).color = player ? 1 : 2;
     }
 }
