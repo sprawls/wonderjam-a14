@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class StromatoliteBehaviour : MonoBehaviour, IBeatReceiver {
+	private float bpm;	
 
 	// Use this for initialization
 	void Start () {
@@ -10,12 +11,12 @@ public class StromatoliteBehaviour : MonoBehaviour, IBeatReceiver {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
-		float bpm = BeatManager.Instance.interval;
-
-		Debug.Log (bpm);
+		Debug.Log ("dick");
+		bpm = BeatManager.Instance.interval;
+		//Debug.Log (bpm);
 	}
 }

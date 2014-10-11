@@ -34,6 +34,11 @@ public class BeatManager : Singleton<BeatManager> {
         t_Beat_acuracy.Start();
     }
 
+	public void OnDestroy() {
+		t_Beat_update.Stop ();
+		t_Beat_acuracy.Stop ();
+	}
+
     private void IncreaseInvervalCpt(object source, ElapsedEventArgs e)
     {
         intervalCpt += 50;

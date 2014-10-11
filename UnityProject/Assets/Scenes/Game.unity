@@ -283,6 +283,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 440708205}
   - 212: {fileID: 440708204}
+  - 114: {fileID: 440708206}
   m_Layer: 0
   m_Name: Stromatolite
   m_TagString: Untagged
@@ -326,6 +327,17 @@ Transform:
   - {fileID: 1459111314}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &440708206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 440708203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0882f7484c5e047acab16965c5811570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &520635390
 GameObject:
   m_ObjectHideFlags: 0
