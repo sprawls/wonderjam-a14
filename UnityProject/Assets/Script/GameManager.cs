@@ -28,26 +28,13 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         audio.pitch = PersistentScript.songMulti;
         audio.Play();
 
-<<<<<<< HEAD
 		BeatManagerRef = BeatManager.Instance;
 		ZombieFactoryRef = ZombieFactory.Instance;
-=======
-        BeatManagerRef = BeatManager.Instance;
-        ZombieFactoryRef = ZombieFactory.Instance;
-
-        
-
-        
 
         BeatManager.Instance.SetBeat(this);
         ZombieFactory.Instance.SetBeat(this);
 
         BeatManagerRef.changeTempo(PersistentScript.songBPM);
-      	
->>>>>>> 4a3fed1f52c20cd3c49a110f55c20732b97b6530
-
-		BeatManagerRef.SetBeat(this);
-        ZombieFactoryRef.SetBeat(this);
 
         tiles = PlancherCreator.CreatePlancher(black, white);
 	}
