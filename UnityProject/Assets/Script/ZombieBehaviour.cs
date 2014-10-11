@@ -15,7 +15,7 @@ public class ZombieBehaviour : MonoBehaviour {
 	private bool isP1Turn = true; //is it currently P1's turn;
 	private float randomWeight = 1.5f; //Weight of the mouvement
 	private float playerWeight = 3.5f; //Weight of the mouvment
-	private float xBoardSize = 78; //Board from 0 to this on x Axis
+	private float xBoardSize = 76; //Board from 0 to this on x Axis
 	private float yBoardSize = 48; //Board from 0 to this on y Axis
 	private BeatEnum mainInput;
 	private BeatEnum otherInput;
