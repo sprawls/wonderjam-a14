@@ -19,9 +19,9 @@ public class PlancherCreator : MonoBehaviour {
             GameObject go = Instantiate(i % 2 ==0 ? black : white) as GameObject;
             TileAnimation ta = go.GetComponent<TileAnimation>();
             gm.requestBeat(ta);
-            
-            go.transform.position = new Vector3(x, y, z);
             go.transform.parent = transform;
+            go.transform.localPosition = new Vector3(x, y, z);
+            
             x += 10;
             if(x > 40)
             {
