@@ -133,14 +133,14 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     {
         if(p1.score > p2.score)
         {
-            if(p1.score > 3000)
+            if(p1.score > 30000)
             {
                 return 1;
             }
         }
         else
         {
-            if (p2.score > 3000)
+            if (p2.score > 30000)
             {
                 return 2;
             }
