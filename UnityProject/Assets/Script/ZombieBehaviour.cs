@@ -7,8 +7,8 @@ public class ZombieBehaviour : MonoBehaviour {
 	public float yPosition; //Size of the board on the scene on Y
 	public bool isOnBeat = false;
 
-	private float xBoardSize = 16; //Board from 0 to this on x Axis
-	private float yBoardSize = 10; //Board from 0 to this on y Axis
+	private float xBoardSize = 78; //Board from 0 to this on x Axis
+	private float yBoardSize = 48; //Board from 0 to this on y Axis
 
 	private BeatEnum mainInput;
 	private BeatEnum otherInput;
@@ -63,7 +63,29 @@ public class ZombieBehaviour : MonoBehaviour {
 	}
 
 	public void MoveToPosition() { //Move to position of current
-		transform.localPosition = new Vector2(xPosition,yPosition);
+		//transform.localPosition = new Vector2(xPosition,yPosition,1f/2.033f);
+		StartCoroutine (PlaySmoothAnimation(transform.localPosition,new Vector2(xPosition,yPosition),1f/2.033f));
+	}
+
+	//Coroutine that smooths the mouvement animation
+	IEnumerator PlaySmoothAnimation(Vector3 startingPosition, Vector3 endingPosition, float time) {
+		float step = 0f; //raw step
+		float rate = 1f/time; //amount to add to raw step
+		float smoothStep = 0f; //current smooth step
+		float lastStep = 0f; //previous smooth step
+		while(step < 1f) { // until we're done
+			step += Time.deltaTime * rate; 
+			smoothStep = Mathf.SmoothStep(0f, 1f, step); // finding smooth step
+			transform.localPosition = new Vector3 (Mathf.Lerp(startingPosition.x, endingPosition.x, (smoothStep)),
+			                                       Mathf.Lerp(startingPosition.y, endingPosition.y, (smoothStep)),
+			                                       Mathf.Lerp(startingPosition.z, endingPosition.z, (smoothStep))); //lerp position
+			lastStep = smoothStep; //get previous last step
+			yield return null;
+		}
+		//complete rotation
+		if(step > 1.0) transform.localPosition = new Vector3 (Mathf.Lerp(startingPosition.x, endingPosition.x, (1f )),
+		                                                      Mathf.Lerp(startingPosition.y, endingPosition.y, (1f )),
+		                                                      Mathf.Lerp(startingPosition.z, endingPosition.z, (1f )));
 	}
 
 

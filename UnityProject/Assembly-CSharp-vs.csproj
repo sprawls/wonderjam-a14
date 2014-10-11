@@ -53,6 +53,7 @@
      <Compile Include="Assets\Script\IUpdate.cs" />
      <Compile Include="Assets\Script\ZombieBehaviour.cs" />
      <Compile Include="Assets\Script\ZombieFactory.cs" />
+     <Compile Include="Assets\ZombieAnchor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
