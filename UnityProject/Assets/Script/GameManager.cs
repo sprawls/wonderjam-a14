@@ -109,6 +109,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
     public TileAnimation getTile(int  i)
     {
+		Debug.Log(i);
         return tiles[i];
     }
     
