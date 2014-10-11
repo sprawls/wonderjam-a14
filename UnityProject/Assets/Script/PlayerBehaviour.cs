@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
+
 	private BeatManager bm;
 	private bool createNewGem = false;
 	private bool createActiveGem = false;
@@ -14,7 +15,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public GUISkin gSkin;
 
-	public int paddingZeroes = 7;
+	public int paddingZeroes = 7;   
 	public int score = 0;
 	public float zLimit = 100;
 	public float speed;
@@ -29,6 +30,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		bpm = bm.interval;
 		GameManager.Instance.requestBeat (this);
 		tag = gameObject.tag;
+
 	}
 
 	// Update is called once per frame
