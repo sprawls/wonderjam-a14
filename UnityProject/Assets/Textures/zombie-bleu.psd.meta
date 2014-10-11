@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 749052965025f674e83306c2a04f7879
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: zombie-bleu
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
