@@ -153,9 +153,14 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         if (!finished)
         {
             string name = "Player" + player.ToString() + "_win";
-
+            
             camAnim.SetTrigger(name);
             finished = true;
+
+
+            p1.Part2 = "a gagné!";
+            p2.Part2 = "a gagné!";
+ 
             
         }
     }
