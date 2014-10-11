@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\BeatEnum.cs" />
+<<<<<<< HEAD
+     <Compile Include="Assets\Script\BeatManager.cs" />
+=======
+>>>>>>> 73f0945eeea784e6714912d321c6791a7dc4b09e
      <Compile Include="Assets\Script\GameManager.cs" />
      <Compile Include="Assets\Script\IBeatReceiver.cs" />
      <Compile Include="Assets\Script\IUpdate.cs" />
