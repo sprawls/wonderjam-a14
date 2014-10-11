@@ -15,11 +15,29 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     private List<IBeatReceiver> beats = new List<IBeatReceiver>();
     private TileAnimation[] tiles;
 
+    private AudioClip song;
+
+    private Persistent PersistentScript;
 	// Use this for initialization
 	void Start () {
-        BeatManagerRef = new BeatManager(this);
-		ZombieFactoryRef = new ZombieFactory(this);
-        beats.Add(ZombieFactoryRef);
+        BeatManagerRef = BeatManager.Instance;
+        ZombieFactoryRef = ZombieFactory.Instance;
+
+        GameObject persistentObj = GameObject.Find("persistent");
+        PersistentScript = persistentObj.GetComponent("Persistent") as Persistent;
+
+        song = Resources.Load(PersistentScript.songPath) as AudioClip;
+        audio.clip = song;
+        audio.pitch = PersistentScript.songMulti;
+        audio.Play();
+
+        BeatManager.Instance.SetBeat(this);
+        ZombieFactory.Instance.SetBeat(this);
+
+
+      	
+
+
         tiles = PlancherCreator.CreatePlancher(black, white);
 	}
 	
@@ -29,36 +47,36 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		// @TODO
         if (Input.GetKeyDown("w"))
         {
-            BeatManagerRef.setInputP2(0);
+            BeatManagerRef.setInputP1(0);
         }
         if (Input.GetKeyDown("a"))
         {
-            BeatManagerRef.setInputP2(1);
+            BeatManagerRef.setInputP1(1);
         }
         if (Input.GetKeyDown("s"))
         {
-            BeatManagerRef.setInputP2(2);
+            BeatManagerRef.setInputP1(2);
         }
         if (Input.GetKeyDown("d"))
         {
-            BeatManagerRef.setInputP2(3);
+            BeatManagerRef.setInputP1(3);
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            BeatManagerRef.setInputP1(0);
+            BeatManagerRef.setInputP2(0);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            BeatManagerRef.setInputP1(1);
+            BeatManagerRef.setInputP2(1);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            BeatManagerRef.setInputP1(2);
+            BeatManagerRef.setInputP2(2);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            BeatManagerRef.setInputP1(3);
+            BeatManagerRef.setInputP2(3);
         }
     }
 
@@ -75,11 +93,11 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         beats.Add(b);
     }
 
-    public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1)
+    public void OnBeat(BeatEnum mainPlayer, BeatEnum offPlayer, bool turnP1)
     {
         foreach (var n in beats)
         {
-            n.OnBeat(p1, p2, turnP1);
+            n.OnBeat(mainPlayer, offPlayer, turnP1);
         }
     }
 

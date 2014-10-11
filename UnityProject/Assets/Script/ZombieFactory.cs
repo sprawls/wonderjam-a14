@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
+public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
+	protected ZombieFactory () {}
 
 	public List<ZombieBehaviour>  Zombies;
 
@@ -17,7 +18,7 @@ public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
 
 	}
 
-	public ZombieFactory(IBeatReceiver Beat){
+	public void SetBeat(IBeatReceiver Beat){
 		IbeatReceiverRef = Beat;
 
 		ZombiePrefab = (GameObject) Resources.Load ("prefab/ZombiePrefab");
@@ -27,15 +28,14 @@ public class ZombieFactory : MonoBehaviour, IBeatReceiver , IUpdate {
 		Instantiate (zombieAnchorObject);
 		emptyObject = GameObject.Find("ZombieAnchor(Clone)");
 
-
-
 		for(int i = 0; i < NumZombies; i++) {
-
 			Zombies.Add (((GameObject)Instantiate(ZombiePrefab)).GetComponent<ZombieBehaviour>());
 			Zombies[i].transform.parent = emptyObject.transform;
 			Zombies[i].transform.localRotation = Quaternion.Euler(new Vector3(90,180,0)); //Orient sprites with camera
 		}
 
+		// Register to beat
+		GameManager.Instance.requestBeat (this);
 	}
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool p1turn){
