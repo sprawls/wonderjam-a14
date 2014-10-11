@@ -6,6 +6,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     public GameObject black;
     public GameObject white;
 
+	public int maxScore = 40000;
+
 	protected GameManager () {} // guarantee this will be always a singleton only - can't use the constructor!
 
     private BeatManager BeatManagerRef;
@@ -125,28 +127,41 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
     public TileAnimation getTile(int  i)
     {
-//		Debug.Log(i);
         return tiles[i];
     }
 
-    private int checkVictory()
+    public int checkVictory()
     {
-        if(p1.score > p2.score)
+        if(p1.Score > p2.Score)
         {
-            if(p1.score > 3000)
+            if(p1.Score > maxScore)
             {
                 return 1;
             }
         }
         else
         {
-            if (p2.score > 3000)
+            if (p2.Score > maxScore)
             {
                 return 2;
             }
         }
         return 0;
     }
+
+	public bool Finished {
+		get {
+			return finished;
+		}
+	}
+
+	public bool IsAnimating {
+		get {
+			//Debug.Log ("Idle: " + Animator.StringToHash("Idle"));
+			//Debug.Log ("Current state: " + camAnim.GetCurrentAnimatorStateInfo(0).nameHash);
+			return !(camAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
+		}
+	}
 
     private void doVictory(int player)
     {
@@ -157,14 +172,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
             camAnim.SetTrigger(name);
             finished = true;
 
-
             p1.Part2 = "a gagné!";
             p2.Part2 = "a gagné!";
- 
-            
         }
     }
-
-
-    
 }

@@ -118,4 +118,14 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
             return 2;
         }
     }
+
+	public int Score {
+		get {
+			return this.score;
+		}
+		set {
+			if (!GameManager.Instance.IsAnimating && !GameManager.Instance.Finished)
+				this.score = value;
+		}
+	}
 }
