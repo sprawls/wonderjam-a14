@@ -11,7 +11,8 @@ public class BeatManager : Singleton<BeatManager> {
     private BeatEnum p2Input=BeatEnum.Missed;
     private bool p1miss = false;
     private bool p2miss = false;
-    private bool p1Turn=true;
+    private bool ctrlLock = true;
+    private bool p1Turn=false;
     private int beatCpt = 0;
 
     private float _interval;
@@ -57,7 +58,7 @@ public class BeatManager : Singleton<BeatManager> {
 
     public void setInputP1(int value)
     {
-        if (!p1miss)
+        if (!p1miss && !ctrlLock)
         {
             if (intervalCpt >= interval * sweet && p1Input == BeatEnum.Missed)
             {
@@ -89,7 +90,7 @@ public class BeatManager : Singleton<BeatManager> {
 
     public void setInputP2(int value)
     {
-        if (!p2miss)
+        if (!p2miss&&!ctrlLock)
         {
             if (intervalCpt >= interval * sweet && p2Input == BeatEnum.Missed)
             {
@@ -125,6 +126,7 @@ public class BeatManager : Singleton<BeatManager> {
         beatCpt++;
         if (beatCpt >= 16)
         {
+            ctrlLock = false;
             beatCpt = 0;
             if (p1Turn)
             {
