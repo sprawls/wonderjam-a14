@@ -24,7 +24,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		if (createNewGem) {
 			Transform newGem = Transform.Instantiate(gemPrefab) as Transform;
 			newGem.parent = this.transform;
-			newGem.position = Vector3(0, 0, 0);
+			newGem.position = new Vector3(0, 0, 0);
 			gems.Add (newGem);
 
 			createNewGem = false;
@@ -43,6 +43,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     public void OnQuarterBeat()
     {
+
     }
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {

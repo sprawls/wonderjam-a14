@@ -1958,7 +1958,7 @@ MonoBehaviour:
   frames:
   - {fileID: 21300000, guid: 224122f3afb2c4744bcdb80d34c8a423, type: 3}
   - {fileID: 21300002, guid: 224122f3afb2c4744bcdb80d34c8a423, type: 3}
-  framesUntilAnim: 1
+  quarterFramesUntilAnim: 1
 --- !u!1001 &980628403
 Prefab:
   m_ObjectHideFlags: 0
@@ -2087,7 +2087,7 @@ MonoBehaviour:
   frames:
   - {fileID: 21300000, guid: d213e63c3441a8c4ea7fa78e5819c234, type: 3}
   - {fileID: 21300002, guid: d213e63c3441a8c4ea7fa78e5819c234, type: 3}
-  framesUntilAnim: 1
+  quarterFramesUntilAnim: 1
 --- !u!1 &1102645022
 GameObject:
   m_ObjectHideFlags: 0

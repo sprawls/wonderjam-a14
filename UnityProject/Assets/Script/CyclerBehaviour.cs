@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class CyclerBehaviour : MonoBehaviour, IBeatReceiver {
 	public List<Sprite> frames = new List<Sprite>();
-	public int framesUntilAnim = 2;
+	public int quarterFramesUntilAnim = 2;
 	
 	private int i = 0;
 	private int currentFrame = 0;
@@ -22,7 +22,15 @@ public class CyclerBehaviour : MonoBehaviour, IBeatReceiver {
 	}
 	
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
-		if (i < framesUntilAnim)
+		//if(gameObject.name == "P1")
+		Debug.Log ("beat");
+	}
+
+	public void OnQuarterBeat() {
+		//if(gameObject.name == "P1")
+		Debug.Log ("quarter");
+
+		if (i < quarterFramesUntilAnim)
 			i++;
 		
 		// Switch sprite frame index

@@ -8,6 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: GemBleue
   m_TagString: Untagged
@@ -73,7 +74,24 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 6f5a3de5dd3a04d479a6ed425c5cf1ba, type: 3}
   - {fileID: 21300004, guid: 6f5a3de5dd3a04d479a6ed425c5cf1ba, type: 3}
   - {fileID: 21300006, guid: 6f5a3de5dd3a04d479a6ed425c5cf1ba, type: 3}
-  framesUntilAnim: 1
+  quarterFramesUntilAnim: 2
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe5ff1b45a0f4f50aff50dc941d4197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 21300000, guid: 6f5a3de5dd3a04d479a6ed425c5cf1ba, type: 3}
+  - {fileID: 21300002, guid: 6f5a3de5dd3a04d479a6ed425c5cf1ba, type: 3}
+  - {fileID: 21300004, guid: 6f5a3de5dd3a04d479a6ed425c5cf1ba, type: 3}
+  - {fileID: 21300006, guid: 6f5a3de5dd3a04d479a6ed425c5cf1ba, type: 3}
+  quarterFramesUntilAnim: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
