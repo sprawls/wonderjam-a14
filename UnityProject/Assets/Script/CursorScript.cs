@@ -123,14 +123,18 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     {
         curr = false;
         int cur_col = player?1:2;
-        while(colored.Count != 0)
+        int[] tile = colored.ToArray();
+
+
+        foreach (var t in tile)
         {
-            var ta = GameManager.Instance.getTile(colored.Dequeue());
-            if(ta.color == cur_col)
+            var ta = GameManager.Instance.getTile(t);
+            if (ta.color == cur_col)
             {
                 ta.color = 0;
             }
         }
+        ZombieFactory.Instance.OnPeinture(tile, cur_col);
     }
 
     private void EnqueueCurrent()

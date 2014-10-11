@@ -13,6 +13,8 @@ public class BeatManager : Singleton<BeatManager> {
     private bool p2miss = false;
     private bool p1Turn=true;
     private int beatCpt = 0;
+    public bool aboutToSwitch { get { if (beatCpt >= 11) { return true; } else { return false; } } }
+
     private float _interval;
     public float interval { get { return this._interval; } }
 
@@ -23,6 +25,7 @@ public class BeatManager : Singleton<BeatManager> {
     private Timer t_Beat_update = new Timer();
     private Timer t_Beat_acuracy = new Timer();
 
+	private float sweet = 0.0f;
 
     public void SetBeat(IBeatReceiver Beat)
     {
@@ -57,7 +60,7 @@ public class BeatManager : Singleton<BeatManager> {
     {
         if (!p1miss)
         {
-            if (intervalCpt >= interval * 0.0f && p1Input == BeatEnum.Missed)
+            if (intervalCpt >= interval * sweet && p1Input == BeatEnum.Missed)
             {
                 switch (value)
                 {
@@ -89,7 +92,7 @@ public class BeatManager : Singleton<BeatManager> {
     {
         if (!p2miss)
         {
-            if (intervalCpt >= interval * 0.0f && p2Input == BeatEnum.Missed)
+            if (intervalCpt >= interval * sweet && p2Input == BeatEnum.Missed)
             {
                 switch (value)
                 {
