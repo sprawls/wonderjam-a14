@@ -3,20 +3,17 @@ using System.Collections;
 
 public class ZombieBehaviour : MonoBehaviour {
 	
-	public float xPosition;
-	public float yPosition;
+	public float xPosition; //Size of the board on the scene on X
+	public float yPosition; //Size of the board on the scene on Y
 
-	private float xBoardSize = 10; //Board from 0 to this on x Axis
+	private float xBoardSize = 16; //Board from 0 to this on x Axis
 	private float yBoardSize = 10; //Board from 0 to this on y Axis
 
-
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Awake(){
+		transform.position = new Vector2(0f,0f);
+		xPosition = Random.Range (0, xBoardSize);
+		yPosition = Random.Range (0, yBoardSize);
+		MoveToPosition();
 	}
 
 	void OnBeat(BeatEnum mainInput, BeatEnum otherInput) { 
@@ -25,7 +22,7 @@ public class ZombieBehaviour : MonoBehaviour {
 		Vector2 ResultChange = playerChange + randomChange;
 
 		ChangePosition(ResultChange); //Change Position on grid
-		Move (); //Move and Clamp
+		MoveToPosition (); //Move and Clamp
 
 	}
 
@@ -50,8 +47,8 @@ public class ZombieBehaviour : MonoBehaviour {
 		yPosition = Mathf.Clamp(yPosition, 0, yBoardSize);
 	}
 
-	void Move() {
-
+	public void MoveToPosition() { //Move to position of current
+		transform.localScale = new Vector2(xPosition,yPosition);
 		
 	}
 

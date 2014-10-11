@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\BeatEnum.cs" />
      <Compile Include="Assets\Script\GameManager.cs" />
+     <Compile Include="Assets\Script\IBeatReceiver.cs" />
      <Compile Include="Assets\Script\IUpdate.cs" />
      <Compile Include="Assets\Script\ZombieBehaviour.cs" />
   </ItemGroup>
