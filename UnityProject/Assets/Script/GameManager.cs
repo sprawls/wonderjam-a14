@@ -5,7 +5,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
     public GameObject black;
     public GameObject white;
-
+	public GUISkin skin;
 	public int maxScore = 40000;
 
 	protected GameManager () {} // guarantee this will be always a singleton only - can't use the constructor!
@@ -104,6 +104,11 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         }
 	}
 
+	void OnGUI() {
+		GUI.skin = skin;
+		GUI.Label (new Rect (0, 0, Screen.width, 45), "Objectif: " + maxScore.ToString ());
+	}
+
     public void requestBeat(IBeatReceiver b)
     {
         beats.Add(b);
@@ -174,4 +179,6 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
             p2.Part2 = "a gagné!";
         }
     }
+
+
 }
