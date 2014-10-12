@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         k1 = new HumanKey("w", "s", "a", "d");
 		p1.Part2 = "Humain";
 
-		if (PersistentScript.AIMode) {
+		if (isAIMode()) {
 			k2 = new RandomIA();
 			p2.Part2 = "AI";
 		} else {
