@@ -15,6 +15,7 @@ public class Persistent : MonoBehaviour {
     public bool OptFeverMode=false;
     public bool OptChaosMode=false;
     public bool OptTacticMode=false;
+	public bool OptAiMode=false;
 
 	static bool instanceIsLoaded = false;
 
@@ -44,4 +45,5 @@ public class Persistent : MonoBehaviour {
 	void Update () {
 	
 	}
+
 }

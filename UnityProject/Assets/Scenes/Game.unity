@@ -2780,7 +2780,7 @@ Transform:
   m_PrefabInternal: {fileID: 2126959241}
   m_GameObject: {fileID: 712882154}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -12.5, y: 7, z: -31.0000019}
+  m_LocalPosition: {x: -12.5, y: 7, z: -35.5}
   m_LocalScale: {x: 50, y: 15, z: 5}
   m_Children: []
   m_Father: {fileID: 218650695}
@@ -5327,7 +5327,7 @@ Transform:
   m_PrefabInternal: {fileID: 303851906}
   m_GameObject: {fileID: 900180506}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -12.5, y: 7, z: -31.0000019}
+  m_LocalPosition: {x: -12.5, y: 7, z: -35.5}
   m_LocalScale: {x: 50, y: 15, z: 5}
   m_Children: []
   m_Father: {fileID: 2123612259}
@@ -6635,6 +6635,7 @@ GameObject:
   - 199: {fileID: 1726434876}
   - 114: {fileID: 1726434881}
   - 82: {fileID: 1726434880}
+  - 114: {fileID: 1726434882}
   - 114: {fileID: 1726434879}
   m_Layer: 0
   m_Name: Splash_Blue
@@ -7787,6 +7788,20 @@ AudioSource:
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: b6319457e16eb1f418f7028c051c6b38,
+    type: 2}
+  m_PrefabInternal: {fileID: 2025874579}
+  m_GameObject: {fileID: 1726434875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7381ea0316fee7a46917508a82d53c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTurnP1: 1
+  isP1: 0
+--- !u!114 &1726434882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: b6319457e16eb1f418f7028c051c6b38,
     type: 2}
   m_PrefabInternal: {fileID: 2025874579}
   m_GameObject: {fileID: 1726434875}
@@ -9641,6 +9656,7 @@ GameObject:
   - 199: {fileID: 2009560360}
   - 114: {fileID: 2009560365}
   - 82: {fileID: 2009560364}
+  - 114: {fileID: 2009560366}
   - 114: {fileID: 2009560363}
   m_Layer: 0
   m_Name: Splash_Green
@@ -10793,6 +10809,20 @@ AudioSource:
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: 34641f590b6d2fc428c7b0acccdb13ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1678178819}
+  m_GameObject: {fileID: 2009560359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7381ea0316fee7a46917508a82d53c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTurnP1: 1
+  isP1: 1
+--- !u!114 &2009560366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 34641f590b6d2fc428c7b0acccdb13ef,
     type: 2}
   m_PrefabInternal: {fileID: 1678178819}
   m_GameObject: {fileID: 2009560359}
