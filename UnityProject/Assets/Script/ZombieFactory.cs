@@ -72,7 +72,7 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 				   && Zombies[i].transform.position.z < (tilesPositions[j].z+5) 
 				   && Zombies[i].transform.position.z > (tilesPositions[j].z-5)) {
 					Zombies[i].ChangeType(cur_col);
-					Debug.Log ("Changed Type of " + i+ "    to Type : " + cur_col);
+					//Debug.Log ("Changed Type of " + i+ "    to Type : " + cur_col);
 				}
 			}
 		}

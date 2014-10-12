@@ -10,8 +10,10 @@ public class ShowComboText : MonoBehaviour, IBeatReceiver  {
 	private PlayerBehaviour player1;
 
 	void Start () {
+		GameManager.Instance.requestBeat (this);
 		myText = GetComponentInChildren<TextMesh>();
 		player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerBehaviour>();
+
 	}
 	
 	// Update is called once per frame
@@ -30,9 +32,11 @@ public class ShowComboText : MonoBehaviour, IBeatReceiver  {
 	public void OnQuarterBeat(){}
 
 	public IEnumerator BeatUpAndDown(){
-		StartCoroutine (BeatTheSprite(0.05f,1.25f));
-		yield return new WaitForSeconds(0.2f);
-		StartCoroutine (BeatTheSprite(0.05f,1f));
+		if((isP1 && player1.P1Combo > 15)  || (!isP1 && player1.P2Combo > 15)) {
+			StartCoroutine (BeatTheSprite(0.05f,1.25f));
+			yield return new WaitForSeconds(0.2f);
+			StartCoroutine (BeatTheSprite(0.05f,1f));
+		}
 	}
 	
 	public IEnumerator BeatTheSprite(float time, float targetScale){
