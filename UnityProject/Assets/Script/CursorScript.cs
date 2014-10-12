@@ -229,7 +229,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
                 {
                     if (i < 0 || i > 4)
                         continue;
-                    if(j< 0 || j>8)
+                    if(j< 0 || j>7)
                         continue;
 
                     int index = i + 5 * j;
