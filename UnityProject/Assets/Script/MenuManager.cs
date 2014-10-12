@@ -120,7 +120,7 @@ public class MenuManager : MonoBehaviour {
 		// Start button
         curWidth = 80;
         curHeight = 80;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 230, curWidth, curHeight), "go!", skinMenu.GetStyle("Start button")))
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f), Sheight - curHeight - 27, curWidth, curHeight), "go!", skinMenu.GetStyle("Start button")))
 		{
             StartGame();
         }
@@ -131,7 +131,7 @@ public class MenuManager : MonoBehaviour {
 		// Extras Button 
 		curWidth = 100;
 		curHeight = 40;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 95, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "extras", skinMenu.GetStyle("Options Button"))) 
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 95, Sheight - curHeight - 32, curWidth, curHeight), "extras", skinMenu.GetStyle("Options Button"))) 
 		{
 			optionsMode = !optionsMode;
 			GUIStyle myOptionsStyle = skinMenu.GetStyle("Options Button");
@@ -149,7 +149,7 @@ public class MenuManager : MonoBehaviour {
 		// Vs AI 
 		curWidth = 60;
 		curHeight = 40;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 75, ((Sheight - curHeight) / 2.0f) + 204, curWidth, curHeight), "VS. ai", skinMenu.GetStyle("AI Button"))) 
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 75, Sheight - curHeight - 72, curWidth, curHeight), "VS. ai", skinMenu.GetStyle("AI Button"))) 
 		{
 			aiMode = !aiMode;
 			GUIStyle myAIStyle = skinMenu.GetStyle("AI Button");
@@ -174,7 +174,7 @@ public class MenuManager : MonoBehaviour {
 		// Tutorial button 
 		curWidth = 160;
 		curHeight = 40;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 122, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "instructions", skinMenu.GetStyle("Tutorial Button"))) 
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 122, Sheight - curHeight - 32, curWidth, curHeight), "instructions", skinMenu.GetStyle("Tutorial Button"))) 
 		{
 			tutorialMode = !tutorialMode;
 
