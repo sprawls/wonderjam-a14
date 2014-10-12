@@ -139,6 +139,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     {
         if(p1.Score > p2.Score)
         {
+
             if(p1.Score > maxScore)
             {
                 return 1;

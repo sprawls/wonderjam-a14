@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private string tag;
 
 	public GUISkin gSkin;
+    public GUISkin gName;
 
     public string Part1;
     public string Part2;
@@ -114,14 +115,16 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		// Show score
 		GUI.TextArea (new Rect (0, 0, Screen.width, 40), this.score.ToString().PadLeft(paddingZeroes, '0'), GUI.skin.GetStyle("score"));
 
+        GUI.skin = gName;
         Vector3 v = transform.position;
        
         Vector3 start = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().WorldToScreenPoint(v);
-        start.x += 450 * (whoami() == 1 ? -1 : 1) - 80;
+        start.x += 380 * (whoami() == 1 ? -1 : 1) - 70;
         start.y += 50;
-        GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part1, GUI.skin.GetStyle("score"));
-        start.y += 50;
-        GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part2, GUI.skin.GetStyle("score"));
+
+        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part1, GUI.skin.textArea);
+        start.y += 80;
+        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.textArea);
 	}
 
     int whoami()
