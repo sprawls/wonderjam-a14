@@ -13,7 +13,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     bool curr = true;
 
-    bool superpower = false;
+    public bool superpower = false;
 
     bool needtomove = false;
 
@@ -24,7 +24,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	void Start () {
         GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
         rend = GetComponentInChildren<MeshRenderer>();
-        transform.localPosition = GameManager.Instance.getTile(pos).transform.localPosition;
+     //   transform.localPosition = GameManager.Instance.getTile(pos).transform.localPosition;
 	}
 
     public void OnQuarterBeat()
