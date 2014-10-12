@@ -120,7 +120,6 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     private void gain_access(BeatEnum p)
     {
-        Debug.Log("Gain" + (player?"1":"2"));
         curr = true;
         EnqueueCurrent();
         continuetogototheinfinityandbeyong(p);

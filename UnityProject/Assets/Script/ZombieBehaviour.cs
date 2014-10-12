@@ -38,7 +38,7 @@ public class ZombieBehaviour : MonoBehaviour {
 		xPosition = Random.Range (0, xBoardSize);
 		yPosition = Random.Range (0, yBoardSize);
 		MoveToPosition();
-		DEBUG_TESTCOLORS(); //Test colors, TO REMOVE LATER !!
+		//DEBUG_TESTCOLORS(); //Test colors, TO REMOVE LATER !!
 	}
 
 	public void LateUpdate() {
@@ -78,9 +78,9 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	}
 
-	private void AddScore(){
-		if(currentType == 1) player1.score += 10;
-		else if(currentType ==2) player2.score += 10;
+	private void AddScore() {
+		if(currentType == 1) player1.Score = player1.Score + 10;
+		else if(currentType == 2) player2.Score = player1.Score + 10;
 	}
 
 	private void  UpdateSprite(){

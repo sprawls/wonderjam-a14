@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private List<Transform> gems = new List<Transform>();
 	private List<int> gemsToDestroy = new List<int> ();
 	private float bpm;
+	private float totalDistance;
 	private bool turnP1 = false;
 	private string tag;
 
@@ -28,6 +29,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public Transform gemPrefab;
 	public Transform neutralGemPrefab;
+	//Player score 
+	public float P1Combo = 0;
+	public float P2Combo = 0;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -36,8 +41,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		GameManager.Instance.requestBeat (this);
 		tag = gameObject.tag;
 
-		float totalGemDistance = Math.Abs(gemSpawningPoint.z - zLimit);
-		float timeToReach = totalGemDistance / speed;
+		totalDistance = Math.Abs(gemSpawningPoint.z - zLimit);
 	}
 
 	// Update is called once per frame
@@ -61,7 +65,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		
 		foreach (Transform g in gems) {
 			// Move all gems towards stromatolite
-			g.Translate(new Vector3(0, 0, speed) * Time.deltaTime);
+			float speed = (bpm * totalDistance * Time.deltaTime)/240;
+			if (gameObject.tag == "Player2") speed *= -1;
+
+			g.Translate(new Vector3(0, 0, speed));
 			
 			// Destroy gems on stromatolite
 			if (Mathf.Abs(g.position.z - zLimit) < 0.5 ) {
@@ -81,9 +88,25 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		createNewGem = true;
-		turnP1 = turnP1;
-
+		turnP1 = turnP1; //You wut mate ?
 		createActiveGem = (((turnP1 && !aboutToSwitch) || (!turnP1 && aboutToSwitch)) && tag == "Player1") || (((!turnP1 && !aboutToSwitch) || (turnP1 && aboutToSwitch)) && tag == "Player2");
+
+		//Look For P1 Combo
+		if(turnP1 && p1 != BeatEnum.Missed){
+			P1Combo ++;
+		} else if(!turnP1 && p2 != BeatEnum.Missed) {
+			P1Combo ++;
+		} else {
+			P1Combo = 0;
+		}
+		//Look For P2 Combo
+		if(turnP1 && p2 != BeatEnum.Missed){
+			P2Combo ++;
+		} else if(!turnP1 && p1 != BeatEnum.Missed) {
+			P2Combo ++;
+		} else {
+			P2Combo = 0;
+		}
 	}
 
 	void OnGUI() {
@@ -103,6 +126,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.textArea);
 
 
+
 	}
 
     int whoami()
@@ -117,4 +141,14 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
             return 2;
         }
     }
+
+	public int Score {
+		get {
+			return this.score;
+		}
+		set {
+			if (!GameManager.Instance.IsAnimating && !GameManager.Instance.Finished)
+				this.score = value;
+		}
+	}
 }

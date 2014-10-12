@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 168.168411, y: 143.884476, z: 23.9672546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -110,7 +110,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 3
     startSpeed:
-      scalar: 7
+      scalar: 6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -125,7 +125,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .714285731
+          value: .666666687
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -335,11 +335,11 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     cnt0: 20
-    cnt1: 30
+    cnt1: 10
     cnt2: 30
     cnt3: 30
     time0: 0
-    time1: 0
+    time1: .0500000007
     time2: 0
     time3: 0
     m_BurstCount: 1
@@ -356,7 +356,7 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
         - time: .250438452
-          value: .75
+          value: .699999988
           inSlope: .123850882
           outSlope: .123850882
           tangentMode: 0
@@ -1114,7 +1114,7 @@ ParticleSystemRenderer:
   m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
-  m_SortMode: 0
+  m_SortMode: 1
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
