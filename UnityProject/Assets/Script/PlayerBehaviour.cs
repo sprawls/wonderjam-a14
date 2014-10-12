@@ -14,13 +14,13 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	private float totalDistance;
 	private bool turnP1 = false;
 	private string tag;
+    private int player;
 
 	//Fever
 	private bool removeFever = false; //If True , remove fever
 	private bool CheckFever = false; //If true , check for fever
-	private bool FeverStartedP1 = false;
-	private bool FeverStartedP2 = false;
-	private int FeverThreshold = 20;
+	private bool FeverStarted = false;
+	private int FeverThreshold = 30;
 
 	public GUISkin gSkin;
     public GUISkin gName;
@@ -34,13 +34,11 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	public float speed;
 	public Vector3 gemSpawningPoint;
 
-	public CursorScript cursorP1;
-	public CursorScript cursorP2;
+	public CursorScript cursor;
 	public Transform gemPrefab;
 	public Transform neutralGemPrefab;
 	//Player score 
-	public float P1Combo = 0;
-	public float P2Combo = 0;
+	public float Combo = 0;
 
 	
 	// Use this for initialization
@@ -49,11 +47,9 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		GameManager.Instance.requestBeat (this);
 
 		tag = gameObject.tag;
+        player = whoami();
 		totalDistance = Math.Abs(gemSpawningPoint.z - zLimit);
 
-		//Get Cursors
-		cursorP1 = GameObject.Find ("Cursor").GetComponent<CursorScript>();
-		cursorP2 = GameObject.Find ("CursorP2").GetComponent<CursorScript>();
 	}
 
 	// Update is called once per frame
@@ -66,8 +62,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			CheckFever = false;
 		}
 		if(removeFever == true) {
-			if(P1Combo < 15) RemoveFever(1);
-			if(P2Combo < 15) RemoveFever(2);
+			if(Combo < 15) RemoveFever();
 			removeFever = false;
 		}
 		// Create new gem at end of line
@@ -115,41 +110,26 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		CheckFever = true;
 		//Look For P1 Combo
 		if(turnP1 && p1 != BeatEnum.Missed){
-			if(p1 != BeatEnum.Empty) P1Combo ++;
+			if(p1 != BeatEnum.Empty) Combo ++;
 		} else if(!turnP1 && p2 != BeatEnum.Missed) {
-			if(p1 != BeatEnum.Empty) P1Combo ++;
+			if(p1 != BeatEnum.Empty) Combo ++;
 		} else {
-			P1Combo = 0;
-			FeverStartedP1 = false;
+			Combo = 0;
+			FeverStarted = false;
 			removeFever = true;
 		}
-		//Look For P2 Combo
-		if(turnP1 && p2 != BeatEnum.Missed){
-			if(p2 != BeatEnum.Empty) P2Combo ++;
-		} else if(!turnP1 && p1 != BeatEnum.Missed) {
-			if(p2 != BeatEnum.Empty) P2Combo ++;
-		} else {
-			P2Combo = 0;
-			FeverStartedP2 = false;
-			removeFever = true;
-		}
-	
 	}
 
-	void RemoveFever(int player){
-		if(player == 1) cursorP1.calmdown();
-		else if(player == 2) cursorP2.calmdown();
+	void RemoveFever(){
+		cursor.calmdown();
 	}
 
 	void CheckForFever(){
 		//Look to Start Stromatolite Fever
-		if(cursorP1.superpower == false && FeverStartedP1 == false && P1Combo >= FeverThreshold) {
-			cursorP1.POWERUP();
-			FeverStartedP1 = true;
-		}
-		if(cursorP2.superpower == false && FeverStartedP2 == false && P2Combo >= FeverThreshold) {
-			cursorP2.POWERUP();
-			FeverStartedP2 = true;
+        if (cursor.superpower == false && Combo > 1 && Combo % FeverThreshold == 0)
+        {
+			cursor.POWERUP();
+			FeverStarted = true;
 		}
 	}
 
