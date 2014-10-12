@@ -87,12 +87,17 @@ public class HeatMapIA : IKeyGetter , IUpdate, IBeatReceiver{
         
         if (next == BeatEnum.Empty && Time.time > firstBeat + threshold * cpt)
         {
-            if (objective.Count <= 0)
+            if (!myTurn)
+                next = RandomIA.DecideNextKey();
+            else
             {
-                findObjective();
+                if (objective.Count <= 0)
+                {
+                    findObjective();
+                }
+                decideNextMove();
+                cpt++;
             }
-            decideNextMove();
-            cpt++;
         }
     }
 

@@ -2,7 +2,8 @@
 using System;
 using System.Collections;
 
-public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
+public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate
+{
 
     float firstBeat = 0;
     float threshold = 0;
@@ -40,14 +41,14 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
 
     public bool GetKeys(BeatEnum e)
     {
-        if(next != BeatEnum.Empty && e == next)
+        if (next != BeatEnum.Empty && e == next)
         {
-            
+
             next = BeatEnum.Empty;
             if (UnityEngine.Random.value < precision)
                 return true;
         }
-            
+
         return false;
     }
 
@@ -59,7 +60,7 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
         }
     }
 
-    public void OnQuarterBeat(){}
+    public void OnQuarterBeat() { }
 
     public void OnUpdate()
     {
@@ -72,21 +73,26 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
             requestTime = false; ;
         }
         bool newTurn = pb.isMyTurn();
-        if(newTurn != myTurn)
+        if (newTurn != myTurn)
         {
             objective = null;
         }
         myTurn = newTurn;
-        if(!objective.HasValue)
+        if (!objective.HasValue)
         {
             findObjective();
             objCount = 5;
         }
-        if(next == BeatEnum.Empty && Time.time > firstBeat + threshold * cpt )
+        if (next == BeatEnum.Empty && Time.time > firstBeat + threshold * cpt)
         {
-            decideNextMove();
-            cpt++;
-            objCount--;;;
+            if (!myTurn)
+                next = RandomIA.DecideNextKey();
+            else
+            {
+                decideNextMove();
+                cpt++;
+                objCount--;
+            }
         }
     }
 
@@ -124,62 +130,40 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
 
     private void decideNextMove()
     {
-        Vector3 pos;
-        if(myTurn)
-        {
+        Vector3
+
             pos = pb.cursor.transform.position;
-            
-            Vector2 p = new Vector2(pos.x,pos.z);
-            Vector2 s = objective.Value - p;
-            
-            if(Math.Sign(s.x) * s.x > Math.Sign(s.y) * s.y)
+
+        Vector2 p = new Vector2(pos.x, pos.z);
+        Vector2 s = objective.Value - p;
+
+        if (Math.Sign(s.x) * s.x > Math.Sign(s.y) * s.y)
+        {
+            if (Math.Sign(s.x) == 1)
             {
-                if(Math.Sign(s.x) == 1)
-                {
-                    next = BeatEnum.Down;
-                }
-                else
-                {
-                    next = BeatEnum.Up;
-                }
+                next = BeatEnum.Down;
             }
             else
             {
-                if (Math.Sign(s.y) == 1)
-                {
-                    next = BeatEnum.Right;
-                }
-                else
-                {
-                    next = BeatEnum.Left;
-                }
+                next = BeatEnum.Up;
             }
-
-            if(Vector2.Distance(s,objective.Value) < 10)
-            {
-                objective = null;
-            }
-
         }
         else
         {
-            pos = enemy.transform.position;
-            int r = UnityEngine.Random.Range(0, 3);
-            switch (r)
+            if (Math.Sign(s.y) == 1)
             {
-                case 0:
-                    next = BeatEnum.Up;
-                    break;
-                case 1:
-                    next = BeatEnum.Down;
-                    break;
-                case 2:
-                    next = BeatEnum.Left;
-                    break;
-                case 3:
-                    next = BeatEnum.Right;
-                    break;
+                next = BeatEnum.Right;
+            }
+            else
+            {
+                next = BeatEnum.Left;
             }
         }
+
+        if (Vector2.Distance(s, objective.Value) < 10)
+        {
+            objective = null;
+        }
+
     }
 }

@@ -28,7 +28,7 @@ public class RandomIA : IKeyGetter {
             float r = Random.value;
             if(r < changeOfSayingYes)
             {
-                DecideNextKey();
+                next = DecideNextKey();
                 return true;
             }
         }
@@ -36,23 +36,21 @@ public class RandomIA : IKeyGetter {
 
     }
 
-    private void DecideNextKey()
+    public static BeatEnum DecideNextKey()
     {
         int r = Random.Range(0, 3);
         switch(r)
         {
             case 0:
-                next = BeatEnum.Up;
-                break;
+                return BeatEnum.Up;
             case 1:
-                next = BeatEnum.Down;
-                break;
+                return BeatEnum.Down;
             case 2:
-                next = BeatEnum.Left;
-                break;
+                return BeatEnum.Left;
             case 3:
-                next = BeatEnum.Right;
-                break;
+                return BeatEnum.Right;
+            default:
+                return BeatEnum.Empty;
         }
     }
 }
