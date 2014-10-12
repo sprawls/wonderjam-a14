@@ -30,7 +30,8 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
 	// Use this for initialization
 	void Start () {
-		if(GameManager.Instance.getSpeedTurn() < 5) BeatsToActivateCross = 3;
+		//TODO: Reduce Beat to activate cross when speed turn is low
+		//if(GameManager.Instance.getSpeedTurn() < 5) BeatsToActivateCross = 3;
         GameManager.Instance.requestBeat(this);
         rend = GetComponentInChildren<MeshRenderer>();
         fever = GetComponentInChildren<AudioSource>();
