@@ -22,8 +22,10 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
     private Nullable<Vector2> objective = null;
     private int objCount = 0;
 
+    float precision;
 
-    public PerfectIA(int bpm, PlayerBehaviour pb, PlayerBehaviour p2)
+
+    public PerfectIA(int bpm, PlayerBehaviour pb, PlayerBehaviour p2, float bonnete)
     {
         GameManager.Instance.requestBeat(this);
         GameManager.Instance.requestUpdate(this);
@@ -32,14 +34,20 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
         enemy = p2;
         threshold = 60.0f / bpm;
         zf = ZombieFactory.Instance;
+
+
+        precision = 1 - (float)Math.Sqrt(1 - bonnete);
+
     }
 
     public bool GetKeys(BeatEnum e)
     {
         if(next != BeatEnum.Empty && e == next)
         {
+            
             next = BeatEnum.Empty;
-            return true;
+            if (UnityEngine.Random.value < precision)
+                return true;
         }
             
         return false;
@@ -158,6 +166,22 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
         else
         {
             pos = enemy.transform.position;
+            int r = UnityEngine.Random.Range(0, 3);
+            switch (r)
+            {
+                case 0:
+                    next = BeatEnum.Up;
+                    break;
+                case 1:
+                    next = BeatEnum.Down;
+                    break;
+                case 2:
+                    next = BeatEnum.Left;
+                    break;
+                case 3:
+                    next = BeatEnum.Right;
+                    break;
+            }
         }
     }
 }

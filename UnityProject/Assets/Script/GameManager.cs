@@ -75,7 +75,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
         k1 = new HumanKey("w", "s", "a", "d");
         //k2 = new HumanKey(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        k2 = new PerfectIA(PersistentScript.songBPM, p2, p1);
+        k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
     }
 	
 	// Update is called once per frame
