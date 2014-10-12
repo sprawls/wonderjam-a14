@@ -40,6 +40,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
         GameObject persistentObj = GameObject.Find("persistent");
         PersistentScript = persistentObj.GetComponent("Persistent") as Persistent;
+        maxScore = getObjScore();
+
         song = Resources.Load(PersistentScript.songPath) as AudioClip;
         audio.clip = song;
         audio.pitch = PersistentScript.songMulti;
@@ -60,7 +62,6 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerBehaviour>();
 
         AudioSource[] victories = this.GetComponentsInChildren<AudioSource>();
-        Debug.Log(victories.Length);
         foreach(var v in victories)
         {
             if(v.gameObject.name == "Guylaine")
@@ -74,8 +75,15 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         }
 
         k1 = new HumanKey("w", "s", "a", "d");
-        //k2 = new HumanKey(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
+		p1.Part2 = "Humain";
+
+		if (!isAIMode()) {
+			k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
+			p2.Part2 = "AI";
+		} else {
+			k2 = new HumanKey (KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+			p2.Part2 = "Humain";
+		}
     }
 	
 	// Update is called once per frame
@@ -133,8 +141,10 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 	void OnGUI() {
 		GUI.skin = skin;
 		GUI.Label (new Rect (0, 0, Screen.width, 45), "Objectif: " + maxScore.ToString ());
-		if(showEnding == true) {
-			if(GUI.Button (new Rect((2f/6f)*Screen.width, (4f/6f)*Screen.height, (2f/6f)*Screen.width, (1f/6f)*Screen.width), "Main Menu")){
+
+
+		if(showEnding) {
+			if(GUI.Button (new Rect((Screen.width - 100) / 2.0f, (Screen.height - 100) / 2.0f - 160, 100, 100), "Menu principal", GUI.skin.GetStyle ("Return to menu"))) {
 				Application.LoadLevel(0);
 			}
 		}
@@ -237,6 +247,39 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		yield return new WaitForSeconds(6f);
 		showEnding = true;
 	}
+
+    public int getZombieCount()
+    {
+        return PersistentScript.OptZombiesCount;
+    }
+    public int getSpeedTurn()
+    {
+        return PersistentScript.OptSpeedTurn;
+    }
+    public int getObjScore()
+    {
+        return PersistentScript.OptBaseScore*PersistentScript.OptZombiesCount;
+    }
+    public int getZombieCtrl()
+    {
+        return PersistentScript.OptZombieCtrl;
+    }
+    public bool isFeverMode()
+    {
+        return PersistentScript.OptFeverMode;
+    }
+    public bool isChaosMode()
+    {
+        return PersistentScript.OptChaosMode;
+    }
+    public bool isTacticMode()
+    {
+        return PersistentScript.OptTacticMode;
+    }
+    public bool isAIMode()
+    {
+        return PersistentScript.OptAiMode;
+    }
 
 
 }

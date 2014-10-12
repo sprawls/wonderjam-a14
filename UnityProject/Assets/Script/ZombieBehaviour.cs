@@ -31,6 +31,9 @@ public class ZombieBehaviour : MonoBehaviour {
 			randomWeight = randomFeverWeight; //Weight of the mouvement
 			playerWeight = playerFeverWeight; //Weight of the mouvment
 		}
+        playerWeight = GameManager.Instance.getZombieCtrl() + 1.5f;
+        playerFeverWeight = (GameManager.Instance.getZombieCtrl() * 2) + 1.5f;
+
 		//GetComponents
 		sprRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
 		GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player1");
@@ -53,16 +56,17 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	public void LateUpdate() {
 		if(isOnBeat == true) {
+			//Calculate random mouvement
+			Vector2 randomChange = new Vector2(Random.Range(-1f,1f), Random.Range (-1f,1f)).normalized;
+			randomChange *= randomWeight;
 			//Calculate Mouvement
 			Vector2 playerChange = Vector2.zero;
 			if(isP1Turn == true && currentType == 2) {
-				playerChange = CreatePlayerChange(otherInput);
+				playerChange = CreatePlayerChange(otherInput,randomChange);
 			} else if(isP1Turn == false && currentType == 1) {
-				playerChange = CreatePlayerChange(otherInput);
+				playerChange = CreatePlayerChange(otherInput,randomChange);
 			}
 			playerChange *= playerWeight;
-			Vector2 randomChange = new Vector2(Random.Range(-1f,1f), Random.Range (-1f,1f)).normalized;
-			randomChange *= randomWeight;
 			Vector2 ResultChange = playerChange + randomChange;
 
 			//Execute Mouvment
@@ -128,8 +132,12 @@ public class ZombieBehaviour : MonoBehaviour {
 		isOnBeat = true;
 	}
 
-	Vector2 CreatePlayerChange(BeatEnum pInput){
-		if(pInput == BeatEnum.Missed) {
+	Vector2 CreatePlayerChange(BeatEnum pInput, Vector2 randomChange){
+		//If in chaos mode, 50% chance zombie dont listen.
+		if(GameManager.Instance.isChaosMode() == true && Random.Range (0,100) <= 50) {
+			return randomChange;
+		}
+		if(pInput == BeatEnum.Missed || pInput == BeatEnum.Empty) {
 			return Vector2.zero;
 		} else if(pInput == BeatEnum.Right) {
 			return Vector2.right;

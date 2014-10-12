@@ -7,6 +7,16 @@ public class Persistent : MonoBehaviour {
     public int songBPM;
     public float songMulti;
 
+    public int OptZombiesCount=50;
+    public int OptSpeedTurn=16;
+    public int OptBaseScore=500;
+    public int OptZombieCtrl=2;
+
+    public bool OptFeverMode=false;
+    public bool OptChaosMode=false;
+    public bool OptTacticMode=false;
+	public bool OptAiMode=false;
+
 	static bool instanceIsLoaded = false;
 
 	void OnLevelWasLoaded(int level){
@@ -19,7 +29,7 @@ public class Persistent : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(instanceIsLoaded == false) {
-			DontDestroyOnLoad(this);
+			DontDestroyOnLoad(this); 
 			instanceIsLoaded = true;
 			//Cap framerate
 			Application.targetFrameRate = 60;
@@ -35,4 +45,5 @@ public class Persistent : MonoBehaviour {
 	void Update () {
 	
 	}
+
 }

@@ -1193,13 +1193,13 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   m_CustomStyles:
-  - m_Name: 
+  - m_Name: Return to menu
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+      m_Background: {fileID: 2800000, guid: ba2b52e52c7784015bb0d4fc28b86258, type: 3}
+      m_TextColor: {r: .0212478582, g: .729362428, b: .963235319, a: 1}
     m_Active:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
@@ -1238,10 +1238,10 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
+    m_Font: {fileID: 12800000, guid: 5d0455f8e3ef0ca4695be10a901e2992, type: 3}
+    m_FontSize: 48
     m_FontStyle: 0
-    m_Alignment: 0
+    m_Alignment: 4
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0

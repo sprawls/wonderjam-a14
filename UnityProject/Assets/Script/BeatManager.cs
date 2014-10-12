@@ -14,6 +14,7 @@ public class BeatManager : Singleton<BeatManager> {
     private bool ctrlLock = true;
     private bool p1Turn=false;
     private int beatCpt = 0;
+    private int SpeedTurn;
 
     private bool p1LateXpect = false;
     private bool p2LateXpect = false;
@@ -33,12 +34,13 @@ public class BeatManager : Singleton<BeatManager> {
 
     public void SetBeat(IBeatReceiver Beat)
     {
+
         IbeatReceiverRef = Beat;
         t_Beat_update.Elapsed += new ElapsedEventHandler(doBeat);
         t_Beat_acuracy.Elapsed += new ElapsedEventHandler(IncreaseInvervalCpt);
         t_Beat_acuracy.Enabled = true;
         t_Beat_acuracy.Interval = (50);
-
+        SpeedTurn = GameManager.Instance.getSpeedTurn();
         changeTempo();
         t_Beat_update.Enabled = true;
         t_Beat_update.Start();
@@ -128,7 +130,7 @@ public class BeatManager : Singleton<BeatManager> {
         intervalCpt = 0;
         subQuarter = 1;
         beatCpt++;
-        if (beatCpt >= 16)
+        if (beatCpt >= SpeedTurn)
         {
             ctrlLock = false;
             beatCpt = 0;
