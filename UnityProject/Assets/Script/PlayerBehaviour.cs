@@ -121,12 +121,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         Vector3 start = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().WorldToScreenPoint(v);
         start.x += 380 * (whoami() == 1 ? -1 : 1) - 70;
         start.y += 50;
+
         GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part1, GUI.skin.textArea);
         start.y += 80;
         GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.textArea);
-
-
-
 	}
 
     int whoami()

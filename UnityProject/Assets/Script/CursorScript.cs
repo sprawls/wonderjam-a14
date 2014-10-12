@@ -101,7 +101,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
                     break;
             }
             pos = n;
-            Debug.Log(pos);
+            //Debug.Log(pos);
             if (old != pos)
             {
                 EnqueueCurrent();
