@@ -594,7 +594,7 @@ MonoBehaviour:
   gSkin: {fileID: 11400000, guid: 0cd8575a2fd944867a3609444f39378e, type: 2}
   gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: "DJ Guylaine grosse-soir\xE9e"
-  Part2: 
+  Part2: ' '
   paddingZeroes: 7
   score: 0
   zLimit: 34
@@ -5888,6 +5888,10 @@ Prefab:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 73635511}
+    - target: {fileID: 11400000, guid: a0cb8cd019d2a5045902ff9908162ba9, type: 2}
+      propertyPath: Part2
+      value: ' '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0cb8cd019d2a5045902ff9908162ba9, type: 2}
   m_RootGameObject: {fileID: 1888808211}
@@ -5936,6 +5940,10 @@ Prefab:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 1030369503}
+    - target: {fileID: 11400000, guid: f51112c63bd249b44bc52ae474dc3e8f, type: 2}
+      propertyPath: Part2
+      value: ' '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f51112c63bd249b44bc52ae474dc3e8f, type: 2}
   m_RootGameObject: {fileID: 121997721}
@@ -6505,6 +6513,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 34641f590b6d2fc428c7b0acccdb13ef, type: 2}
       propertyPath: EmissionModule.cnt0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 34641f590b6d2fc428c7b0acccdb13ef, type: 2}
+      propertyPath: m_Pitch
+      value: 1.70000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 34641f590b6d2fc428c7b0acccdb13ef, type: 2}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7720,7 +7736,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 13740a051493b6c4aab3d70807faff04, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.70000005
   Loop: 0
   Mute: 0
   Priority: 128
@@ -9300,7 +9316,7 @@ MonoBehaviour:
   gSkin: {fileID: 11400000, guid: b3fafdde37baf4a1ea4b56f3199708e0, type: 2}
   gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: DJ Jerry Ox
-  Part2: 
+  Part2: ' '
   paddingZeroes: 7
   score: 0
   zLimit: 34
@@ -10726,7 +10742,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 13740a051493b6c4aab3d70807faff04, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.70000005
   Loop: 0
   Mute: 0
   Priority: 128
@@ -11068,6 +11084,10 @@ Prefab:
     - target: {fileID: 400000, guid: b6319457e16eb1f418f7028c051c6b38, type: 2}
       propertyPath: m_LocalScale.y
       value: .99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: b6319457e16eb1f418f7028c051c6b38, type: 2}
+      propertyPath: m_Pitch
+      value: 1.70000005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6319457e16eb1f418f7028c051c6b38, type: 2}
