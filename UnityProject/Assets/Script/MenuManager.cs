@@ -134,18 +134,18 @@ public class MenuManager : MonoBehaviour {
 		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 95, Sheight - curHeight - 32, curWidth, curHeight), "extras", skinMenu.GetStyle("Options Button"))) 
 		{
 			optionsMode = !optionsMode;
-			GUIStyle myOptionsStyle = skinMenu.GetStyle("Options Button");
-			if(optionsMode){
-				myOptionsStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
-				myOptionsStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
-			} else {
-				myOptionsStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
-				myOptionsStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
-			}
-
-			animator.SetBool (Animator.StringToHash("OptionsOpen"), optionsMode);
 		}
-
+		GUIStyle myOptionsStyle = skinMenu.GetStyle("Options Button");
+		if(optionsMode){
+			myOptionsStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			myOptionsStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+		} else {
+			myOptionsStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+			myOptionsStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+		}
+		
+		animator.SetBool (Animator.StringToHash("OptionsOpen"), optionsMode);
+		
 		// Vs AI 
 		curWidth = 60;
 		curHeight = 40;
@@ -177,8 +177,6 @@ public class MenuManager : MonoBehaviour {
 		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 122, Sheight - curHeight - 32, curWidth, curHeight), "instructions", skinMenu.GetStyle("Tutorial Button"))) 
 		{
 			tutorialMode = !tutorialMode;
-
-			
 			animator.SetBool (Animator.StringToHash("OptionsOpen"), optionsMode);
 		}
 		GUIStyle myTutorialStyle = skinMenu.GetStyle("Tutorial Button");
