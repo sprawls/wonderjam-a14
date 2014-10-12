@@ -183,6 +183,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		}
 	}
 
+    public bool Playing { get { return !IsAnimating && !Finished; } }
+
     private void doVictory(int player)
     {
         if (!finished)

@@ -70,7 +70,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         if(needplay)
         {
             needplay = false;
-            if (Playing)
+            if (GameManager.Instance.Playing)
                 audio.Play();
         }
 		// Create new gem at end of line
@@ -206,10 +206,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			return this.score;
 		}
 		set {
-            if (Playing)
+            if (GameManager.Instance.Playing)
 				this.score = value;
 		}
 	}
 
-    public bool Playing { get { return !GameManager.Instance.IsAnimating && !GameManager.Instance.Finished; } }
+    
 }
