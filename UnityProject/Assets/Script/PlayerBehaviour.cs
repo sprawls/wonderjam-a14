@@ -177,7 +177,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		GUI.skin = gSkin;
 
 		// Show score
-		GUI.TextArea (new Rect (0, 0, Screen.width, 40), this.score.ToString().PadLeft(paddingZeroes, '0'), GUI.skin.GetStyle("score"));
+		GUI.Label (new Rect (0, 0, Screen.width, 40), this.score.ToString().PadLeft(paddingZeroes, '0'), GUI.skin.GetStyle("score"));
 
         //GUI.skin = gName;
         Vector3 v = transform.position;
@@ -186,9 +186,9 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         start.x += 380 * (whoami() == 1 ? -1 : 1) - 200;
         start.y += 50;
 
-        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part1, GUI.skin.GetStyle ("Part 1"));
+        GUI.Label(new Rect(start.x, start.y, 400, 80), Part1, GUI.skin.GetStyle ("Part 1"));
         start.y += 40;
-        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.GetStyle ("Part 2"));
+        GUI.Label(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.GetStyle ("Part 2"));
 	}
 
     public int whoami()

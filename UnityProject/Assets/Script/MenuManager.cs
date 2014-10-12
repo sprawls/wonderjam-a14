@@ -165,7 +165,7 @@ public class MenuManager : MonoBehaviour {
 
 		curWidth = 240;
 		curHeight = 40;
-		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 230 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), aiDifficulty, new GUIContent[3] {
+		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 230 + iaDifficultyOffset, Sheight - curHeight - 76, curWidth, curHeight), aiDifficulty, new GUIContent[3] {
 						new GUIContent ("Poche"),
 						new GUIContent ("Pas pire"),
                         new GUIContent ("Nice")
