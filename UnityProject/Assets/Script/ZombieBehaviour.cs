@@ -31,8 +31,8 @@ public class ZombieBehaviour : MonoBehaviour {
 			randomWeight = randomFeverWeight; //Weight of the mouvement
 			playerWeight = playerFeverWeight; //Weight of the mouvment
 		}
-        playerWeight = GameManager.Instance.getZombieCtrl() + 1.5f;
-        playerFeverWeight = (GameManager.Instance.getZombieCtrl() * 2) + 1.5f;
+        playerWeight = 4 * GameManager.Instance.getZombieCtrl() + 0.5f;
+		playerFeverWeight = playerWeight;//(GameManager.Instance.getZombieCtrl() * 2.5) + 1.5f;
 
 		//GetComponents
 		sprRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();

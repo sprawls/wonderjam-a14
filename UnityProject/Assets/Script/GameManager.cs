@@ -78,8 +78,23 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		p1.Part2 = "Humain";
 
 		if (isAIMode()) {
-			k2 = new HeatMapIA(PersistentScript.songBPM, p2, p1, 0.9f);
-			p2.Part2 = "AI";
+
+			switch(getAiDifficulty()) {
+			case 0:
+				k2 = new RandomIA();
+				p2.Part2 = "AI poche";
+				break;
+			case 1:
+				k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
+				p2.Part2 = "AI pas pire";
+				break;
+            case 2:
+                k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
+				p2.Part2 = "AI presque bonne";
+				break;
+			}
+
+
 		} else {
 			k2 = new HumanKey (KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
 			p2.Part2 = "Humain";
@@ -89,6 +104,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 	// Update is called once per frame
     void Update()
     {
+
 		// @TODO
         if (k1.GetKeys(BeatEnum.Up))
         {
@@ -248,6 +264,9 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		showEnding = true;
 	}
 
+	public int getAiDifficulty() {
+		return PersistentScript.OptAiDifficulty;
+	}
     public int getZombieCount()
     {
         return PersistentScript.OptZombiesCount;

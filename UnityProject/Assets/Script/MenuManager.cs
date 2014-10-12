@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour {
 	public Camera logoCamera;
 	public Color textColor = Color.white;
 	public float optionsOffset = 0.0f;
+	public float iaDifficultyOffset = 0.0f;
 
 	private Animator animator;
 
@@ -27,7 +28,9 @@ public class MenuManager : MonoBehaviour {
     private float Swidth;
     private float Sheight;
 
-	private bool feverMode = false;
+	private bool feverMode = false, chaosMode = false, tacticMode = false, starbucksMode = false;
+	private int aiDifficulty = 0, grosseurSoiree = 0, longueurSoiree = 1, beatsParTour = 0;
+
 	// Use this for initialization
 	void Start () {
         addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",128);
@@ -156,6 +159,14 @@ public class MenuManager : MonoBehaviour {
 				myAIStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
 			}
 		}
+		animator.SetBool (Animator.StringToHash("IAOpen"), aiMode);
+
+		curWidth = 160;
+		curHeight = 40;
+		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 190 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), aiDifficulty, new GUIContent[2] {
+						new GUIContent ("Poche"),
+						new GUIContent ("Pas pire")
+		}, 2, GUI.skin.GetStyle ("List button"));
 
 		renderOptions ();
 	}
@@ -164,10 +175,16 @@ public class MenuManager : MonoBehaviour {
 		// Background
 		GUI.DrawTexture (new Rect ((Swidth - 600) / 2.0f + optionsOffset, (Sheight - 400) / 2.0f, 600, 400), bgExtras);
 
+		float curWidth = 300;
+		float curHeight = 40;
+		GUIStyle mySongStyle = skinMenu.GetStyle ("Song label");
+		mySongStyle.normal.textColor = textColor;
+		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f + optionsOffset, (Sheight - curHeight) / 2.0f - 170, curWidth, curHeight), "Extras", mySongStyle);
+
 		// Fever mode
-		float curWidth = 150;
-		float curHeight = 60;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + optionsOffset, ((Sheight - curHeight) / 2.0f) + 50, curWidth, curHeight), "fever mode", skinMenu.GetStyle("Fever Button"))) 
+		curWidth = 150;
+		curHeight = 40;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + optionsOffset - 200, ((Sheight - curHeight) / 2.0f) - 120, curWidth, curHeight), "fever mode", skinMenu.GetStyle("Fever Button"))) 
 		{
 			feverMode = !feverMode;
 			GUIStyle myFeverStyle = skinMenu.GetStyle("Fever Button");
@@ -179,6 +196,90 @@ public class MenuManager : MonoBehaviour {
 				myFeverStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
 			}
 		}
+
+		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f + optionsOffset - 200, (Sheight - curHeight) / 2.0f - 85, curWidth, curHeight), "Fermez les lumières!", skinMenu.GetStyle ("Instructions"));
+
+		// Chaos mode
+		curWidth = 150;
+		curHeight = 40;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + optionsOffset - 200, ((Sheight - curHeight) / 2.0f) - 40, curWidth, curHeight), "chaos mode", skinMenu.GetStyle("Chaos Button"))) 
+		{
+			chaosMode = !chaosMode;
+			GUIStyle myChaosStyle = skinMenu.GetStyle("Chaos Button");
+			if(chaosMode){
+				myChaosStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myChaosStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			} else {
+				myChaosStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myChaosStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+			}
+		}
+
+		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f + optionsOffset - 200, (Sheight - curHeight) / 2.0f - 5, curWidth, curHeight), "Les zombis sont incontrôlables!", skinMenu.GetStyle ("Instructions"));
+
+		// Tactic mode
+		curWidth = 150;
+		curHeight = 40;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + optionsOffset - 200, ((Sheight - curHeight) / 2.0f) + 40, curWidth, curHeight), "tactic mode", skinMenu.GetStyle("Tactic Button"))) 
+		{
+			tacticMode = !tacticMode;
+			GUIStyle myTacticStyle = skinMenu.GetStyle("Tactic Button");
+			if(tacticMode){
+				myTacticStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myTacticStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			} else {
+				myTacticStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myTacticStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+			}
+		}
+
+		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f + optionsOffset - 200, (Sheight - curHeight) / 2.0f + 75, curWidth, curHeight), "Les diagonales à tous les 5 coups!", skinMenu.GetStyle ("Instructions"));
+
+		// Starbucks mode
+		curWidth = 200;
+		curHeight = 40;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + optionsOffset - 175, ((Sheight - curHeight) / 2.0f) + 120, curWidth, curHeight), "starbucks mode", skinMenu.GetStyle("Starbucks Button"))) 
+		{
+			starbucksMode = !starbucksMode;
+			GUIStyle myStarbucksStyle = skinMenu.GetStyle("Starbucks Button");
+			if(starbucksMode){
+				myStarbucksStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myStarbucksStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			} else {
+				myStarbucksStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myStarbucksStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+			}
+		}
+
+		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f + optionsOffset - 175, (Sheight - curHeight) / 2.0f + 155, curWidth, curHeight), "Les zombis sont speedés!", skinMenu.GetStyle ("Instructions"));
+
+		// Grosseur de la soirée
+		curWidth = 200;
+		curHeight = 20;
+		GUI.Label (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f - 125, curWidth, curHeight), "Grosseur de la soirée", skinMenu.GetStyle("BPM label"));
+
+		curWidth = 400;
+		curHeight = 40;
+		grosseurSoiree = GUI.SelectionGrid (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f - 95, curWidth, curHeight), grosseurSoiree, new GUIContent[5]{new GUIContent("Tupperware"), new GUIContent("Party de fête"), new GUIContent("PU"), new GUIContent("Projet X"), new GUIContent("Wôôôôô")}, 3, skinMenu.GetStyle("List button")); 
+
+		// Longueur de la soirée
+		curWidth = 200;
+		curHeight = 40;
+		GUI.Label (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f - 35, curWidth, curHeight), "Longueur de la soirée", skinMenu.GetStyle("BPM label"));
+
+		curWidth = 400;
+		curHeight = 40;
+		longueurSoiree = GUI.SelectionGrid (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f - 5, curWidth, curHeight), longueurSoiree, new GUIContent[4]{new GUIContent("Courte"), new GUIContent("Moyenne"), new GUIContent("Longue"), new GUIContent("Digne de Guylaine")}, 2, skinMenu.GetStyle("List button")); 
+
+		// Beats par tour
+		curWidth = 200;
+		curHeight = 40;
+		GUI.Label (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f + 65, curWidth, curHeight), "Beats par tour", skinMenu.GetStyle("BPM label"));
+
+		curWidth = 300;
+		curHeight = 80;
+		beatsParTour = GUI.SelectionGrid (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f + 120, curWidth, curHeight), beatsParTour, new GUIContent[3]{new GUIContent("Équipes dans l'association de l'est"), new GUIContent("Pattes d'Aragog"), new GUIContent("Nombre de doigts sur un gars qui a pas de pouce")}, 1, skinMenu.GetStyle("List button")); 
+
 	}
 
     public void ChangeSong(int value)
@@ -254,7 +355,36 @@ public class MenuManager : MonoBehaviour {
         persistentScript.songBPM = (int)Mathf.Round((BPMSongs[SongIndice] * BPMModifier));
         persistentScript.songPath = PathSongs[SongIndice];
         persistentScript.songMulti = BPMModifier;
+
 		persistentScript.OptAiMode = aiMode;
+		persistentScript.OptAiDifficulty = aiDifficulty;
+
+		persistentScript.OptChaosMode = chaosMode;
+		persistentScript.OptTacticMode = tacticMode;
+		persistentScript.OptZombieCtrl = (starbucksMode) ? 2 : 1;
+
+		int zombieCount = 50;
+		switch (grosseurSoiree) {
+				case 0:
+						zombieCount = 50;
+						break;
+				case 1:
+						zombieCount = 100;
+						break;
+				case 2:
+						zombieCount = 200;
+						break;
+				case 3:
+						zombieCount = 500;
+						break;
+				case 4:
+						zombieCount = 1000;
+						break;
+		}
+		persistentScript.OptZombiesCount = zombieCount;
+		persistentScript.OptBaseScore = (longueurSoiree + 1) * 500;
+		persistentScript.OptSpeedTurn = (int)Mathf.Pow (2, 2-beatsParTour) * 4;
+		
 		if(feverMode == false) Application.LoadLevel("Game");
 		else Application.LoadLevel ("FeverMode");
     }
