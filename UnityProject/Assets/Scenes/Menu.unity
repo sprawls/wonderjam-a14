@@ -479,6 +479,14 @@ MonoBehaviour:
   songPath: 
   songBPM: 0
   songMulti: 0
+  OptZombiesCount: 50
+  OptSpeedTurn: 16
+  OptBaseScore: 500
+  OptZombieCtrl: 2
+  OptFeverMode: 0
+  OptChaosMode: 0
+  OptTacticMode: 0
+  OptAiMode: 0
 --- !u!4 &935138208
 Transform:
   m_ObjectHideFlags: 0
@@ -634,7 +642,6 @@ GameObject:
   - 20: {fileID: 1563536243}
   - 124: {fileID: 1563536242}
   - 92: {fileID: 1563536241}
-  - 95: {fileID: 1563536240}
   m_Layer: 5
   m_Name: Logo Camera
   m_TagString: Untagged
@@ -642,21 +649,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1563536240
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1563536239}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3fb7c09242de4445f88a0de7ceaf3bbb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!92 &1563536241
 Behaviour:
   m_ObjectHideFlags: 0

@@ -62,7 +62,6 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerBehaviour>();
 
         AudioSource[] victories = this.GetComponentsInChildren<AudioSource>();
-        Debug.Log(victories.Length);
         foreach(var v in victories)
         {
             if(v.gameObject.name == "Guylaine")
@@ -78,7 +77,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         k1 = new HumanKey("w", "s", "a", "d");
 		p1.Part2 = "Humain";
 
-		if (PersistentScript.AIMode) {
+		if (isAIMode()) {
 			k2 = new RandomIA();
 			p2.Part2 = "AI";
 		} else {
@@ -270,6 +269,10 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     public bool isTacticMode()
     {
         return PersistentScript.OptTacticMode;
+    }
+    public bool isAIMode()
+    {
+        return PersistentScript.OptAiMode;
     }
 
 
