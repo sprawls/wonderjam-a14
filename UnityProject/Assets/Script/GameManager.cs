@@ -90,7 +90,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 				break;
             case 2:
                 k2 = new HeatMapIA(PersistentScript.songBPM, p2, p1, 0.9f);
-				p2.Part2 = "AI meilleure";
+				p2.Part2 = "AI nice";
 				break;
 			}
 
@@ -103,8 +103,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 	
 	// Update is called once per frame
     void Update()
-    {
-
+    { 
 		// @TODO
         if (k1.GetKeys(BeatEnum.Up))
         {

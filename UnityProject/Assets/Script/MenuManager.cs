@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour {
     private int SongIndice = 0;
     private float BPMModifier = 1;
 	private bool aiMode = false;
-	private bool optionsMode = false;
+	private bool optionsMode = false, tutorialMode = false;
 
     private bool AddSongMenu = false;
 
@@ -161,13 +161,31 @@ public class MenuManager : MonoBehaviour {
 		}
 		animator.SetBool (Animator.StringToHash("IAOpen"), aiMode);
 
-		curWidth = 160;
+		curWidth = 240;
 		curHeight = 40;
-		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 190 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), aiDifficulty, new GUIContent[3] {
+		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 230 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), aiDifficulty, new GUIContent[3] {
 						new GUIContent ("Poche"),
 						new GUIContent ("Pas pire"),
-                        new GUIContent ("Meilleure")
+                        new GUIContent ("Nice")
 		}, 3, GUI.skin.GetStyle ("List button"));
+
+		// Tutorial button 
+		curWidth = 160;
+		curHeight = 40;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 122, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "instructions", skinMenu.GetStyle("Tutorial Button"))) 
+		{
+			tutorialMode = !tutorialMode;
+			GUIStyle myTutorialStyle = skinMenu.GetStyle("Tutorial Button");
+			if(tutorialMode) {
+				myTutorialStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myTutorialStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			} else {
+				myTutorialStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myTutorialStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+			}
+			
+			animator.SetBool (Animator.StringToHash("OptionsOpen"), optionsMode);
+		}
 
 		renderOptions ();
 	}
@@ -389,5 +407,4 @@ public class MenuManager : MonoBehaviour {
 		if(feverMode == false) Application.LoadLevel("Game");
 		else Application.LoadLevel ("FeverMode");
     }
-
 }
