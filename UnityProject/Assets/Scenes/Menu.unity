@@ -242,7 +242,7 @@ MonoBehaviour:
   bgMenu: {fileID: 2800000, guid: 7b99b1d1bfdcb49489ecff9bddebb230, type: 3}
   bgExtras: {fileID: 2800000, guid: 8b35d89d41042420f8202f433631f9f1, type: 3}
   logoCamera: {fileID: 1563536243}
-  textColor: {r: 0, g: 0, b: 0, a: 0}
+  textColor: {r: 1.02876997, g: .991286099, b: .640865266, a: 1}
   optionsOffset: -800
 --- !u!82 &476745546
 AudioSource:
