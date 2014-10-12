@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour {
 
     private float Swidth;
     private float Sheight;
+
+	private bool feverMode = false;
 	// Use this for initialization
 	void Start () {
         addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",128);
@@ -184,7 +186,8 @@ public class MenuManager : MonoBehaviour {
         persistentScript.songBPM = (int)Mathf.Round((BPMSongs[SongIndice] * BPMModifier));
         persistentScript.songPath = PathSongs[SongIndice];
         persistentScript.songMulti = BPMModifier;
-        Application.LoadLevel("Game");
+		if(feverMode == false) Application.LoadLevel("Game");
+		else Application.LoadLevel ("FeverMode");
     }
 
 }

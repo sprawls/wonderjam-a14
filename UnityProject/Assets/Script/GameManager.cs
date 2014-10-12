@@ -32,7 +32,12 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     private AudioSource victoryGuylaine;
     private AudioSource victoryJerry;
 
-	// Use this for initialization
+	void OnLevelWasLoaded(int level){
+		if(level == 0) RenderSettings.ambientLight = new Color(0.2f,0.2f,0.2f);
+		else if(level == 1) RenderSettings.ambientLight = new Color(0.2f,0.2f,0.2f);
+		else if(level == 2) RenderSettings.ambientLight = new Color(0,0,0);
+	}
+
 	void Start () {
 		//Cap framerate
 		Application.targetFrameRate = 60;
