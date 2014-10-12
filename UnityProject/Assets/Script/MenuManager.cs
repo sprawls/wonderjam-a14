@@ -4,12 +4,9 @@ using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour {
 
-    public GUISkin Bg_menu;
-    public GUISkin bg_ui;
-    public GUISkin fontL;
-    public GUISkin fontR;
-    public GUISkin btL;
-    public GUISkin btS;
+	public GUISkin skinMenu;
+	public Texture2D bgMenu;
+	public Camera logoCamera;
 
     private List<string> PathSongs=new List<string>();
     private List<string> SongNames = new List<string>();
@@ -26,67 +23,77 @@ public class MenuManager : MonoBehaviour {
         addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
         addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
 
-
-
 	    Swidth=Screen.width;
         Sheight = Screen.height;
 	}
 	
 	// Update is called once per frame
 	void OnGUI () {
-        //GUI.skin = Title_song;
-        float curWidth=150;
-        float curHeight=20;
-        GUI.Label(new Rect((Swidth - curWidth - 40) / 2.0f, (Sheight - curHeight) / 2.0f, curWidth, curHeight), SongNames[SongIndice]);
-        //GUI.skin = Arrow_Left;
-        curWidth = 20;
-        curHeight = 20;
-        if (SongIndice > 0 && GUI.Button(new Rect(((Swidth - curWidth - 40) / 2.0f) - 100, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "<"))
+		GUI.skin = skinMenu;
+
+		// Background
+		GUI.DrawTexture (new Rect (0, 0, Swidth, Sheight), bgMenu);
+
+		float curWidth = 75;
+		float curHeight = 20;
+		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f - 25, curWidth, curHeight), "Choix du beat", skinMenu.GetStyle ("BPM label"));
+
+		// Song label
+        curWidth=150;
+        curHeight=20;
+		GUI.Label(new Rect((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f, curWidth, curHeight), SongNames[SongIndice], skinMenu.GetStyle("Song label"));
+		
+		// Previous song
+        curWidth = 48;
+        curHeight = 48;
+        if (SongIndice > 0 && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 350, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Previous song")))
         {
             ChangeSong(-1);
         }
-        //GUI.skin = Arrow_Right;
-        curWidth = 20;
-        curHeight = 20;
-        if (SongIndice+1 < PathSongs.Count && GUI.Button(new Rect(((Swidth - curWidth - 40) / 2.0f) + 175, (Sheight - curHeight) / 2.0f, curWidth, curHeight), ">"))
-        {
+
+		// Next song
+        curWidth = 48;
+        curHeight = 48;
+		if (SongIndice+1 < PathSongs.Count && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 350, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Next song")))
+		{
             ChangeSong(1);
         }
 
-
-        //GUI.skin = Bpm_song;
+		// BPM label
         curWidth = 75;
         curHeight = 20;
-        GUI.Label(new Rect(((Swidth - curWidth - 40) / 2.0f) + 230, ((Sheight - curHeight) / 2.0f), curWidth, curHeight), Mathf.Round((BPMSongs[SongIndice] * BPMModifier)) + " BPM");
-        //GUI.skin = Arrow_Up;
-        curWidth = 20;
-        curHeight = 20;
-        if (BPMModifier<2.0f && GUI.Button(new Rect(((Swidth - curWidth - 40) / 2.0f) + 230, ((Sheight - curHeight) / 2.0f) - 20, curWidth, curHeight), "^"))
-        {
+		GUI.Label(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 50, curWidth, curHeight), Mathf.Round((BPMSongs[SongIndice] * BPMModifier)) + " BPM", skinMenu.GetStyle("BPM label"));
+		
+		// Higher BPM
+        curWidth = 24;
+        curHeight = 24;
+		if (BPMModifier<2.0f && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 75, ((Sheight - curHeight) / 2.0f) + 50, curWidth, curHeight), "", skinMenu.GetStyle("Higher BPM")))
+		{
             ChangeBPM(0.1f);
         }
-        //GUI.skin = Arrow_Down;
-        curWidth = 20;
-        curHeight = 20;
-        
-        if (BPMModifier>0.1f && GUI.Button(new Rect(((Swidth - curWidth - 40) / 2.0f) + 230, ((Sheight - curHeight) / 2.0f) + 20, curWidth, curHeight), "v"))
-        {
-            ChangeBPM(-0.1f);
-        }
 
-        //GUI.skin = Bt_Start;
+		// Lower BPM
+        curWidth = 24;
+        curHeight = 24;
+		if (BPMModifier > 0.1f && GUI.Button (new Rect (((Swidth - curWidth) / 2.0f) - 75, ((Sheight - curHeight) / 2.0f) + 50, curWidth, curHeight), "", skinMenu.GetStyle("Lower BPM"))) {
+			ChangeBPM (-0.1f);
+		}
+
+		// Instructions
+		curWidth = 720;
+		curHeight = 60;
+		GUI.Label(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 120, curWidth, curHeight), "Instructions Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum mLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum", skinMenu.GetStyle("Instructions"));
+		
+		// Start button
         curWidth = 350;
         curHeight = 60;
-        if (GUI.Button(new Rect(((Swidth - curWidth + 90) / 2.0f), ((Sheight - curHeight) / 2.0f) + 70, curWidth, curHeight), "Start [Enter]"))
-        {
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 240, curWidth, curHeight), "go!", skinMenu.GetStyle("Start button")))
+		{
             StartGame();
         }
 
-        //GUI.skin = Infos;
-        curWidth = 350;
-        curHeight = 180;
-        GUI.Label(new Rect(((Swidth - curWidth + 90) / 2.0f), ((Sheight - curHeight) / 2.0f) + 210, curWidth, curHeight), "Instructions Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum mLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum");
-
+		// Render logo
+		logoCamera.Render ();
 	}
 
     public void ChangeSong(int value)
