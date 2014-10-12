@@ -15,7 +15,6 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	private GameObject zombieAnchorObject;
 	private IBeatReceiver IbeatReceiverRef;
 	private int NumZombies = 50;
-	private int NumZombiesFever = 75;
 
 
 	public void Start(){
@@ -27,6 +26,10 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 
 	}
 
+	private void SetZombieAmount(){
+		NumZombies = GameManager.Instance.getZombieCount();
+	}
+
 	public void SetBeat(IBeatReceiver Beat){
 		IbeatReceiverRef = Beat;
 
@@ -36,7 +39,8 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 		Zombies = new List<ZombieBehaviour>();
 		//instantiate empty game object for grid
 		Instantiate (zombieAnchorObject);
-		if(Application.loadedLevel == 2) NumZombies = NumZombiesFever;
+		//Set Zombie Amount Depending on options
+		SetZombieAmount();
 		emptyObject = GameObject.Find("ZombieAnchor(Clone)");
 
 		for(int i = 0; i < NumZombies; i++) {

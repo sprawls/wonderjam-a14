@@ -23,8 +23,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     private Persistent PersistentScript;
 
     private Animator camAnim;
-    private PlayerBehaviour p1;
-    private PlayerBehaviour p2;
+    public PlayerBehaviour p1 { get; private set; }
+    public PlayerBehaviour p2 { get; private set; }
 
     private bool finished = false;
 	private bool showEnding = false;
@@ -77,8 +77,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         k1 = new HumanKey("w", "s", "a", "d");
 		p1.Part2 = "Humain";
 
-		if (isAIMode()) {
-			k2 = new RandomIA();
+		if (!isAIMode()) {
+			k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
 			p2.Part2 = "AI";
 		} else {
 			k2 = new HumanKey (KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
@@ -142,6 +142,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		GUI.skin = skin;
 		GUI.Label (new Rect (0, 0, Screen.width, 45), "Objectif: " + maxScore.ToString ());
 
+
 		if(showEnding) {
 			if(GUI.Button (new Rect((Screen.width - 100) / 2.0f, (Screen.height - 100) / 2.0f - 160, 100, 100), "Menu principal", GUI.skin.GetStyle ("Return to menu"))) {
 				Application.LoadLevel(0);
@@ -152,6 +153,11 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     public void requestBeat(IBeatReceiver b)
     {
         beats.Add(b);
+    }
+
+    public void requestUpdate(IUpdate b)
+    {
+        component.Add(b);
     }
 
     public void OnBeat(BeatEnum mainPlayer, BeatEnum offPlayer, bool turnP1)

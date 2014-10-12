@@ -191,7 +191,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.GetStyle ("Part 2"));
 	}
 
-    int whoami()
+    public int whoami()
     {
         if (tag == "Player1")
         {
@@ -213,6 +213,11 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 				this.score = value;
 		}
 	}
+
+    public bool isMyTurn()
+    {
+        return (turnP1 == (player == 1));
+    }
 
     
 }
