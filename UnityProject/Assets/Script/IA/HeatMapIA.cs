@@ -214,7 +214,6 @@ public class HeatMapIA : IKeyGetter , IUpdate, IBeatReceiver{
 
         if(targetx != curx)
         {
-            Debug.Log("x not equal");
             if(targetx > curx)
             {
                 next = BeatEnum.Down;
@@ -228,7 +227,6 @@ public class HeatMapIA : IKeyGetter , IUpdate, IBeatReceiver{
         }
         else
         {
-            Debug.Log("y not equal");
             if(targety > cury)
             {
                 next = BeatEnum.Right;
