@@ -18,7 +18,8 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	//Fever
 	private bool removeFever = false; //If True , remove fever
 	private bool CheckFever = false; //If true , check for fever
-	private bool FeverStarted = false;
+	private bool FeverStartedP1 = false;
+	private bool FeverStartedP2 = false;
 	private int FeverThreshold = 20;
 
 	public GUISkin gSkin;
@@ -119,7 +120,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			if(p1 != BeatEnum.Empty) P1Combo ++;
 		} else {
 			P1Combo = 0;
-			FeverStarted = false;
+			FeverStartedP1 = false;
 			removeFever = true;
 		}
 		//Look For P2 Combo
@@ -129,7 +130,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			if(p2 != BeatEnum.Empty) P2Combo ++;
 		} else {
 			P2Combo = 0;
-			FeverStarted = false;
+			FeverStartedP2 = false;
 			removeFever = true;
 		}
 	
@@ -142,8 +143,14 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	void CheckForFever(){
 		//Look to Start Stromatolite Fever
-		if(cursorP1.superpower == false && P1Combo >= FeverThreshold) cursorP1.POWERUP();
-		if(cursorP2.superpower == false && P2Combo >= FeverThreshold) cursorP2.POWERUP();
+		if(cursorP1.superpower == false && FeverStartedP1 == false && P1Combo >= FeverThreshold) {
+			cursorP1.POWERUP();
+			FeverStartedP1 = true;
+		}
+		if(cursorP2.superpower == false && FeverStartedP2 == false && P2Combo >= FeverThreshold) {
+			cursorP2.POWERUP();
+			FeverStartedP2 = true;
+		}
 	}
 
 	void OnGUI() {
