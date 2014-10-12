@@ -244,6 +244,7 @@ MonoBehaviour:
   logoCamera: {fileID: 1563536243}
   textColor: {r: 1.02876997, g: .991286099, b: .640865266, a: 1}
   optionsOffset: -800
+  iaDifficultyOffset: 0
 --- !u!82 &476745546
 AudioSource:
   m_ObjectHideFlags: 0
