@@ -10,15 +10,18 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	public GameObject TileParticlesColor_green;
 
 	private GameObject ZombiePrefab;
+	private GameObject ZombieFeverPrefab;
 	private GameObject emptyObject;
 	private GameObject zombieAnchorObject;
 	private IBeatReceiver IbeatReceiverRef;
 	private int NumZombies = 50;
+	private int NumZombiesFever = 75;
 
 
 	public void Start(){
 		TileParticlesColor_green = (GameObject) Resources.Load("TileSplash_green");
 		TileParticlesColor_blue = (GameObject) Resources.Load("TileSplash_blue");
+		if(Application.loadedLevel == 2) NumZombies = NumZombiesFever;
 	}
 
 	public void OnUpdate(){
@@ -29,6 +32,7 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 		IbeatReceiverRef = Beat;
 
 		ZombiePrefab = (GameObject) Resources.Load ("prefab/ZombiePrefab");
+		ZombieFeverPrefab = (GameObject) Resources.Load ("prefab/ZombieFeverPrefab");
 		zombieAnchorObject = (GameObject) Resources.Load ("prefab/ZombieAnchor");
 		Zombies = new List<ZombieBehaviour>();
 		//instantiate empty game object for grid
@@ -36,7 +40,8 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 		emptyObject = GameObject.Find("ZombieAnchor(Clone)");
 
 		for(int i = 0; i < NumZombies; i++) {
-			Zombies.Add (((GameObject)Instantiate(ZombiePrefab)).GetComponent<ZombieBehaviour>());
+			if(Application.loadedLevel == 2) Zombies.Add (((GameObject)Instantiate(ZombieFeverPrefab)).GetComponent<ZombieBehaviour>());
+			else Zombies.Add (((GameObject)Instantiate(ZombiePrefab)).GetComponent<ZombieBehaviour>());		
 			Zombies[i].transform.parent = emptyObject.transform;
 			Zombies[i].transform.localRotation = Quaternion.Euler(new Vector3(90,180,0)); //Orient sprites with camera
 		}

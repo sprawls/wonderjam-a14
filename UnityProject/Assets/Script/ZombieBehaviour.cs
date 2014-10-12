@@ -24,6 +24,8 @@ public class ZombieBehaviour : MonoBehaviour {
 	private PlayerBehaviour player2;
 
 	public void Start(){
+		//Set Layer
+		gameObject.layer = 8;
 		//GetComponents
 		sprRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
 		GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player1");
