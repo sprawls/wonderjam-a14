@@ -6,8 +6,12 @@ public class MenuManager : MonoBehaviour {
 
 	public GUISkin skinMenu;
 	public Texture2D bgMenu;
+	public Texture2D bgExtras;
 	public Camera logoCamera;
 	public Color textColor;
+	public float optionsOffset = 0.0f;
+
+	private Animator animator;
 
     private List<string> PathSongs=new List<string>();
     private List<string> SongNames = new List<string>();
@@ -33,6 +37,8 @@ public class MenuManager : MonoBehaviour {
 
 		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
 		audio.Play ();
+
+		animator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -114,20 +120,22 @@ public class MenuManager : MonoBehaviour {
 		// Render logo
 		logoCamera.Render ();
 
-		// Fever Button 
+		// Extras Button 
 		curWidth = 150;
 		curHeight = 60;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 120, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "fever mode", skinMenu.GetStyle("Fever Button"))) 
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 120, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "extras", skinMenu.GetStyle("Options Button"))) 
 		{
-			feverMode = !feverMode;
-			GUIStyle myFeverStyle = skinMenu.GetStyle("Fever Button");
+			optionsMode = !optionsMode;
+			GUIStyle myOptionsStyle = skinMenu.GetStyle("Options Button");
 			if(feverMode){
-				myFeverStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
-				myFeverStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myOptionsStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myOptionsStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
 			} else {
-				myFeverStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
-				myFeverStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+				myOptionsStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myOptionsStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
 			}
+
+			animator.SetBool (Animator.StringToHash("OptionsOpen"), optionsMode);
 		}
 
 		// Vs AI 
@@ -146,19 +154,29 @@ public class MenuManager : MonoBehaviour {
 			}
 		}
 
-		// Options 
-		curWidth = 80;
-		curHeight = 60;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 81, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "options", skinMenu.GetStyle("Options Button"))) 
+		curWidth = 60;
+		curHeight = 20;
+
+		renderOptions ();
+	}
+
+	public void renderOptions() {
+		// Background
+		GUI.DrawTexture (new Rect ((Swidth - 600) / 2.0f + optionsOffset, (Sheight - 400) / 2.0f, 600, 400), bgExtras);
+
+		// Fever mode
+		float curWidth = 150;
+		float curHeight = 60;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + optionsOffset, ((Sheight - curHeight) / 2.0f) + 50, curWidth, curHeight), "fever mode", skinMenu.GetStyle("Fever Button"))) 
 		{
-			optionsMode = !optionsMode;
-			GUIStyle myOptionsStyle = skinMenu.GetStyle("Options Button");
-			if(optionsMode){
-				myOptionsStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
-				myOptionsStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			feverMode = !feverMode;
+			GUIStyle myFeverStyle = skinMenu.GetStyle("Fever Button");
+			if(feverMode){
+				myFeverStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myFeverStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
 			} else {
-				myOptionsStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
-				myOptionsStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+				myFeverStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myFeverStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
 			}
 		}
 	}
