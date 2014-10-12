@@ -13,11 +13,11 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     bool curr = true;
 
-    bool superpower = false;
+    public bool superpower = false;
 
     bool needtomove = true;
     int countdownSuper = -1;
-    int maxcountdownSuper = 6;
+    int maxcountdownSuper = 4;
 
     delegate void UpdateDelegate();
     Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
@@ -26,7 +26,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	void Start () {
         GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
         rend = GetComponentInChildren<MeshRenderer>();
-        
+
 	}
 
     public void OnQuarterBeat()
@@ -51,6 +51,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
             if (superpower)
             {
                 countdownSuper--;
+				Debug.Log (gameObject.name + "I am calming down now.");
                 if (countdownSuper < 0)
                 {
                     calmdown();
@@ -196,15 +197,19 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     public void POWERUP()
     {
-        transform.localScale = new Vector3(3, 3, 3);
-        superpower = true;
-        countdownSuper = maxcountdownSuper;
+		if(superpower == false) {
+        	transform.localScale = new Vector3(3, 3, 3);
+        	superpower = true;
+        	countdownSuper = maxcountdownSuper;
+		}
     }
 
     public void calmdown()
     {
-        transform.localScale = new Vector3(1,1,1);
-        superpower = false;
+		if(superpower == true) {
+			transform.localScale = new Vector3(1,1,1);
+			superpower = false;
+		}
     }
 
     public IEnumerator MoveBitch(float time, Vector3 pos)

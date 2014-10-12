@@ -4031,6 +4031,8 @@ MonoBehaviour:
   zLimit: 34
   speed: 35
   gemSpawningPoint: {x: -8, y: 25, z: -25}
+  cursorP1: {fileID: 0}
+  cursorP2: {fileID: 0}
   gemPrefab: {fileID: 400004, guid: 47d60bdc3f94249d9bc2c0f556bb8a8e, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
   P1Combo: 0
@@ -4264,6 +4266,8 @@ MonoBehaviour:
   zLimit: 34
   speed: -35
   gemSpawningPoint: {x: -8, y: 25, z: 95}
+  cursorP1: {fileID: 0}
+  cursorP2: {fileID: 0}
   gemPrefab: {fileID: 400004, guid: 36c0585269a0a4bc897c3f9af927b5cd, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
   P1Combo: 0
@@ -5733,6 +5737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: 2
   player: 1
+  superpower: 0
 --- !u!4 &1296219604
 Transform:
   m_ObjectHideFlags: 0
@@ -9350,6 +9355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: 37
   player: 0
+  superpower: 0
 --- !u!4 &2024941558
 Transform:
   m_ObjectHideFlags: 0
