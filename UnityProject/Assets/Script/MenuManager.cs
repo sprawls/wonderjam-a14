@@ -23,6 +23,8 @@ public class MenuManager : MonoBehaviour {
         addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",128);
         addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
         addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
+		addSong ("Music/eric-lam-gta", "Eric Lam - GTA", 128);
+		addSong ("Music/ourautobiography-codebreaker", "OurAutobiography - CodeBreaker", 88);
 
 		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
 		audio.Play ();
