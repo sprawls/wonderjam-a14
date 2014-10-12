@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour {
 
     private float Swidth;
     private float Sheight;
+
+	private bool feverMode = false;
 	// Use this for initialization
 	void Start () {
         addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",128);
@@ -25,6 +27,7 @@ public class MenuManager : MonoBehaviour {
         addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
 		addSong ("Music/eric-lam-gta", "Eric Lam - GTA", 128);
 		addSong ("Music/ourautobiography-codebreaker", "OurAutobiography - CodeBreaker", 88);
+		addSong ("Music/emotional-titanic-flute", "James Horner - My Heart Will Go On", 104);
 
 		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
 		audio.Play ();
@@ -54,13 +57,13 @@ public class MenuManager : MonoBehaviour {
         curHeight=20;
 		GUIStyle songLabelStyle = skinMenu.GetStyle ("Song label");
 		songLabelStyle.normal.textColor = textColor;
-		Debug.Log (skinMenu.GetStyle ("Song label").normal.textColor);
+		//Debug.Log (skinMenu.GetStyle ("Song label").normal.textColor);
 		GUI.Label(new Rect((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f, curWidth, curHeight), SongNames[SongIndice], songLabelStyle);
 		
 		// Previous song
         curWidth = 48;
         curHeight = 48;
-        if (SongIndice > 0 && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 350, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Previous song")))
+        if (SongIndice > 0 && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 425, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Previous song")))
         {
             ChangeSong(-1);
         }
@@ -68,7 +71,7 @@ public class MenuManager : MonoBehaviour {
 		// Next song
         curWidth = 48;
         curHeight = 48;
-		if (SongIndice+1 < PathSongs.Count && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 350, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Next song")))
+		if (SongIndice+1 < PathSongs.Count && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 425, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Next song")))
 		{
             ChangeSong(1);
         }
@@ -99,7 +102,7 @@ public class MenuManager : MonoBehaviour {
 		GUI.Label(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 120, curWidth, curHeight), "31 octobre 2052, la race humaine a été exterminée par la menace zombie. La musique est morte, mais la légendaire bataille entre les deux dieux du rythme, DJ Guylaine Grosse-Soirée et DJ Jerry Ox, se poursuit encore après la mort. Le combat décisif se tiendra ce soir au célèbre Zombeat Stromatolite Turbo Party Club, pour la dernière chance pour le monde de retrouver un peu de couleur. Qui triomphera?", skinMenu.GetStyle("Instructions"));
 		
 		// Start button
-        curWidth = 350;
+        curWidth = 160;
         curHeight = 60;
 		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 240, curWidth, curHeight), "go!", skinMenu.GetStyle("Start button")))
 		{
@@ -108,6 +111,21 @@ public class MenuManager : MonoBehaviour {
 
 		// Render logo
 		logoCamera.Render ();
+
+		//Fever Button 
+		curWidth = 200;
+		curHeight = 60;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 200, ((Sheight - curHeight) / 2.0f) + 240, curWidth, curHeight), "FEVER MODE", skinMenu.GetStyle("Fever Button"))) 
+		{
+			feverMode = !feverMode;
+			GUIStyle myFeverStyle = skinMenu.GetStyle("Fever Button");
+			if(feverMode){
+				myFeverStyle.normal.textColor = new Color (20f/255f,0,1);
+			} else {
+				myFeverStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+			}
+		} 
+
 	}
 
     public void ChangeSong(int value)
@@ -183,7 +201,8 @@ public class MenuManager : MonoBehaviour {
         persistentScript.songBPM = (int)Mathf.Round((BPMSongs[SongIndice] * BPMModifier));
         persistentScript.songPath = PathSongs[SongIndice];
         persistentScript.songMulti = BPMModifier;
-        Application.LoadLevel("Game");
+		if(feverMode == false) Application.LoadLevel("Game");
+		else Application.LoadLevel ("FeverMode");
     }
 
 }

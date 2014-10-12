@@ -6,6 +6,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 {
 
     MeshRenderer rend;
+	private LineRenderer linerenderer;
     public int pos = 2;
     public bool player;
 
@@ -29,6 +30,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
         GameManager.Instance.requestBeat(this);
         rend = GetComponentInChildren<MeshRenderer>();
         fever = GetComponentInChildren<AudioSource>();
+		linerenderer = GetComponentInChildren<LineRenderer>();
 	}
 
     public void OnQuarterBeat()
@@ -53,7 +55,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
             if (superpower)
             {
                 countdownSuper--;
-				Debug.Log (gameObject.name + "I am calming down now.");
+				//Debug.Log (gameObject.name + "I am calming down now.");
                 if (countdownSuper < 0)
                 {
                     calmdown();
@@ -201,7 +203,8 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     {
 		if(superpower == false) {
             Debug.Log("SUpoerpower og");
-        	transform.localScale = new Vector3(3, 3, 3);
+			linerenderer.transform.localScale = new Vector3(3, 3, 3); //Make cursor size bigger
+			linerenderer.SetWidth(5,5);//Make Line Renderer Bigger
         	superpower = true;
         	countdownSuper = maxcountdownSuper;
             fever.Play();
@@ -211,7 +214,8 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     public void calmdown()
     {
 		if(superpower == true) {
-			transform.localScale = new Vector3(1,1,1);
+			linerenderer.transform.localScale = new Vector3(1, 1, 1); //Make cursor size normal
+			linerenderer.SetWidth(1,1);//Make Line Renderer normal
 			superpower = false;
 		}
     }

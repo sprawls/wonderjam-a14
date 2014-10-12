@@ -120,39 +120,42 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
         if (player == 1)
         {
+			//Debug.Log ("Player Beat P1 = " + p1);
             if (turnP1 && p1 != BeatEnum.Missed)
             {
                 if (p1 != BeatEnum.Empty) Combo++;
             }
             else if (!turnP1 && p2 != BeatEnum.Missed)
             {
-                if (p1 != BeatEnum.Empty) Combo++;
+                if (p2 != BeatEnum.Empty) Combo++;
             }
             else
             {
-                Combo = 0;
+				if(Combo > 0) needplay = true;
+				Combo = 0;
                 FeverStarted = false;
                 removeFever = true;
-                needplay = true;
+               
             }
         }
         else
         {
             //Look For P2 Combo
+			//Debug.Log ("Player Beat P2 = " + p2);
             if (turnP1 && p2 != BeatEnum.Missed)
             {
                 if (p2 != BeatEnum.Empty) Combo++;
             }
             else if (!turnP1 && p1 != BeatEnum.Missed)
             {
-                if (p2 != BeatEnum.Empty) Combo++;
+                if (p1 != BeatEnum.Empty) Combo++;
             }
             else
             {
+				if(Combo > 0) needplay = true;
                 Combo = 0;
                 FeverStarted = false;
                 removeFever = true;
-                needplay = true;
             }
         }
 	}
@@ -185,7 +188,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
         GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part1, GUI.skin.textArea);
         start.y += 80;
-        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.textArea);
+        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.GetStyle ("Part 2"));
 	}
 
     int whoami()

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>, IBeatReceiver {
@@ -26,6 +27,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     private PlayerBehaviour p2;
 
     private bool finished = false;
+	private bool showEnding = false;
 
     private AudioSource victoryGuylaine;
     private AudioSource victoryJerry;
@@ -131,6 +133,12 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 	void OnGUI() {
 		GUI.skin = skin;
 		GUI.Label (new Rect (0, 0, Screen.width, 45), "Objectif: " + maxScore.ToString ());
+		if(showEnding == true) {
+			Debug.Log ("IM Showing Button !!");
+			if(GUI.Button (new Rect((2f/6f)*Screen.width, (4f/6f)*Screen.height, (2f/6f)*Screen.width, (1f/6f)*Screen.width), "Main Menu")){
+				Application.LoadLevel(0);
+			}
+		}
 	}
 
     public void requestBeat(IBeatReceiver b)
@@ -196,6 +204,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     {
         if (!finished)
         {
+			StartCoroutine (DisplayEnding());
             string name = "Player" + player.ToString() + "_win";
             
             camAnim.SetTrigger(name);
@@ -204,6 +213,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
             p1.Part2 = "a gagné!";
             p2.Part2 = "a gagné!";
         }
+
     }
 
     private void playSong(int player)
@@ -218,6 +228,11 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
             victoryJerry.Play();
         }
     }
+
+	IEnumerator DisplayEnding(){
+		yield return new WaitForSeconds(6f);
+		showEnding = true;
+	}
 
 
 }
