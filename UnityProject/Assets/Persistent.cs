@@ -7,6 +7,8 @@ public class Persistent : MonoBehaviour {
     public int songBPM;
     public float songMulti;
 
+	private bool aiMode;
+
 	static bool instanceIsLoaded = false;
 
 	void OnLevelWasLoaded(int level){
@@ -34,5 +36,14 @@ public class Persistent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public bool AIMode {
+		get {
+			return aiMode;
+		}
+		set {
+			aiMode = value;
+		}
 	}
 }
