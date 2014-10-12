@@ -97,7 +97,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 	
 	// Update is called once per frame
     void Update()
-    {
+    { 
 		// @TODO
         if (k1.GetKeys(BeatEnum.Up))
         {
