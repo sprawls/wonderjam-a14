@@ -242,6 +242,9 @@ MonoBehaviour:
   bgMenu: {fileID: 2800000, guid: 7b99b1d1bfdcb49489ecff9bddebb230, type: 3}
   bgExtras: {fileID: 2800000, guid: 8b35d89d41042420f8202f433631f9f1, type: 3}
   logoCamera: {fileID: 1563536243}
+  tutorials:
+  - {fileID: 2800000, guid: eb5543e4e4222432ba59db8b6061d954, type: 3}
+  - {fileID: 2800000, guid: e6b68a9550fff462489e2cefb4e7aabb, type: 3}
   textColor: {r: 1.02876997, g: .991286099, b: .640865266, a: 1}
   optionsOffset: -800
   iaDifficultyOffset: 0
