@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
         GameObject persistentObj = GameObject.Find("persistent");
         PersistentScript = persistentObj.GetComponent("Persistent") as Persistent;
-
+        maxScore = getObjScore();
 
         song = Resources.Load(PersistentScript.songPath) as AudioClip;
         audio.clip = song;
