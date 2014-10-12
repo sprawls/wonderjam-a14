@@ -40,6 +40,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
         GameObject persistentObj = GameObject.Find("persistent");
         PersistentScript = persistentObj.GetComponent("Persistent") as Persistent;
+
+
         song = Resources.Load(PersistentScript.songPath) as AudioClip;
         audio.clip = song;
         audio.pitch = PersistentScript.songMulti;
@@ -240,6 +242,35 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		yield return new WaitForSeconds(6f);
 		showEnding = true;
 	}
+
+    public int getZombieCount()
+    {
+        return PersistentScript.OptZombiesCount;
+    }
+    public int getSpeedTurn()
+    {
+        return PersistentScript.OptSpeedTurn;
+    }
+    public int getObjScore()
+    {
+        return PersistentScript.OptBaseScore*PersistentScript.OptZombiesCount;
+    }
+    public int getZombieCtrl()
+    {
+        return PersistentScript.OptZombieCtrl;
+    }
+    public bool isFeverMode()
+    {
+        return PersistentScript.OptFeverMode;
+    }
+    public bool isChaosMode()
+    {
+        return PersistentScript.OptChaosMode;
+    }
+    public bool isTacticMode()
+    {
+        return PersistentScript.OptTacticMode;
+    }
 
 
 }

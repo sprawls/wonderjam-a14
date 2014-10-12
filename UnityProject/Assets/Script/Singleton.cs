@@ -43,8 +43,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 						GameObject singleton = new GameObject();
 						_instance = singleton.AddComponent<T>();
 						singleton.name = "(singleton) "+ typeof(T).ToString();
-						
-						DontDestroyOnLoad(singleton);
+
+						//Test without The DontDestroyonLoad
+						//DontDestroyOnLoad(singleton);
 						
 						Debug.Log("[Singleton] An instance of " + typeof(T) + 
 						          " is needed in the scene, so '" + singleton +
@@ -70,6 +71,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 	/// So, this was made to be sure we're not creating that buggy ghost object.
 	/// </summary>
 	public void OnDestroy () {
-		applicationIsQuitting = true;
+		//applicationIsQuitting = true;
+		//Dont need this since we removed DestroyOnLoad
 	}
+
+
 }
