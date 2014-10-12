@@ -4023,6 +4023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: 0cd8575a2fd944867a3609444f39378e, type: 2}
+  gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: "DJ Guylaine grosse-soir\xE9e"
   Part2: 
   paddingZeroes: 7
@@ -4255,6 +4256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: b3fafdde37baf4a1ea4b56f3199708e0, type: 2}
+  gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: DJ Jerry Oz
   Part2: 
   paddingZeroes: 7
