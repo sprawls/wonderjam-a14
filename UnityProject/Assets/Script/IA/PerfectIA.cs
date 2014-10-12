@@ -35,9 +35,7 @@ public class PerfectIA : IKeyGetter, IBeatReceiver, IUpdate {
         threshold = 60.0f / bpm;
         zf = ZombieFactory.Instance;
 
-
         precision = 1 - (float)Math.Sqrt(1 - bonnete);
-
     }
 
     public bool GetKeys(BeatEnum e)
