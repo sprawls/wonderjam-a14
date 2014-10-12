@@ -16,6 +16,8 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     bool superpower = false;
 
     bool needtomove = true;
+    int countdownSuper = -1;
+    int maxcountdownSuper = 6;
 
     delegate void UpdateDelegate();
     Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
@@ -46,6 +48,14 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
         
         if (curr & isMe)
         {
+            if (superpower)
+            {
+                countdownSuper--;
+                if (countdownSuper < 0)
+                {
+                    calmdown();
+                }
+            }
             continuetogototheinfinityandbeyong(snake);
         }
         else if (curr & !isMe)
@@ -188,6 +198,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     {
         transform.localScale = new Vector3(3, 3, 3);
         superpower = true;
+        countdownSuper = maxcountdownSuper;
     }
 
     public void calmdown()
