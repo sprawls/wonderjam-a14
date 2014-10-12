@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class CursorScript : MonoBehaviour, IBeatReceiver 
 {
+	//Tactics Mode
+	private int numBeatThisSequence = 0;
+	public int BeatsToActivateCross = 5;
 
     MeshRenderer rend;
 	private LineRenderer linerenderer;
@@ -27,6 +30,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
 	// Use this for initialization
 	void Start () {
+		if(GameManager.Instance.getSpeedTurn() < 5) BeatsToActivateCross = 3;
         GameManager.Instance.requestBeat(this);
         rend = GetComponentInChildren<MeshRenderer>();
         fever = GetComponentInChildren<AudioSource>();
@@ -78,7 +82,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     {
         if(p == BeatEnum.Missed)
         {
-            if (colored.Count > 0)
+            if (colored.Count > 0 && GameManager.Instance.isTacticMode() == false)
             {
                 int torem = colored.Dequeue();
                 GameManager.Instance.getTile(torem).color = 0;
@@ -142,6 +146,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     private void gain_access(BeatEnum p)
     {
         curr = true;
+		numBeatThisSequence = 0;
         EnqueueCurrent();
         continuetogototheinfinityandbeyong(p);
     }
@@ -167,12 +172,48 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     private void EnqueueCurrent()
     {
+		//Debug.Log ("NUMBEAT : " + numBeatThisSequence);
         int p = player ? 1 : 2;;
         needtomove = true;
         if (!superpower)
         {
-            colored.Enqueue(pos);
-            GameManager.Instance.getTile(pos).color = p;
+			//Adds current tile position to list here
+			if(GameManager.Instance.isTacticMode() == true) {
+				if(numBeatThisSequence%BeatsToActivateCross == 0 && numBeatThisSequence != 0) {
+					numBeatThisSequence = 0;
+					//Make a cross with pos
+					//Get Pos x and y
+					int curPosY = pos / 5;
+					int posx = 0;
+					int amountOfColumnToBack = pos%5;
+
+					for(int i = pos-(amountOfColumnToBack*6); i < 40; i += 6) {
+						if(i >= 0) {
+							if(posx <= (i % 5)){
+								posx = i % 5;
+								colored.Enqueue (i);
+								GameManager.Instance.getTile(i).color = p;
+							} else i=40;
+						}
+					}
+					posx = 0;
+					amountOfColumnToBack = (pos%5);
+					Debug.Log ("amountOfColumnToBack" + amountOfColumnToBack);
+					for(int i = pos+(amountOfColumnToBack*4); i >= 0; i -= 4) {
+						Debug.Log ("newValueToAdd" + i); 
+						if(i <= 39) {
+							if(posx <= (i % 5)){
+								posx = i % 5;
+								colored.Enqueue (i);
+								GameManager.Instance.getTile(i).color = p;
+							} else i=-1;
+						}
+					}
+				}
+			} else { //else if not tactics
+				colored.Enqueue(pos);
+				GameManager.Instance.getTile(pos).color = p;
+			}
         }
         else
         {
@@ -197,6 +238,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
                 }
             }
         }
+		numBeatThisSequence++;
     }
 
     public void POWERUP()
