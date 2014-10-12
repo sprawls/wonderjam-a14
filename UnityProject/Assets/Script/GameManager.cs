@@ -30,6 +30,9 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     private AudioSource victoryGuylaine;
     private AudioSource victoryJerry;
 
+    IKeyGetter k1;
+    IKeyGetter k2;
+
 	// Use this for initialization
 	void Start () {
 
@@ -67,42 +70,46 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
                 victoryJerry = v;
             }
         }
-	}
+
+        k1 = new HumanKey("w", "s", "a", "d");
+        //k2 = new HumanKey(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+        k2 = new RandomIA();
+    }
 	
 	// Update is called once per frame
     void Update()
     {
 		// @TODO
-        if (Input.GetKeyDown("w"))
+        if (k1.GetKeys(BeatEnum.Up))
         {
             BeatManagerRef.setInputP1(0);
         }
-        if (Input.GetKeyDown("a"))
+        if (k1.GetKeys(BeatEnum.Left))
         {
             BeatManagerRef.setInputP1(1);
         }
-        if (Input.GetKeyDown("s"))
+        if (k1.GetKeys(BeatEnum.Down))
         {
             BeatManagerRef.setInputP1(2);
         }
-        if (Input.GetKeyDown("d"))
+        if (k1.GetKeys(BeatEnum.Right))
         {
             BeatManagerRef.setInputP1(3);
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (k2.GetKeys(BeatEnum.Up))
         {
             BeatManagerRef.setInputP2(0);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (k2.GetKeys(BeatEnum.Left))
         {
             BeatManagerRef.setInputP2(1);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (k2.GetKeys(BeatEnum.Down))
         {
             BeatManagerRef.setInputP2(2);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (k2.GetKeys(BeatEnum.Right))
         {
             BeatManagerRef.setInputP2(3);
         }
