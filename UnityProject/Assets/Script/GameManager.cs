@@ -77,8 +77,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         k1 = new HumanKey("w", "s", "a", "d");
 		p1.Part2 = "Humain";
 
-		if (!isAIMode()) {
-			k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
+		if (isAIMode()) {
+			k2 = new HeatMapIA(PersistentScript.songBPM, p2, p1, 0.9f);
 			p2.Part2 = "AI";
 		} else {
 			k2 = new HumanKey (KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
