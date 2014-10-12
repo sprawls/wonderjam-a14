@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour {
     private float Sheight;
 
 	private bool feverMode = false, chaosMode = false, tacticMode = false, starbucksMode = false;
-	private int iaDifficulty = 0, grosseurSoiree = 0, longueurSoiree = 1, beatsParTour = 0;
+	private int aiDifficulty = 0, grosseurSoiree = 0, longueurSoiree = 1, beatsParTour = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -163,7 +163,7 @@ public class MenuManager : MonoBehaviour {
 
 		curWidth = 160;
 		curHeight = 40;
-		iaDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 190 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), iaDifficulty, new GUIContent[2] {
+		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 190 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), aiDifficulty, new GUIContent[2] {
 						new GUIContent ("Poche"),
 						new GUIContent ("Pas pire")
 		}, 2, GUI.skin.GetStyle ("List button"));
@@ -357,6 +357,7 @@ public class MenuManager : MonoBehaviour {
         persistentScript.songMulti = BPMModifier;
 
 		persistentScript.OptAiMode = aiMode;
+		persistentScript.OptAiDifficulty = aiDifficulty;
 
 		persistentScript.OptChaosMode = chaosMode;
 		persistentScript.OptTacticMode = tacticMode;
