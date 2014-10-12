@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour {
         addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
 		addSong ("Music/eric-lam-gta", "Eric Lam - GTA", 128);
 		addSong ("Music/ourautobiography-codebreaker", "OurAutobiography - CodeBreaker", 88);
+		addSong ("Music/emotional-titanic-flute", "James Horner - My Heart Will Go On", 104);
 
 		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
 		audio.Play ();
@@ -60,7 +61,7 @@ public class MenuManager : MonoBehaviour {
 		// Previous song
         curWidth = 48;
         curHeight = 48;
-        if (SongIndice > 0 && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 350, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Previous song")))
+        if (SongIndice > 0 && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 425, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Previous song")))
         {
             ChangeSong(-1);
         }
@@ -68,7 +69,7 @@ public class MenuManager : MonoBehaviour {
 		// Next song
         curWidth = 48;
         curHeight = 48;
-		if (SongIndice+1 < PathSongs.Count && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 350, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Next song")))
+		if (SongIndice+1 < PathSongs.Count && GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 425, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", skinMenu.GetStyle("Next song")))
 		{
             ChangeSong(1);
         }

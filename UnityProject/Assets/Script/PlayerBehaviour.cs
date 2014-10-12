@@ -185,7 +185,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
         GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part1, GUI.skin.textArea);
         start.y += 80;
-        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.textArea);
+        GUI.TextArea(new Rect(start.x, start.y, 400, 80), Part2, GUI.skin.GetStyle ("Part 2"));
 	}
 
     int whoami()
