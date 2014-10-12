@@ -15,7 +15,9 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     public bool superpower = false;
 
-    bool needtomove = false;
+    bool needtomove = true;
+    int countdownSuper = -1;
+    int maxcountdownSuper = 6;
 
     delegate void UpdateDelegate();
     Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
@@ -24,7 +26,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	void Start () {
         GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
         rend = GetComponentInChildren<MeshRenderer>();
-     //   transform.localPosition = GameManager.Instance.getTile(pos).transform.localPosition;
+
 	}
 
     public void OnQuarterBeat()
@@ -46,6 +48,14 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
         
         if (curr & isMe)
         {
+            if (superpower)
+            {
+                countdownSuper--;
+                if (countdownSuper < 0)
+                {
+                    calmdown();
+                }
+            }
             continuetogototheinfinityandbeyong(snake);
         }
         else if (curr & !isMe)
@@ -188,6 +198,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     {
         transform.localScale = new Vector3(3, 3, 3);
         superpower = true;
+        countdownSuper = maxcountdownSuper;
     }
 
     public void calmdown()

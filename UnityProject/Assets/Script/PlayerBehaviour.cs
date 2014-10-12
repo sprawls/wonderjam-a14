@@ -83,7 +83,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 			createNewGem = false;
 		}
-		//Debug.Log (bpm);
+
 		foreach (Transform g in gems) {
 			// Move all gems towards stromatolite
 			float speed = (bpm * totalDistance * Time.deltaTime)/480;
