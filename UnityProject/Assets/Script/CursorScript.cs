@@ -22,11 +22,13 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     delegate void UpdateDelegate();
     Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
 
+    AudioSource fever;
+
 	// Use this for initialization
 	void Start () {
-        GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
+        GameManager.Instance.requestBeat(this);
         rend = GetComponentInChildren<MeshRenderer>();
-
+        fever = GetComponentInChildren<AudioSource>();
 	}
 
     public void OnQuarterBeat()
@@ -198,9 +200,11 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     public void POWERUP()
     {
 		if(superpower == false) {
+            Debug.Log("SUpoerpower og");
         	transform.localScale = new Vector3(3, 3, 3);
         	superpower = true;
         	countdownSuper = maxcountdownSuper;
+            fever.Play();
 		}
     }
 
