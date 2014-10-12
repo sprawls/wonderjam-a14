@@ -6,5 +6,6 @@ public enum BeatEnum {
     Right,
     Up,
     Down,
-    Missed
+    Missed,
+    Empty
 }

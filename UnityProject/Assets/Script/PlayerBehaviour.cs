@@ -37,15 +37,15 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	// Use this for initialization
 	void Start () {
 		bm = BeatManager.Instance;
-		bpm = bm.interval;
 		GameManager.Instance.requestBeat (this);
-		tag = gameObject.tag;
 
+		tag = gameObject.tag;
 		totalDistance = Math.Abs(gemSpawningPoint.z - zLimit);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		bpm = bm.interval;
 		aboutToSwitch = bm.aboutToSwitch;
 
 		// Create new gem at end of line
@@ -62,16 +62,16 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 			createNewGem = false;
 		}
-		
+		Debug.Log (bpm);
 		foreach (Transform g in gems) {
 			// Move all gems towards stromatolite
-			float speed = (bpm * totalDistance * Time.deltaTime)/240;
-			if (gameObject.tag == "Player2") speed *= -1;
+			float speed = (bpm * totalDistance * Time.deltaTime)/480;
+			if (tag == "Player2") speed *= -1;
 
 			g.Translate(new Vector3(0, 0, speed));
 			
 			// Destroy gems on stromatolite
-			if (Mathf.Abs(g.position.z - zLimit) < 0.5 ) {
+			if ((tag == "Player1" && (g.position.z - zLimit) > 0) || (tag == "Player2" && (g.position.z - zLimit) < 0)) {
 				gemsToDestroy.Add (gems.IndexOf (g));
 			}
 		}
@@ -89,7 +89,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		createNewGem = true;
 		this.turnP1 = turnP1;
-		createActiveGem = (((turnP1 && !aboutToSwitch) || (!turnP1 && aboutToSwitch)) && tag == "Player1") || (((!turnP1 && !aboutToSwitch) || (turnP1 && aboutToSwitch)) && tag == "Player2");
+		createActiveGem = ((turnP1 ^ aboutToSwitch) && tag == "Player1") || ((turnP1 == aboutToSwitch) && tag == "Player2");
 
 		//Look For P1 Combo
 		if(turnP1 && p1 != BeatEnum.Missed){
