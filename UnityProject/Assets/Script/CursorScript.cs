@@ -10,7 +10,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     public int pos = 2;
     public bool player;
 
-    Queue<int> colored = new Queue<int>();
+    public Queue<int> colored = new Queue<int>();
 
     bool curr = true;
 
