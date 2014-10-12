@@ -3,23 +3,21 @@ using System.Collections;
 
 public class ShowComboText : MonoBehaviour, IBeatReceiver  {
 
-	public bool isP1 = true;
+	public bool isP1;
 
 	private bool BeatSprite = false;
 	private TextMesh myText;
-	private PlayerBehaviour player1;
+	private PlayerBehaviour player;
 
 	void Start () {
 		GameManager.Instance.requestBeat (this);
 		myText = GetComponentInChildren<TextMesh>();
-		player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerBehaviour>();
-
+		player = GameObject.FindGameObjectWithTag("Player" + (isP1?"1":"2")).GetComponent<PlayerBehaviour>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(isP1) myText.text = (player1.P1Combo).ToString();
-		else myText.text = (player1.P2Combo).ToString ();
+		myText.text = (player.Combo).ToString();
 		if(BeatSprite == true) {
 			BeatSprite = false;
 			StartCoroutine (BeatUpAndDown());
@@ -32,7 +30,7 @@ public class ShowComboText : MonoBehaviour, IBeatReceiver  {
 	public void OnQuarterBeat(){}
 
 	public IEnumerator BeatUpAndDown(){
-		if((isP1 && player1.P1Combo > 15)  || (!isP1 && player1.P2Combo > 15)) {
+		if(isP1 && player.Combo > 15)  {
 			StartCoroutine (BeatTheSprite(0.05f,1.25f));
 			yield return new WaitForSeconds(0.2f);
 			StartCoroutine (BeatTheSprite(0.05f,1f));

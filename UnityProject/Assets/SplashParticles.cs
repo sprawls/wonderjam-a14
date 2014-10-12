@@ -19,8 +19,13 @@ public class SplashParticles : MonoBehaviour, IBeatReceiver {
 
 	void FixedUpdate () {
 		if(spawnParticles == true) {
-			splashSystem.Emit(40);
+			
 			spawnParticles = false;
+            if (GameManager.Instance.Playing)
+            {
+                splashSystem.Emit(40);
+                audio.Play();
+            }
 		}
 	}
 

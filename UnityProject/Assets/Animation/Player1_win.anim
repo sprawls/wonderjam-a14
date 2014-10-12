@@ -20,17 +20,17 @@ AnimationClip:
         value: {x: 0, y: 0, z: -0}
         inSlope: {x: 0, y: 26, z: 0}
         outSlope: {x: 0, y: 26, z: 0}
-        tangentMode: 695623681
+        tangentMode: 0
       - time: .5
         value: {x: 0, y: 13, z: 0}
         inSlope: {x: -27, y: 13, z: 0}
         outSlope: {x: -27, y: 13, z: 0}
-        tangentMode: 0
+        tangentMode: 106223360
       - time: 1.5
         value: {x: -54, y: 13, z: -0}
         inSlope: {x: -54, y: 0, z: -0}
         outSlope: {x: -54, y: 0, z: -0}
-        tangentMode: -722350
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: 
@@ -196,4 +196,11 @@ AnimationClip:
     classID: 20
     script: {fileID: 0}
   m_EulerEditorCurves: []
-  m_Events: []
+  m_Events:
+  - time: 1.41666663
+    functionName: playSong
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0

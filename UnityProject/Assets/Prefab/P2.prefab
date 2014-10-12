@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: P2
   m_TagString: Player2
@@ -29,6 +31,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: d4d25ad24cb4d364ca9c3e147b66b380, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -42,15 +102,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: b3fafdde37baf4a1ea4b56f3199708e0, type: 2}
   gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
-  Part1: DJ Jerry Oz
+  Part1: DJ Jerry Ox
   Part2: 
   paddingZeroes: 7
   score: 0
-  zLimit: 100
-  speed: 0
-  gemSpawningPoint: {x: 0, y: 0, z: 0}
+  zLimit: 34
+  speed: -35
+  gemSpawningPoint: {x: -8, y: 25, z: 95}
+  cursor: {fileID: 0}
   gemPrefab: {fileID: 400004, guid: 36c0585269a0a4bc897c3f9af927b5cd, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
+  Combo: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe5ff1b45a0f4f50aff50dc941d4197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frames:
+  - {fileID: 21300000, guid: d213e63c3441a8c4ea7fa78e5819c234, type: 3}
+  - {fileID: 21300002, guid: d213e63c3441a8c4ea7fa78e5819c234, type: 3}
+  quarterFramesUntilAnim: 2
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

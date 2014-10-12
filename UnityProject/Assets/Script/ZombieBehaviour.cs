@@ -80,7 +80,7 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	private void AddScore() {
 		if(currentType == 1) player1.Score = player1.Score + 10;
-		else if(currentType == 2) player2.Score = player1.Score + 10;
+		else if(currentType == 2) player2.Score = player2.Score + 10;
 	}
 
 	private void  UpdateSprite(){

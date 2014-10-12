@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     public GameObject black;
     public GameObject white;
 	public GUISkin skin;
-	public int maxScore = 40000;
+	public int maxScore = 4000;
 
 	protected GameManager () {} // guarantee this will be always a singleton only - can't use the constructor!
 
@@ -26,6 +26,9 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     private PlayerBehaviour p2;
 
     private bool finished = false;
+
+    private AudioSource victoryGuylaine;
+    private AudioSource victoryJerry;
 
 	// Use this for initialization
 	void Start () {
@@ -50,6 +53,20 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         camAnim = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
         p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerBehaviour>();
         p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerBehaviour>();
+
+        AudioSource[] victories = this.GetComponentsInChildren<AudioSource>();
+        Debug.Log(victories.Length);
+        foreach(var v in victories)
+        {
+            if(v.gameObject.name == "Guylaine")
+            {
+                victoryGuylaine = v;
+            }
+            else if(v.gameObject.name == "Jerry")
+            {
+                victoryJerry = v;
+            }
+        }
 	}
 	
 	// Update is called once per frame
@@ -166,6 +183,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		}
 	}
 
+    public bool Playing { get { return !IsAnimating && !Finished; } }
+
     private void doVictory(int player)
     {
         if (!finished)
@@ -177,6 +196,19 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
             p1.Part2 = "a gagné!";
             p2.Part2 = "a gagné!";
+        }
+    }
+
+    private void playSong(int player)
+    {
+        
+        if (player == 1)
+        {
+            victoryGuylaine.Play();
+        }
+        else if (player == 2)
+        {
+            victoryJerry.Play();
         }
     }
 
