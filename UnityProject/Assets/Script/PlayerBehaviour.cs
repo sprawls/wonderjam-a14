@@ -120,7 +120,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
         if (player == 1)
         {
-			Debug.Log ("Player Beat P1 = " + p1);
+			//Debug.Log ("Player Beat P1 = " + p1);
             if (turnP1 && p1 != BeatEnum.Missed)
             {
                 if (p1 != BeatEnum.Empty) Combo++;
@@ -141,7 +141,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         else
         {
             //Look For P2 Combo
-			Debug.Log ("Player Beat P2 = " + p2);
+			//Debug.Log ("Player Beat P2 = " + p2);
             if (turnP1 && p2 != BeatEnum.Missed)
             {
                 if (p2 != BeatEnum.Empty) Combo++;
