@@ -23,12 +23,14 @@ public class MenuManager : MonoBehaviour {
         addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
         addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
 
-	    Swidth=Screen.width;
-        Sheight = Screen.height;
+		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
+		audio.Play ();
 	}
 	
 	// Update is called once per frame
 	void OnGUI () {
+		Swidth=Screen.width;
+		Sheight = Screen.height;
 		GUI.skin = skinMenu;
 
 		// Background
@@ -100,6 +102,10 @@ public class MenuManager : MonoBehaviour {
     {
         SongIndice += value;
         BPMModifier = 1;
+
+		audio.Stop ();
+		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
+		audio.Play ();
     }
 
     public void ChangeBPM(float value)
