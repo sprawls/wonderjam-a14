@@ -122,9 +122,6 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
         GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part1, GUI.skin.GetStyle("score"));
         start.y += 50;
         GUI.TextArea(new Rect(start.x, start.y, 80, 80), Part2, GUI.skin.GetStyle("score"));
-
-
-
 	}
 
     int whoami()
