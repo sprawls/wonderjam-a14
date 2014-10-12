@@ -271,6 +271,10 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     {
         return PersistentScript.OptTacticMode;
     }
+    public bool isAIMode()
+    {
+        return PersistentScript.OptAiMode;
+    }
 
 
 }
