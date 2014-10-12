@@ -15,6 +15,8 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     bool superpower = false;
 
+    bool needtomove = false;
+
     delegate void UpdateDelegate();
     Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
 
@@ -22,6 +24,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	void Start () {
         GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
         rend = GetComponentInChildren<MeshRenderer>();
+        transform.localPosition = GameManager.Instance.getTile(pos).transform.localPosition;
 	}
 
     public void OnQuarterBeat()
@@ -112,10 +115,12 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
         {
             update.Dequeue()();
         }
-        var p = GameManager.Instance.getTile(pos).transform.position;
-        if(p != transform.position)
+        
+        if(needtomove)
         {
-            transform.position = new Vector3(p.x,transform.position.y,p.z);
+            var p = GameManager.Instance.getTile(pos).transform.position;
+            StartCoroutine(MoveBitch(0.1f, new Vector3(p.x,transform.position.y,p.z)));
+            needtomove = false;
         }
     }
 
@@ -148,6 +153,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     private void EnqueueCurrent()
     {
         int p = player ? 1 : 2;;
+        needtomove = true;
         if (!superpower)
         {
             colored.Enqueue(pos);
@@ -188,5 +194,30 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     {
         transform.localScale = new Vector3(1,1,1);
         superpower = false;
+    }
+
+    public IEnumerator MoveBitch(float time, Vector3 pos)
+    {
+        Vector3 startPos = transform.localPosition;
+        Vector3 targetpos = pos;
+
+        float step = 0f; //raw step
+        float rate = 1f / time; //amount to add to raw step
+        float smoothStep = 0f; //current smooth step
+        float lastStep = 0f; //previous smooth step
+        while (step < 1f)
+        { // until we're done
+            step += Time.deltaTime * rate;
+            smoothStep = Mathf.SmoothStep(0f, 1f, step);// finding smooth step
+            transform.localPosition = new Vector3(Mathf.Lerp(startPos.x, targetpos.x, (smoothStep)),
+                                                Mathf.Lerp(startPos.y, targetpos.y, (smoothStep)),
+                                                Mathf.Lerp(startPos.z, targetpos.z, (smoothStep))); //lerp position
+            lastStep = smoothStep; //get previous last step
+            yield return null;
+        }
+        //complete rotation
+        if (step > 1.0) transform.localPosition = new Vector3(Mathf.Lerp(startPos.x, targetpos.x, (1)),
+                                                               Mathf.Lerp(startPos.y, targetpos.y, (1)),
+                                                               Mathf.Lerp(startPos.z, targetpos.z, (1)));
     }
 }
