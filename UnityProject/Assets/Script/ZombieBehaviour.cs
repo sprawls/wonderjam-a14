@@ -14,7 +14,9 @@ public class ZombieBehaviour : MonoBehaviour {
 	private bool isRight = true; //is the zombie facing right (while dancing)
 	private bool isP1Turn = true; //is it currently P1's turn;
 	private float randomWeight = 1.5f; //Weight of the mouvement
+	private float randomFeverWeight = 2f; //Weight of the mouvement while Input FEEEVER
 	private float playerWeight = 3.5f; //Weight of the mouvment
+	private float playerFeverWeight = 5f; //Weight of the mouvement while Input FEEEVER
 	private float xBoardSize = 76; //Board from 0 to this on x Axis
 	private float yBoardSize = 48; //Board from 0 to this on y Axis
 	private BeatEnum mainInput;
@@ -24,8 +26,11 @@ public class ZombieBehaviour : MonoBehaviour {
 	private PlayerBehaviour player2;
 
 	public void Start(){
-		//Set Layer
-		gameObject.layer = 8;
+		//FEEEVEEEER
+		if(Application.loadedLevel == 2) {
+			randomWeight = randomFeverWeight; //Weight of the mouvement
+			playerWeight = playerFeverWeight; //Weight of the mouvment
+		}
 		//GetComponents
 		sprRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
 		GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player1");
@@ -40,6 +45,9 @@ public class ZombieBehaviour : MonoBehaviour {
 		xPosition = Random.Range (0, xBoardSize);
 		yPosition = Random.Range (0, yBoardSize);
 		MoveToPosition();
+		//Set Layer
+		gameObject.layer = 8;
+		sprRenderer.gameObject.layer = 8;
 		//DEBUG_TESTCOLORS(); //Test colors, TO REMOVE LATER !!
 	}
 

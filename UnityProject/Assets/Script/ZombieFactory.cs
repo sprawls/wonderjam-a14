@@ -21,7 +21,6 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 	public void Start(){
 		TileParticlesColor_green = (GameObject) Resources.Load("TileSplash_green");
 		TileParticlesColor_blue = (GameObject) Resources.Load("TileSplash_blue");
-		if(Application.loadedLevel == 2) NumZombies = NumZombiesFever;
 	}
 
 	public void OnUpdate(){
@@ -37,6 +36,7 @@ public class ZombieFactory : Singleton<ZombieFactory>, IBeatReceiver , IUpdate {
 		Zombies = new List<ZombieBehaviour>();
 		//instantiate empty game object for grid
 		Instantiate (zombieAnchorObject);
+		if(Application.loadedLevel == 2) NumZombies = NumZombiesFever;
 		emptyObject = GameObject.Find("ZombieAnchor(Clone)");
 
 		for(int i = 0; i < NumZombies; i++) {
