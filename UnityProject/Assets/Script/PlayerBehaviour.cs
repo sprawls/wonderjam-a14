@@ -88,7 +88,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
 		createNewGem = true;
-		turnP1 = turnP1; //You wut mate ?
+		this.turnP1 = turnP1;
 		createActiveGem = (((turnP1 && !aboutToSwitch) || (!turnP1 && aboutToSwitch)) && tag == "Player1") || (((!turnP1 && !aboutToSwitch) || (turnP1 && aboutToSwitch)) && tag == "Player2");
 
 		//Look For P1 Combo
