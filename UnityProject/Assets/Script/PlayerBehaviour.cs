@@ -40,6 +40,8 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	//Player score 
 	public float Combo = 0;
 
+    private bool needplay = false;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -65,6 +67,12 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			if(Combo < 15) RemoveFever();
 			removeFever = false;
 		}
+        if(needplay)
+        {
+            needplay = false;
+            if (Playing)
+                audio.Play();
+        }
 		// Create new gem at end of line
 		if (createNewGem) {
 			Transform newGem;
@@ -109,15 +117,44 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		createActiveGem = ((turnP1 ^ aboutToSwitch) && tag == "Player1") || ((turnP1 == aboutToSwitch) && tag == "Player2");
 		CheckFever = true;
 		//Look For P1 Combo
-		if(turnP1 && p1 != BeatEnum.Missed){
-			if(p1 != BeatEnum.Empty) Combo ++;
-		} else if(!turnP1 && p2 != BeatEnum.Missed) {
-			if(p1 != BeatEnum.Empty) Combo ++;
-		} else {
-			Combo = 0;
-			FeverStarted = false;
-			removeFever = true;
-		}
+
+        if (player == 1)
+        {
+            if (turnP1 && p1 != BeatEnum.Missed)
+            {
+                if (p1 != BeatEnum.Empty) Combo++;
+            }
+            else if (!turnP1 && p2 != BeatEnum.Missed)
+            {
+                if (p1 != BeatEnum.Empty) Combo++;
+            }
+            else
+            {
+                Combo = 0;
+                FeverStarted = false;
+                removeFever = true;
+                needplay = true;
+            }
+        }
+        else
+        {
+            //Look For P2 Combo
+            if (turnP1 && p2 != BeatEnum.Missed)
+            {
+                if (p2 != BeatEnum.Empty) Combo++;
+            }
+            else if (!turnP1 && p1 != BeatEnum.Missed)
+            {
+                if (p2 != BeatEnum.Empty) Combo++;
+            }
+            else
+            {
+                Combo = 0;
+                FeverStarted = false;
+                removeFever = true;
+                needplay = true;
+            }
+        }
 	}
 
 	void RemoveFever(){
@@ -169,8 +206,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			return this.score;
 		}
 		set {
-			if (!GameManager.Instance.IsAnimating && !GameManager.Instance.Finished)
+            if (Playing)
 				this.score = value;
 		}
 	}
+
+    public bool Playing { get { return !GameManager.Instance.IsAnimating && !GameManager.Instance.Finished; } }
 }

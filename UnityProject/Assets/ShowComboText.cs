@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ShowComboText : MonoBehaviour, IBeatReceiver  {
 
-	public bool isP1 = true;
+	public bool isP1;
 
 	private bool BeatSprite = false;
 	private TextMesh myText;
