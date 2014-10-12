@@ -18,7 +18,6 @@ public class RandomIA : IKeyGetter {
 
     public bool GetKeys(BeatEnum e)
     {
-        Debug.Log("HEY!");
         float cur = Time.realtimeSinceStartup;
         if(cur - lastTime > threshold)
         {
