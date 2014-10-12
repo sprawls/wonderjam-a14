@@ -74,8 +74,15 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         }
 
         k1 = new HumanKey("w", "s", "a", "d");
-        //k2 = new HumanKey(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        k2 = new RandomIA();
+		p1.Part2 = "Humain";
+
+		if (PersistentScript.AIMode) {
+			k2 = new RandomIA();
+			p2.Part2 = "AI";
+		} else {
+			k2 = new HumanKey (KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+			p2.Part2 = "Humain";
+		}
     }
 	
 	// Update is called once per frame
@@ -133,9 +140,9 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 	void OnGUI() {
 		GUI.skin = skin;
 		GUI.Label (new Rect (0, 0, Screen.width, 45), "Objectif: " + maxScore.ToString ());
-		if(showEnding == true) {
-			Debug.Log ("IM Showing Button !!");
-			if(GUI.Button (new Rect((2f/6f)*Screen.width, (4f/6f)*Screen.height, (2f/6f)*Screen.width, (1f/6f)*Screen.width), "Main Menu")){
+
+		if(showEnding) {
+			if(GUI.Button (new Rect((Screen.width - 100) / 2.0f, (Screen.height - 100) / 2.0f - 160, 100, 100), "Menu principal", GUI.skin.GetStyle ("Return to menu"))) {
 				Application.LoadLevel(0);
 			}
 		}

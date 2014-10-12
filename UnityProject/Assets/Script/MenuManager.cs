@@ -15,6 +15,8 @@ public class MenuManager : MonoBehaviour {
 
     private int SongIndice = 0;
     private float BPMModifier = 1;
+	private bool aiMode = false;
+	private bool optionsMode = false;
 
     private float Swidth;
     private float Sheight;
@@ -102,9 +104,9 @@ public class MenuManager : MonoBehaviour {
 		GUI.Label(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 120, curWidth, curHeight), "31 octobre 2052, la race humaine a été exterminée par la menace zombie. La musique est morte, mais la légendaire bataille entre les deux dieux du rythme, DJ Guylaine Grosse-Soirée et DJ Jerry Ox, se poursuit encore après la mort. Le combat décisif se tiendra ce soir au célèbre Zombeat Stromatolite Turbo Party Club, pour la dernière chance pour le monde de retrouver un peu de couleur. Qui triomphera?", skinMenu.GetStyle("Instructions"));
 		
 		// Start button
-        curWidth = 160;
-        curHeight = 60;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 240, curWidth, curHeight), "go!", skinMenu.GetStyle("Start button")))
+        curWidth = 80;
+        curHeight = 80;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 230, curWidth, curHeight), "go!", skinMenu.GetStyle("Start button")))
 		{
             StartGame();
         }
@@ -112,20 +114,53 @@ public class MenuManager : MonoBehaviour {
 		// Render logo
 		logoCamera.Render ();
 
-		//Fever Button 
-		curWidth = 200;
+		// Fever Button 
+		curWidth = 150;
 		curHeight = 60;
-		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 200, ((Sheight - curHeight) / 2.0f) + 240, curWidth, curHeight), "FEVER MODE", skinMenu.GetStyle("Fever Button"))) 
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 120, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "fever mode", skinMenu.GetStyle("Fever Button"))) 
 		{
 			feverMode = !feverMode;
 			GUIStyle myFeverStyle = skinMenu.GetStyle("Fever Button");
 			if(feverMode){
-				myFeverStyle.normal.textColor = new Color (20f/255f,0,1);
+				myFeverStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myFeverStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
 			} else {
 				myFeverStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myFeverStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
 			}
-		} 
+		}
 
+		// Vs AI 
+		curWidth = 60;
+		curHeight = 60;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) + 75, ((Sheight - curHeight) / 2.0f) + 204, curWidth, curHeight), "VS. ai", skinMenu.GetStyle("AI Button"))) 
+		{
+			aiMode = !aiMode;
+			GUIStyle myAIStyle = skinMenu.GetStyle("AI Button");
+			if(aiMode){
+				myAIStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myAIStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			} else {
+				myAIStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myAIStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+			}
+		}
+
+		// Options 
+		curWidth = 80;
+		curHeight = 60;
+		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 81, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "options", skinMenu.GetStyle("Options Button"))) 
+		{
+			optionsMode = !optionsMode;
+			GUIStyle myOptionsStyle = skinMenu.GetStyle("Options Button");
+			if(optionsMode){
+				myOptionsStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+				myOptionsStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			} else {
+				myOptionsStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+				myOptionsStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+			}
+		}
 	}
 
     public void ChangeSong(int value)
@@ -201,6 +236,7 @@ public class MenuManager : MonoBehaviour {
         persistentScript.songBPM = (int)Mathf.Round((BPMSongs[SongIndice] * BPMModifier));
         persistentScript.songPath = PathSongs[SongIndice];
         persistentScript.songMulti = BPMModifier;
+		persistentScript.AIMode = aiMode;
 		if(feverMode == false) Application.LoadLevel("Game");
 		else Application.LoadLevel ("FeverMode");
     }
