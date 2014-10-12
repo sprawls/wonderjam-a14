@@ -835,6 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: b3fafdde37baf4a1ea4b56f3199708e0, type: 2}
+  gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: DJ Jerry Oz
   Part2: 
   paddingZeroes: 7
@@ -844,6 +845,8 @@ MonoBehaviour:
   gemSpawningPoint: {x: 0, y: 0, z: 0}
   gemPrefab: {fileID: 400004, guid: 36c0585269a0a4bc897c3f9af927b5cd, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
+  P1Combo: 0
+  P2Combo: 0
 --- !u!212 &278309399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1493,6 +1496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   black: {fileID: 100000, guid: 685dd5eca1488b8459b5c9618514c0f9, type: 2}
   white: {fileID: 100000, guid: 68718533a15a616408369083b5feb5d4, type: 2}
+  skin: {fileID: 11400000, guid: 540dea5ca52be49559365b8021195d6c, type: 2}
+  maxScore: 40000
 --- !u!81 &868515002
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2558,6 +2563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gSkin: {fileID: 11400000, guid: 0cd8575a2fd944867a3609444f39378e, type: 2}
+  gName: {fileID: 11400000, guid: a400b6be544f8eb4089f3e133effd275, type: 2}
   Part1: "DJ Guylaine grosse-soir\xE9e"
   Part2: 
   paddingZeroes: 7
@@ -2567,6 +2573,8 @@ MonoBehaviour:
   gemSpawningPoint: {x: 0, y: 0, z: 0}
   gemPrefab: {fileID: 400004, guid: 47d60bdc3f94249d9bc2c0f556bb8a8e, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
+  P1Combo: 0
+  P2Combo: 0
 --- !u!212 &1492089085
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3674,6 +3682,10 @@ Prefab:
     - target: {fileID: 100000, guid: 3c35561c8a1bc5244ab6ae0eb41fd0f4, type: 2}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3c35561c8a1bc5244ab6ae0eb41fd0f4, type: 2}
+      propertyPath: winScore
+      value: 4000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c35561c8a1bc5244ab6ae0eb41fd0f4, type: 2}

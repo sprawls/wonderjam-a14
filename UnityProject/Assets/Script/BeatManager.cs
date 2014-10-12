@@ -7,13 +7,17 @@ public class BeatManager : Singleton<BeatManager> {
 
     private IBeatReceiver IbeatReceiverRef;
     private int tempo;
-    private BeatEnum p1Input=BeatEnum.Missed;
-    private BeatEnum p2Input=BeatEnum.Missed;
+    private BeatEnum p1Input=BeatEnum.Empty;
+    private BeatEnum p2Input=BeatEnum.Empty;
     private bool p1miss = false;
     private bool p2miss = false;
     private bool ctrlLock = true;
     private bool p1Turn=false;
     private int beatCpt = 0;
+
+    private bool p1LateXpect = false;
+    private bool p2LateXpect = false;
+
 
     private float _interval;
     public float interval { get { return this._interval; } }
@@ -60,7 +64,7 @@ public class BeatManager : Singleton<BeatManager> {
     {
         if (!p1miss && !ctrlLock)
         {
-            if (intervalCpt >= interval * sweet && p1Input == BeatEnum.Missed)
+            if (intervalCpt >= interval * sweet && (p1Input == BeatEnum.Empty || p1Input == BeatEnum.Missed))
             {
                 switch (value)
                 {
@@ -92,7 +96,7 @@ public class BeatManager : Singleton<BeatManager> {
     {
         if (!p2miss&&!ctrlLock)
         {
-            if (intervalCpt >= interval * sweet && p2Input == BeatEnum.Missed)
+            if (intervalCpt >= interval * sweet && (p2Input == BeatEnum.Empty || p2Input == BeatEnum.Missed))
             {
                 switch (value)
                 {
@@ -149,8 +153,23 @@ public class BeatManager : Singleton<BeatManager> {
             IbeatReceiverRef.OnBeat(p2Input, p1Input, p1Turn);
         }
 
-        p1Input = BeatEnum.Missed;
-        p2Input = BeatEnum.Missed;
+        if (p1Input == BeatEnum.Empty)
+        {
+            p1Input = BeatEnum.Missed;
+        }
+        else
+        {
+            p1Input = BeatEnum.Empty;
+        }
+
+        if (p2Input == BeatEnum.Empty)
+        {
+            p2Input = BeatEnum.Missed;
+        }
+        else
+        {
+            p2Input = BeatEnum.Empty;
+        }
         p1miss = false;
         p2miss = false;
     }

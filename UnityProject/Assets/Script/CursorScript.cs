@@ -13,9 +13,10 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     bool curr = true;
 
+    bool superpower = false;
+
     delegate void UpdateDelegate();
     Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
-    
 
 	// Use this for initialization
 	void Start () {
@@ -146,7 +147,46 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     private void EnqueueCurrent()
     {
-        colored.Enqueue(pos);
-        GameManager.Instance.getTile(pos).color = player ? 1 : 2;
+        int p = player ? 1 : 2;;
+        if (!superpower)
+        {
+            colored.Enqueue(pos);
+            GameManager.Instance.getTile(pos).color = p;
+        }
+        else
+        {
+            int posy = pos / 5;
+            int posx = pos % 5;
+            for (int i = posx -1 ; i < posx+2; i++)
+            {
+                for (int j = posy-1; j < posy+2; j++)
+                {
+                    if (i < 0 || i > 4)
+                        continue;
+                    if(j< 0 || j>8)
+                        continue;
+
+                    int index = i + 5 * j;
+                    TileAnimation ta = GameManager.Instance.getTile(index);
+                    if(ta.color != p)
+                    {
+                        colored.Enqueue(index);
+                        GameManager.Instance.getTile(index).color = p;
+                    }                    
+                }
+            }
+        }
+    }
+
+    public void POWERUP()
+    {
+        transform.localScale = new Vector3(3, 3, 3);
+        superpower = true;
+    }
+
+    public void calmdown()
+    {
+        transform.localScale = new Vector3(1,1,1);
+        superpower = false;
     }
 }

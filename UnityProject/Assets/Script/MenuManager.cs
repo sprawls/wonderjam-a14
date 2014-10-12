@@ -68,6 +68,7 @@ public class MenuManager : MonoBehaviour {
         //GUI.skin = Arrow_Down;
         curWidth = 20;
         curHeight = 20;
+        
         if (BPMModifier>0.1f && GUI.Button(new Rect(((Swidth - curWidth - 40) / 2.0f) + 230, ((Sheight - curHeight) / 2.0f) + 20, curWidth, curHeight), "v"))
         {
             ChangeBPM(-0.1f);
