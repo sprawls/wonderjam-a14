@@ -16,6 +16,7 @@ public class Persistent : MonoBehaviour {
     public bool OptChaosMode=false;
     public bool OptTacticMode=false;
 	public bool OptAiMode=false;
+	public int OptAiDifficulty=0;
 
 	static bool instanceIsLoaded = false;
 

@@ -25,13 +25,8 @@ AnimationClip:
         tangentMode: 10
       - time: .333333343
         value: 1000
-        inSlope: 749.999939
-        outSlope: 749.999939
-        tangentMode: 10
-      - time: 1
-        value: 0
-        inSlope: -1500.00012
-        outSlope: -1500.00012
+        inSlope: 3000
+        outSlope: 3000
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -57,7 +52,7 @@ AnimationClip:
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: .333333343
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -82,13 +77,8 @@ AnimationClip:
         tangentMode: 10
       - time: .333333343
         value: 1000
-        inSlope: 749.999939
-        outSlope: 749.999939
-        tangentMode: 10
-      - time: 1
-        value: 0
-        inSlope: -1500.00012
-        outSlope: -1500.00012
+        inSlope: 3000
+        outSlope: 3000
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2

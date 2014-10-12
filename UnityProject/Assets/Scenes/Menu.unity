@@ -488,6 +488,7 @@ MonoBehaviour:
   OptChaosMode: 0
   OptTacticMode: 0
   OptAiMode: 0
+  OptAiDifficulty: 0
 --- !u!4 &935138208
 Transform:
   m_ObjectHideFlags: 0
