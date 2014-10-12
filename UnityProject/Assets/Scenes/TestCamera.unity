@@ -845,6 +845,8 @@ MonoBehaviour:
   gemSpawningPoint: {x: 0, y: 0, z: 0}
   gemPrefab: {fileID: 400004, guid: 36c0585269a0a4bc897c3f9af927b5cd, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
+  P1Combo: 0
+  P2Combo: 0
 --- !u!212 &278309399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1494,7 +1496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   black: {fileID: 100000, guid: 685dd5eca1488b8459b5c9618514c0f9, type: 2}
   white: {fileID: 100000, guid: 68718533a15a616408369083b5feb5d4, type: 2}
-  winScore: 4000
+  skin: {fileID: 11400000, guid: 540dea5ca52be49559365b8021195d6c, type: 2}
+  maxScore: 40000
 --- !u!81 &868515002
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2570,6 +2573,8 @@ MonoBehaviour:
   gemSpawningPoint: {x: 0, y: 0, z: 0}
   gemPrefab: {fileID: 400004, guid: 47d60bdc3f94249d9bc2c0f556bb8a8e, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
+  P1Combo: 0
+  P2Combo: 0
 --- !u!212 &1492089085
 SpriteRenderer:
   m_ObjectHideFlags: 0
