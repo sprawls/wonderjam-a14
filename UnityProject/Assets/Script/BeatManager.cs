@@ -15,6 +15,8 @@ public class BeatManager : Singleton<BeatManager> {
     private bool p1Turn=false;
     private int beatCpt = 0;
     private int SpeedTurn;
+    public int speedT { get { return this.SpeedTurn; } }
+
 
     private bool p1LateXpect = false;
     private bool p2LateXpect = false;
