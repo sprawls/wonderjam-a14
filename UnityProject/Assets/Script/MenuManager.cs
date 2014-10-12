@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour {
 	public Texture2D bgMenu;
 	public Texture2D bgExtras;
 	public Camera logoCamera;
+	public List<Texture2D> tutorials = new List<Texture2D>();
 	public Color textColor = Color.white;
 	public float optionsOffset = 0.0f;
 	public float iaDifficultyOffset = 0.0f;
@@ -18,6 +19,7 @@ public class MenuManager : MonoBehaviour {
     private List<string> SongNames = new List<string>();
     private List<int> BPMSongs = new List<int>();
 
+	private int tutorialIndex = 0;
     private int SongIndice = 0;
     private float BPMModifier = 1;
 	private bool aiMode = false;
@@ -65,7 +67,7 @@ public class MenuManager : MonoBehaviour {
 	    // Authors
 	    curWidth = 900;
 	    curHeight = 20;
-	    GUI.Label(new Rect((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f - 250, curWidth, curHeight), "Alex Arsenault-Desjardins            Frédéric Bolduc            Martin Lavoie            Alexis Lessard", skinMenu.GetStyle("Auteurs"));
+	    GUI.Label(new Rect((Swidth - curWidth) / 2.0f, 16, curWidth, curHeight), "Alex Arsenault-Desjardins            Frédéric Bolduc            Martin Lavoie            Alexis Lessard", skinMenu.GetStyle("Auteurs"));
 
 	    // Song label
 	    curWidth = 150;
@@ -175,19 +177,31 @@ public class MenuManager : MonoBehaviour {
 		if (GUI.Button(new Rect(((Swidth - curWidth) / 2.0f) - 122, ((Sheight - curHeight) / 2.0f) + 245, curWidth, curHeight), "instructions", skinMenu.GetStyle("Tutorial Button"))) 
 		{
 			tutorialMode = !tutorialMode;
-			GUIStyle myTutorialStyle = skinMenu.GetStyle("Tutorial Button");
-			if(tutorialMode) {
-				myTutorialStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
-				myTutorialStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
-			} else {
-				myTutorialStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
-				myTutorialStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
-			}
+
 			
 			animator.SetBool (Animator.StringToHash("OptionsOpen"), optionsMode);
 		}
+		GUIStyle myTutorialStyle = skinMenu.GetStyle("Tutorial Button");
+		if(tutorialMode) {
+			myTutorialStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
+			myTutorialStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
+		} else {
+			myTutorialStyle.normal.textColor = new Color (111f/255f,111f/255f,111f/255f);
+			myTutorialStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
+		}
+		
+		// Quit button
+		curWidth = 16;
+		curHeight = 16;
+		if (GUI.Button (new Rect (Swidth - curWidth - 8, 8, curWidth, curHeight), "", GUI.skin.GetStyle ("Close button"))) {
+			Application.Quit();
+		}
 
 		renderOptions ();
+
+		if (tutorialMode) {
+			renderTutorial ();
+		}
 	}
 
 	public void renderOptions() {
@@ -198,7 +212,15 @@ public class MenuManager : MonoBehaviour {
 		float curHeight = 40;
 		GUIStyle mySongStyle = skinMenu.GetStyle ("Song label");
 		mySongStyle.normal.textColor = textColor;
+
 		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f + optionsOffset, (Sheight - curHeight) / 2.0f - 170, curWidth, curHeight), "Extras", mySongStyle);
+
+		curWidth = 32;
+		curHeight = 32;
+		if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f + optionsOffset + 300, (Sheight - curHeight) / 2.0f - 200, curWidth, curHeight), "", GUI.skin.GetStyle ("Close button"))) {
+			optionsMode = false;
+			animator.SetBool (Animator.StringToHash("OptionsOpen"), optionsMode);
+		}
 
 		// Fever mode
 		curWidth = 150;
@@ -261,7 +283,7 @@ public class MenuManager : MonoBehaviour {
 		{
 			starbucksMode = !starbucksMode;
 			GUIStyle myStarbucksStyle = skinMenu.GetStyle("Starbucks Button");
-			if(starbucksMode){
+			if(starbucksMode) {
 				myStarbucksStyle.normal.textColor = new Color (52f/255f,219f/255f,122f/255f);
 				myStarbucksStyle.hover.textColor = new Color (52f/255f,219f/255f,122f/255f);
 			} else {
@@ -299,6 +321,32 @@ public class MenuManager : MonoBehaviour {
 		curHeight = 80;
 		beatsParTour = GUI.SelectionGrid (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f + 120, curWidth, curHeight), beatsParTour, new GUIContent[3]{new GUIContent("Équipes dans l'association de l'est"), new GUIContent("Pattes d'Aragog"), new GUIContent("Nombre de doigts sur un gars qui a pas de pouce")}, 1, skinMenu.GetStyle("List button")); 
 
+	}
+
+	public void renderTutorial() {
+		float curWidth = 1000f;
+		float curHeight = 557f;
+		GUI.DrawTexture(new Rect((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f, curWidth, curHeight), tutorials[tutorialIndex]);
+
+		curWidth = 64;
+		curHeight = 64;
+		if (tutorialIndex > 0) {
+			if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f - 500, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", GUI.skin.GetStyle ("Previous song"))) {
+				tutorialIndex = Mathf.Max (0, tutorialIndex - 1);
+			}
+		}
+
+		if (tutorialIndex < tutorials.Count - 1) {
+			if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f + 500, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", GUI.skin.GetStyle ("Next song"))) {
+				tutorialIndex = Mathf.Min (tutorials.Count - 1, tutorialIndex + 1);
+			}
+		}
+
+		curWidth = 32;
+		curHeight = 32;
+		if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f + 500, (Sheight - curHeight) / 2.0f - 279, curWidth, curHeight), "", GUI.skin.GetStyle ("Close button"))) {
+			tutorialMode = false;
+		}
 	}
 
     public void ChangeSong(int value)
