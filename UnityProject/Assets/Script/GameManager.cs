@@ -78,6 +78,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 		p1.Part2 = "Humain";
 
 		if (isAIMode()) {
+
 			switch(getAiDifficulty()) {
 			case 0:
 				k2 = new RandomIA();
@@ -87,7 +88,12 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 				k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
 				p2.Part2 = "AI pas pire";
 				break;
+            case 2:
+                k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
+				p2.Part2 = "AI presque bonne";
+				break;
 			}
+
 
 		} else {
 			k2 = new HumanKey (KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);

@@ -6,7 +6,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 {
 	//Tactics Mode
 	private int numBeatThisSequence = 0;
-	public int BeatsToActivateCross = 5;
+	public int BeatsToActivateCross = 3;
 
     MeshRenderer rend;
 	private LineRenderer linerenderer;
@@ -30,9 +30,12 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
 	// Use this for initialization
 	void Start () {
-		//TODO: Reduce Beat to activate cross when speed turn is low
-		//if(GameManager.Instance.getSpeedTurn() < 5) BeatsToActivateCross = 3;
         GameManager.Instance.requestBeat(this);
+        if(BeatManager.Instance.speedT>4)
+        {
+            BeatsToActivateCross = 5;
+        }
+        
         rend = GetComponentInChildren<MeshRenderer>();
         fever = GetComponentInChildren<AudioSource>();
 		linerenderer = GetComponentInChildren<LineRenderer>();
