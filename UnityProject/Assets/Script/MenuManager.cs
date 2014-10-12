@@ -161,12 +161,13 @@ public class MenuManager : MonoBehaviour {
 		}
 		animator.SetBool (Animator.StringToHash("IAOpen"), aiMode);
 
-		curWidth = 160;
+		curWidth = 240;
 		curHeight = 40;
-		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 190 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), aiDifficulty, new GUIContent[2] {
+		aiDifficulty = GUI.SelectionGrid (new Rect ((Swidth - curWidth) / 2.0f + 230 + iaDifficultyOffset, (Sheight - curHeight) / 2.0f + 199, curWidth, curHeight), aiDifficulty, new GUIContent[3] {
 						new GUIContent ("Poche"),
-						new GUIContent ("Pas pire")
-		}, 2, GUI.skin.GetStyle ("List button"));
+						new GUIContent ("Pas pire"),
+                        new GUIContent ("Nice")
+		}, 3, GUI.skin.GetStyle ("List button"));
 
 		// Tutorial button 
 		curWidth = 160;

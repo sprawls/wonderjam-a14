@@ -89,8 +89,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 				p2.Part2 = "AI pas pire";
 				break;
             case 2:
-                k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
-				p2.Part2 = "AI presque bonne";
+                k2 = new HeatMapIA(PersistentScript.songBPM, p2, p1, 0.9f);
+				p2.Part2 = "AI nice";
 				break;
 			}
 
