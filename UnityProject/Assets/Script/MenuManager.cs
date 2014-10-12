@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour {
 	public GUISkin skinMenu;
 	public Texture2D bgMenu;
 	public Camera logoCamera;
+	public Color textColor;
 
     private List<string> PathSongs=new List<string>();
     private List<string> SongNames = new List<string>();
@@ -23,25 +24,36 @@ public class MenuManager : MonoBehaviour {
         addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
         addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
 
-	    Swidth=Screen.width;
-        Sheight = Screen.height;
+		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
+		audio.Play ();
 	}
 	
 	// Update is called once per frame
 	void OnGUI () {
+		Swidth=Screen.width;
+		Sheight = Screen.height;
 		GUI.skin = skinMenu;
 
 		// Background
 		GUI.DrawTexture (new Rect (0, 0, Swidth, Sheight), bgMenu);
 
+		// Choix du beat
 		float curWidth = 75;
 		float curHeight = 20;
 		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f - 25, curWidth, curHeight), "Choix du beat", skinMenu.GetStyle ("BPM label"));
 
+		// Authors
+		curWidth = 900;
+		curHeight = 20;
+		GUI.Label (new Rect ((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f - 250, curWidth, curHeight), "Alex Arsenault-Desjardins            Frédéric Bolduc            Martin Lavoie            Alexis Lessard", skinMenu.GetStyle ("Auteurs"));
+
 		// Song label
         curWidth=150;
         curHeight=20;
-		GUI.Label(new Rect((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f, curWidth, curHeight), SongNames[SongIndice], skinMenu.GetStyle("Song label"));
+		GUIStyle songLabelStyle = skinMenu.GetStyle ("Song label");
+		songLabelStyle.normal.textColor = textColor;
+		Debug.Log (skinMenu.GetStyle ("Song label").normal.textColor);
+		GUI.Label(new Rect((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f, curWidth, curHeight), SongNames[SongIndice], songLabelStyle);
 		
 		// Previous song
         curWidth = 48;
@@ -82,7 +94,7 @@ public class MenuManager : MonoBehaviour {
 		// Instructions
 		curWidth = 720;
 		curHeight = 60;
-		GUI.Label(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 120, curWidth, curHeight), "Instructions Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum mLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum", skinMenu.GetStyle("Instructions"));
+		GUI.Label(new Rect(((Swidth - curWidth) / 2.0f), ((Sheight - curHeight) / 2.0f) + 120, curWidth, curHeight), "31 octobre 2052, la race humaine a été exterminée par la menace zombie. La musique est morte, mais la légendaire bataille entre les deux dieux du rythme, DJ Guylaine Grosse-Soirée et DJ Jerry Ox, se poursuit encore après la mort. Le combat décisif se tiendra ce soir au célèbre Zombeat Stromatolite Turbo Party Club, pour la dernière chance pour le monde de retrouver un peu de couleur. Qui triomphera?", skinMenu.GetStyle("Instructions"));
 		
 		// Start button
         curWidth = 350;
@@ -100,6 +112,10 @@ public class MenuManager : MonoBehaviour {
     {
         SongIndice += value;
         BPMModifier = 1;
+
+		audio.Stop ();
+		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
+		audio.Play ();
     }
 
     public void ChangeBPM(float value)
