@@ -15,7 +15,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     bool superpower = false;
 
-    bool needtomove = false;
+    bool needtomove = true;
 
     delegate void UpdateDelegate();
     Queue<UpdateDelegate> update = new Queue<UpdateDelegate>();
@@ -24,7 +24,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	void Start () {
         GameManager.Instance.requestBeat(this); //MARTIN FAIT MARCHE RCE TRUC LA DEMIAN MATIN
         rend = GetComponentInChildren<MeshRenderer>();
-        transform.localPosition = GameManager.Instance.getTile(pos).transform.localPosition;
+        
 	}
 
     public void OnQuarterBeat()
