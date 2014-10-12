@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
         GameObject persistentObj = GameObject.Find("persistent");
         PersistentScript = persistentObj.GetComponent("Persistent") as Persistent;
-
+        maxScore = getObjScore();
 
         song = Resources.Load(PersistentScript.songPath) as AudioClip;
         audio.clip = song;
@@ -62,7 +62,6 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerBehaviour>();
 
         AudioSource[] victories = this.GetComponentsInChildren<AudioSource>();
-        Debug.Log(victories.Length);
         foreach(var v in victories)
         {
             if(v.gameObject.name == "Guylaine")
