@@ -7,6 +7,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	//Tactics Mode
 	private int numBeatThisSequence = 0;
 	public int BeatsToActivateCross = 3;
+	private bool haveToAdjustBeat = false;
 
     MeshRenderer rend;
 	private LineRenderer linerenderer;
@@ -31,10 +32,8 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	// Use this for initialization
 	void Start () {
         GameManager.Instance.requestBeat(this);
-        if(BeatManager.Instance.speedT>4)
-        {
-            BeatsToActivateCross = 5;
-        }
+		AdjustBeat();
+
         
         rend = GetComponentInChildren<MeshRenderer>();
         fever = GetComponentInChildren<AudioSource>();
@@ -47,6 +46,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1)
     {
+		haveToAdjustBeat = true;
         update.Enqueue(
             delegate()
             {
@@ -81,6 +81,15 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
         }
   
     }
+
+	private void AdjustBeat(){
+		if(BeatManager.Instance.speedT>8)
+		{
+			
+			BeatsToActivateCross = 5;
+		}
+		Debug.Log ("NumBeats: " + BeatManager.Instance.speedT +  "BeatActive : " + BeatsToActivateCross);
+	}
 
     private void continuetogototheinfinityandbeyong(BeatEnum p)
     {
@@ -134,6 +143,10 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 
     void LateUpdate()
     {
+		if(haveToAdjustBeat == true) {
+			AdjustBeat();
+			haveToAdjustBeat = false;
+		}
         while(update.Count != 0)
         {
             update.Dequeue()();
@@ -202,9 +215,9 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 					}
 					posx = 0;
 					amountOfColumnToBack = (pos%5);
-					Debug.Log ("amountOfColumnToBack" + amountOfColumnToBack);
+					//Debug.Log ("amountOfColumnToBack" + amountOfColumnToBack);
 					for(int i = pos+(amountOfColumnToBack*4); i >= 0; i -= 4) {
-						Debug.Log ("newValueToAdd" + i); 
+						//Debug.Log ("newValueToAdd" + i); 
 						if(i <= 39) {
 							if(posx <= (i % 5)){
 								posx = i % 5;
