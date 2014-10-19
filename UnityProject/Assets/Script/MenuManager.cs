@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour {
 	public Texture2D bgExtras;
 	public Camera logoCamera;
 	public List<Texture2D> tutorials = new List<Texture2D>();
+	public List<Texture2D> tutorials_EN= new List<Texture2D>();
 	public Color textColor = Color.white;
 	public float optionsOffset = 0.0f;
 	public float iaDifficultyOffset = 0.0f;
@@ -366,7 +367,7 @@ public class MenuManager : MonoBehaviour {
 			renderOptionsEnglish();
 			
 			if (tutorialMode) {
-				renderTutorial ();
+				renderTutorialEnglish ();
 			}
 
 		}
@@ -629,6 +630,32 @@ public class MenuManager : MonoBehaviour {
 			}
 		}
 
+		curWidth = 32;
+		curHeight = 32;
+		if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f + 500, (Sheight - curHeight) / 2.0f - 279, curWidth, curHeight), "", GUI.skin.GetStyle ("Close button"))) {
+			tutorialMode = false;
+		}
+	}
+
+	public void renderTutorialEnglish() {
+		float curWidth = 1000f;
+		float curHeight = 557f;
+		GUI.DrawTexture(new Rect((Swidth - curWidth) / 2.0f, (Sheight - curHeight) / 2.0f, curWidth, curHeight), tutorials_EN[tutorialIndex]);
+		
+		curWidth = 64;
+		curHeight = 64;
+		if (tutorialIndex > 0) {
+			if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f - 500, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", GUI.skin.GetStyle ("Previous song"))) {
+				tutorialIndex = Mathf.Max (0, tutorialIndex - 1);
+			}
+		}
+		
+		if (tutorialIndex < tutorials.Count - 1) {
+			if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f + 500, (Sheight - curHeight) / 2.0f, curWidth, curHeight), "", GUI.skin.GetStyle ("Next song"))) {
+				tutorialIndex = Mathf.Min (tutorials_EN.Count - 1, tutorialIndex + 1);
+			}
+		}
+		
 		curWidth = 32;
 		curHeight = 32;
 		if (GUI.Button (new Rect ((Swidth - curWidth) / 2.0f + 500, (Sheight - curHeight) / 2.0f - 279, curWidth, curHeight), "", GUI.skin.GetStyle ("Close button"))) {
