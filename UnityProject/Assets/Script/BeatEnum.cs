@@ -9,3 +9,8 @@ public enum BeatEnum {
     Missed,
     Empty
 }
+
+public enum Language {
+	french,
+	english
+}
