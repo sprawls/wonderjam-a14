@@ -18,6 +18,9 @@ public class Persistent : MonoBehaviour {
 	public bool OptAiMode=false;
 	public int OptAiDifficulty=0;
 
+	//Language
+	public Language language = Language.french;
+
 	static bool instanceIsLoaded = false;
 
 	void OnLevelWasLoaded(int level){

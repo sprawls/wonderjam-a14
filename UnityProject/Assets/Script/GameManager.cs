@@ -75,29 +75,42 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
         }
 
         k1 = new HumanKey("w", "s", "a", "d");
-		p1.Part2 = "Humain";
+		if(PersistentScript.language == Language.french){
+			p1.Part2 = "Humain";
+			p1.Part1 = "DJ Guylaine grosse-soirée";
+			p2.Part1 = "DJ Jerry Ox";
+		} else {
+			p1.Part2 = "Human";
+			p1.Part1 = "DJ Big Bash Bertha";
+			p2.Part1 = "DJ Jerry Ox";
+		}
+
 
 		if (isAIMode()) {
 
 			switch(getAiDifficulty()) {
 			case 0:
 				k2 = new RandomIA();
-				p2.Part2 = "AI poche";
+				if(PersistentScript.language == Language.french) p2.Part2 = "AI poche";
+				else p2.Part2 = "bad AI";
 				break;
 			case 1:
 				k2 = new PerfectIA(PersistentScript.songBPM, p2, p1, 0.9f);
-				p2.Part2 = "AI pas pire";
+				if(PersistentScript.language == Language.french)p2.Part2 = "AI pas pire";
+				p2.Part2 = "not so bad AI";
 				break;
             case 2:
                 k2 = new HeatMapIA(PersistentScript.songBPM, p2, p1, 0.9f);
-				p2.Part2 = "AI nice";
+				if(PersistentScript.language == Language.french)p2.Part2 = "AI nice";
+				p2.Part2 = "Sweet AI";
 				break;
 			}
 
 
 		} else {
 			k2 = new HumanKey (KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-			p2.Part2 = "Humain";
+			if(PersistentScript.language == Language.french) p2.Part2 = "Humain";
+			else p2.Part2 = "Human";
 		}
     }
 	
@@ -159,9 +172,16 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
 
 		if(showEnding) {
-			if(GUI.Button (new Rect((Screen.width - 100) / 2.0f, (Screen.height - 100) / 2.0f - 160, 100, 100), "Menu principal", GUI.skin.GetStyle ("Return to menu"))) {
-				Application.LoadLevel(0);
+			if(PersistentScript.language == Language.french){
+				if(GUI.Button (new Rect((Screen.width - 100) / 2.0f, (Screen.height - 100) / 2.0f - 160, 100, 100), "Menu principal", GUI.skin.GetStyle ("Return to menu"))) {
+					Application.LoadLevel(0);
+				}
+			} else {
+				if(GUI.Button (new Rect((Screen.width - 100) / 2.0f, (Screen.height - 100) / 2.0f - 160, 100, 100), "Main Menu", GUI.skin.GetStyle ("Return to menu"))) {
+					Application.LoadLevel(0);
+				}
 			}
+
 		}
 	}
 
@@ -239,8 +259,14 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
             camAnim.SetTrigger(name);
             finished = true;
 
-            p1.Part2 = "a gagné!";
-            p2.Part2 = "a gagné!";
+			if(PersistentScript.language == Language.french) {
+				p1.Part2 = "a gagné!";
+				p2.Part2 = "a gagné!";
+			} else {
+				p1.Part2 = "has won!";
+				p2.Part2 = "has won!";
+			}
+            
         }
 
     }
