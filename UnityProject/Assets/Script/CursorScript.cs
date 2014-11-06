@@ -8,6 +8,8 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	private int numBeatThisSequence = 0;
 	public int BeatsToActivateCross = 3;
 	private bool haveToAdjustBeat = false;
+	//arrow prefab for feedback
+	public GameObject ArrowPrefab;
 
     MeshRenderer rend;
 	private LineRenderer linerenderer;
@@ -95,6 +97,10 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
     {
         if(p == BeatEnum.Missed)
         {
+			//SpawnArrow
+			ArrowFade newArrow = ((GameObject)Instantiate (ArrowPrefab)).GetComponentInChildren<ArrowFade>();
+			newArrow.ChangeOrientation(-1);
+
             if (colored.Count > 0 && GameManager.Instance.isTacticMode() == false)
             {
                 int torem = colored.Dequeue();
@@ -105,27 +111,44 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
         {
             int old = pos;
             int n = pos;
+			ArrowFade newArrow;
             switch (p)
             {
                 case BeatEnum.Up:
+					//SpawnArrow
+					newArrow = ((GameObject)Instantiate (ArrowPrefab)).GetComponentInChildren<ArrowFade>();
+					newArrow.ChangeOrientation(2);
+
                     if (old % 5 != 0)
                     {
                         n = old - 1;
                     }
                     break;
                 case BeatEnum.Down:
+					//SpawnArrow
+					newArrow = ((GameObject)Instantiate (ArrowPrefab)).GetComponentInChildren<ArrowFade>();
+					newArrow.ChangeOrientation(3);
+
                     if (old % 5 != 4)
                     {
                         n = old+1;
                     }
                     break;
                 case BeatEnum.Right:
+					//SpawnArrow
+					newArrow = ((GameObject)Instantiate (ArrowPrefab)).GetComponentInChildren<ArrowFade>();
+					newArrow.ChangeOrientation(0);
+
                     if (old < 35)
                     {
                         n = old + 5;
                     }
                     break;
                 case BeatEnum.Left:
+					//SpawnArrow
+					newArrow = ((GameObject)Instantiate (ArrowPrefab)).GetComponentInChildren<ArrowFade>();
+					newArrow.ChangeOrientation(1);
+
                     if (old > 4)
                     {
                         n = old - 5;

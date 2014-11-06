@@ -94,7 +94,14 @@ public class ZombieBehaviour : MonoBehaviour {
 
 	private void AddScore() {
 		if(currentType == 1) player1.Score = player1.Score + 10;
-		else if(currentType == 2) player2.Score = player2.Score + 10;
+		else if(currentType == 2) {
+			if(GameManager.Instance.isAIMode() == true) {
+				player2.Score = player2.Score + 20; //AI makes 100% more points because he sucks
+			} else {
+				player2.Score = player2.Score + 10;
+			}
+
+		}
 	}
 
 	private void  UpdateSprite(){

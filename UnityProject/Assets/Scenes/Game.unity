@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BeatsToActivateCross: 3
+  ArrowPrefab: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
   pos: 37
   player: 0
   superpower: 0
@@ -2826,6 +2827,7 @@ MonoBehaviour:
   OptTacticMode: 0
   OptAiMode: 0
   OptAiDifficulty: 0
+  language: 1
 --- !u!4 &746096904
 Transform:
   m_ObjectHideFlags: 0
@@ -5510,6 +5512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BeatsToActivateCross: 3
+  ArrowPrefab: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
   pos: 2
   player: 1
   superpower: 0
@@ -6089,6 +6092,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 5a4248d91453bc24f96d564b651ca704, type: 2}
+      propertyPath: ArrowPrefab
+      value: 
+      objectReference: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a4248d91453bc24f96d564b651ca704, type: 2}
   m_RootGameObject: {fileID: 73635509}
@@ -11154,6 +11161,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 230673551dc32f74cbc763955a2d342b, type: 2}
+      propertyPath: ArrowPrefab
+      value: 
+      objectReference: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 230673551dc32f74cbc763955a2d342b, type: 2}
   m_RootGameObject: {fileID: 1030369500}

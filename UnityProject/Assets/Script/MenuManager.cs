@@ -40,17 +40,31 @@ public class MenuManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		persistentScript = GameObject.Find("persistent").GetComponent("Persistent") as Persistent;
-        addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",128);
-        addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
-        addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
-		addSong ("Music/ourautobiography-codebreaker", "OurAutobiography - CodeBreaker", 88);
-		addSong ("Music/eric-lam-gta", "Eric Lam - GTA", 128);
-		addSong ("Music/emotional-titanic-flute", "James Horner - My Heart Will Go On", 104);
+       
+		//AddSongAll (); // Add all songs
+		AddFreeSong (); //Only add songs with free use
 
 		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
 		audio.Play ();
 
 		animator = GetComponent<Animator> ();
+	}
+
+	void AddSongAll(){
+		addSong("Music/approaching-nirvana-305","Approaching Nirvana - 305",128);
+		addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
+		addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
+		addSong ("Music/ourautobiography-codebreaker", "OurAutobiography - CodeBreaker", 88);
+		addSong ("Music/eric-lam-gta", "Eric Lam - GTA", 128);
+		addSong ("Music/emotional-titanic-flute", "James Horner - My Heart Will Go On", 104);
+	}
+
+	void AddFreeSong(){
+		addSong("Music/bayslick-tokyo-dinner", "Bayslick - Tokyo Dinner", 128);
+		addSong("Music/bitch-clap", "Truxton - Bitch Clap", 145);
+		addSong ("Music/ourautobiography-codebreaker", "OurAutobiography - CodeBreaker", 88);
+		addSong ("Music/eric-lam-gta", "Eric Lam - GTA", 128);
+
 	}
 	
 	// Update is called once per frame
@@ -91,7 +105,8 @@ public class MenuManager : MonoBehaviour {
 			curWidth = 900;
 			curHeight = 20;
 			GUI.Label(new Rect((Swidth - curWidth) / 2.0f, 16, curWidth, curHeight), "Alex Arsenault-Desjardins            Frédéric Bolduc            Martin Lavoie            Alexis Lessard", skinMenu.GetStyle("Auteurs"));
-			
+			GUI.Label(new Rect((Swidth - curWidth) / 2f, 30, curWidth, curHeight), "                @IronSquirel                                                           @ItsFerdBold                                            @refnil19                                         @Alexis_Lessard", skinMenu.GetStyle("AuteursTwit"));
+
 			// Song label
 			curWidth = 150;
 			curHeight = 20;
@@ -237,7 +252,8 @@ public class MenuManager : MonoBehaviour {
 			curWidth = 900;
 			curHeight = 20;
 			GUI.Label(new Rect((Swidth - curWidth) / 2.0f, 16, curWidth, curHeight), "Alex Arsenault-Desjardins            Frédéric Bolduc            Martin Lavoie            Alexis Lessard", skinMenu.GetStyle("Auteurs"));
-			
+			GUI.Label(new Rect((Swidth - curWidth) / 2f, 30, curWidth, curHeight), "                @IronSquirel                                                           @ItsFerdBold                                            @refnil19                                         @Alexis_Lessard", skinMenu.GetStyle("AuteursTwitEN"));
+
 			// Song label
 			curWidth = 150;
 			curHeight = 20;
@@ -594,7 +610,7 @@ public class MenuManager : MonoBehaviour {
 		// Longueur de la soirée
 		curWidth = 200;
 		curHeight = 40;
-		GUI.Label (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f - 35, curWidth, curHeight), "Party Lenght", skinMenu.GetStyle("BPM label"));
+		GUI.Label (new Rect((Swidth - curWidth) / 2.0f + optionsOffset + 100, (Sheight - curHeight) / 2.0f - 35, curWidth, curHeight), "Party Length", skinMenu.GetStyle("BPM label"));
 		
 		curWidth = 400;
 		curHeight = 40;
