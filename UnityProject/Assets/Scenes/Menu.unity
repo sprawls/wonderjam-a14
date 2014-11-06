@@ -329,8 +329,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: eb5543e4e4222432ba59db8b6061d954, type: 3}
   - {fileID: 2800000, guid: e6b68a9550fff462489e2cefb4e7aabb, type: 3}
   tutorials_EN:
-  - {fileID: 2800000, guid: 7f47c753bc2372541bfc3e38f3b15558, type: 3}
-  - {fileID: 2800000, guid: e6b68a9550fff462489e2cefb4e7aabb, type: 3}
+  - {fileID: 2800000, guid: ceccfbab3b8a49e46b6390a0292c68a5, type: 3}
+  - {fileID: 2800000, guid: 6accb46cf17a869458d502407c831eda, type: 3}
   textColor: {r: 1.02876997, g: .991286099, b: .640865266, a: 1}
   optionsOffset: -800
   iaDifficultyOffset: 0
