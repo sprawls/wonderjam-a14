@@ -11009,6 +11009,7 @@ MonoBehaviour:
   white: {fileID: 100000, guid: 68718533a15a616408369083b5feb5d4, type: 2}
   skin: {fileID: 11400000, guid: 540dea5ca52be49559365b8021195d6c, type: 2}
   maxScore: 4000
+  maxCombo: 0
 --- !u!81 &2025391099
 AudioListener:
   m_ObjectHideFlags: 0

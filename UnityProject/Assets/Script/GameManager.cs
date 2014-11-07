@@ -35,6 +35,9 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     IKeyGetter k1;
     IKeyGetter k2;
 
+	//max combo
+	public int maxCombo;
+
 	// Use this for initialization
 	void Start () {
 
@@ -268,8 +271,23 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 			}
             
         }
+		SendKongStat ();
 
     }
+
+	private void SendKongStat(){ //Send Kongregate Stats
+		Kongregate.SubmitStatistic("GamesPlayed", 1);
+		Kongregate.SubmitStatistic("BiggestCombo", GameManager.Instance.maxCombo);
+		if(getAiDifficulty() == 0) Kongregate.SubmitStatistic("BeatAI0", 1);
+		if(getAiDifficulty() == 1) Kongregate.SubmitStatistic("BeatAI1", 1);
+		if(getAiDifficulty() == 2) Kongregate.SubmitStatistic("BeatAI2", 1);
+		if(PersistentScript.OptFeverMode == true) Kongregate.SubmitStatistic("FeverGame", 1);
+		if(PersistentScript.OptTacticMode == true) Kongregate.SubmitStatistic("TacticGame", 1);
+		if(PersistentScript.OptChaosMode == true) Kongregate.SubmitStatistic("ChaosGame", 1);
+		if(PersistentScript.OptZombieCtrl == 2) Kongregate.SubmitStatistic("StarbuckGame", 1);
+		GameManager.Instance.maxCombo = 0;
+
+	}
 
     private void playSong(int player)
     {

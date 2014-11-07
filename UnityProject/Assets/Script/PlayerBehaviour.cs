@@ -123,11 +123,17 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 			//Debug.Log ("Player Beat P1 = " + p1);
             if (turnP1 && p1 != BeatEnum.Missed)
             {
-                if (p1 != BeatEnum.Empty) Combo++;
+                if (p1 != BeatEnum.Empty) {
+					Combo++;
+					if(Combo > GameManager.Instance.maxCombo) GameManager.Instance.maxCombo = (int) Combo;
+				}
             }
             else if (!turnP1 && p2 != BeatEnum.Missed)
             {
-                if (p2 != BeatEnum.Empty) Combo++;
+                if (p2 != BeatEnum.Empty) {
+					Combo++; 
+					if(Combo > GameManager.Instance.maxCombo) GameManager.Instance.maxCombo = (int) Combo;
+				}
             }
             else
             {
