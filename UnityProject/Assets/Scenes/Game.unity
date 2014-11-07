@@ -606,6 +606,7 @@ MonoBehaviour:
   gemPrefab: {fileID: 400004, guid: 47d60bdc3f94249d9bc2c0f556bb8a8e, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
   Combo: 0
+  updateCombo: 0
 --- !u!212 &121997725
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9308,6 +9309,7 @@ MonoBehaviour:
   gemPrefab: {fileID: 400004, guid: 36c0585269a0a4bc897c3f9af927b5cd, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
   Combo: 0
+  updateCombo: 0
 --- !u!212 &1888808215
 SpriteRenderer:
   m_ObjectHideFlags: 0

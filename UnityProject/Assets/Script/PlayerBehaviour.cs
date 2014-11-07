@@ -39,6 +39,7 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 	public Transform neutralGemPrefab;
 	//Player score 
 	public float Combo = 0;
+	public bool updateCombo = false;
 
     private bool needplay = false;
 
@@ -87,6 +88,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 
 			createNewGem = false;
 		}
+		if(updateCombo == true) {
+			updateCombo= false;
+			UpdateComboMax();
+		}
 
 		foreach (Transform g in gems) {
 			// Move all gems towards stromatolite
@@ -109,6 +114,10 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
 		gemsToDestroy.Clear ();
 	}
 
+	void UpdateComboMax(){
+		if(Combo > GameManager.Instance.maxCombo) GameManager.Instance.maxCombo = (int) Combo;
+	}
+
     public void OnQuarterBeat() {}
 
 	public void OnBeat(BeatEnum p1, BeatEnum p2, bool turnP1) {
@@ -125,14 +134,14 @@ public class PlayerBehaviour : MonoBehaviour, IBeatReceiver {
             {
                 if (p1 != BeatEnum.Empty) {
 					Combo++;
-					if(Combo > GameManager.Instance.maxCombo) GameManager.Instance.maxCombo = (int) Combo;
+					updateCombo = true;
 				}
             }
             else if (!turnP1 && p2 != BeatEnum.Missed)
             {
                 if (p2 != BeatEnum.Empty) {
 					Combo++; 
-					if(Combo > GameManager.Instance.maxCombo) GameManager.Instance.maxCombo = (int) Combo;
+					updateCombo = true;
 				}
             }
             else
