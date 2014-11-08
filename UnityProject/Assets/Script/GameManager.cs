@@ -37,6 +37,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 
 	//max combo
 	public int maxCombo;
+	public bool HasSendStat = false;
 
 	// Use this for initialization
 	void Start () {
@@ -88,6 +89,8 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 			p2.Part1 = "DJ Jerry Ox";
 		}
 
+		//Reset stat
+		HasSendStat = false;
 
 		if (isAIMode()) {
 
@@ -276,17 +279,19 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
     }
 
 	private void SendKongStat(){ //Send Kongregate Stats
-		Kongregate.SubmitStatistic("GamesPlayed", 1);
-		Kongregate.SubmitStatistic("BiggestCombo", GameManager.Instance.maxCombo);
-		if(getAiDifficulty() == 0) Kongregate.SubmitStatistic("BeatAI0", 1);
-		if(getAiDifficulty() == 1) Kongregate.SubmitStatistic("BeatAI1", 1);
-		if(getAiDifficulty() == 2) Kongregate.SubmitStatistic("BeatAI2", 1);
-		if(PersistentScript.OptFeverMode == true) Kongregate.SubmitStatistic("FeverGame", 1);
-		if(PersistentScript.OptTacticMode == true) Kongregate.SubmitStatistic("TacticGame", 1);
-		if(PersistentScript.OptChaosMode == true) Kongregate.SubmitStatistic("ChaosGame", 1);
-		if(PersistentScript.OptZombieCtrl == 2) Kongregate.SubmitStatistic("StarbuckGame", 1);
-		GameManager.Instance.maxCombo = 0;
-
+		if(HasSendStat == false) {
+			HasSendStat = true;
+			Kongregate.SubmitStatistic("GamesPlayed", 1);
+			Kongregate.SubmitStatistic("BiggestCombo", GameManager.Instance.maxCombo);
+			if(getAiDifficulty() == 0) Kongregate.SubmitStatistic("BeatAI0", 1);
+			if(getAiDifficulty() == 1) Kongregate.SubmitStatistic("BeatAI1", 1);
+			if(getAiDifficulty() == 2) Kongregate.SubmitStatistic("BeatAI2", 1);
+			if(PersistentScript.OptFeverMode == true) Kongregate.SubmitStatistic("FeverGame", 1);
+			if(PersistentScript.OptTacticMode == true) Kongregate.SubmitStatistic("TacticGame", 1);
+			if(PersistentScript.OptChaosMode == true) Kongregate.SubmitStatistic("ChaosGame", 1);
+			if(PersistentScript.OptZombieCtrl == 2) Kongregate.SubmitStatistic("StarbuckGame", 1);
+			GameManager.Instance.maxCombo = 0;
+		}
 	}
 
     private void playSong(int player)
