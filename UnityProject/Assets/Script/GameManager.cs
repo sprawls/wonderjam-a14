@@ -123,6 +123,9 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 	// Update is called once per frame
     void Update()
     { 
+		if(Input.GetKeyDown (KeyCode.Escape)){
+			Application.LoadLevel(0);
+		}
 		// @TODO
         if (k1.GetKeys(BeatEnum.Up))
         {
