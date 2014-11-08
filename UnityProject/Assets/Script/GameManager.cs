@@ -286,7 +286,7 @@ public class GameManager : Singleton<GameManager>, IBeatReceiver {
 			if(getAiDifficulty() == 0) Kongregate.SubmitStatistic("BeatAI0", 1);
 			if(getAiDifficulty() == 1) Kongregate.SubmitStatistic("BeatAI1", 1);
 			if(getAiDifficulty() == 2) Kongregate.SubmitStatistic("BeatAI2", 1);
-			if(PersistentScript.OptFeverMode == true) Kongregate.SubmitStatistic("FeverGame", 1);
+			if(Application.loadedLevel == 2) Kongregate.SubmitStatistic("FeverGame", 1);
 			if(PersistentScript.OptTacticMode == true) Kongregate.SubmitStatistic("TacticGame", 1);
 			if(PersistentScript.OptChaosMode == true) Kongregate.SubmitStatistic("ChaosGame", 1);
 			if(PersistentScript.OptZombieCtrl == 2) Kongregate.SubmitStatistic("StarbuckGame", 1);

@@ -226,13 +226,13 @@ public class MenuManager : MonoBehaviour {
 				myTutorialStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
 			}
 			
-			// Quit button
+			/*// Quit button
 			curWidth = 16;
 			curHeight = 16;
 			if (GUI.Button (new Rect (Swidth - curWidth - 8, 8, curWidth, curHeight), "", GUI.skin.GetStyle ("Close button"))) {
 				Application.Quit();
 			}
-			
+			*/
 			renderOptionsFrench ();
 			
 			if (tutorialMode) {
@@ -373,13 +373,13 @@ public class MenuManager : MonoBehaviour {
 				myTutorialStyle.hover.textColor = new Color (0f/255f,99f/255f,235f/255f);
 			}
 			
-			// Quit button
+			/*// Quit button
 			curWidth = 16;
 			curHeight = 16;
 			if (GUI.Button (new Rect (Swidth - curWidth - 8, 8, curWidth, curHeight), "", GUI.skin.GetStyle ("Close button"))) {
 				Application.Quit();
 			}
-			
+			*/
 			renderOptionsEnglish();
 			
 			if (tutorialMode) {
