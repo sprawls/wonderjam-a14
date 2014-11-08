@@ -41,8 +41,8 @@ public class MenuManager : MonoBehaviour {
 	void Start () {
 		persistentScript = GameObject.Find("persistent").GetComponent("Persistent") as Persistent;
        
-		AddSongAll (); // Add all songs
-		//AddFreeSong (); //Only add songs with free use
+		//AddSongAll (); // Add all songs
+		AddFreeSong (); //Only add songs with free use
 
 		audio.clip = Resources.Load (PathSongs [SongIndice] + "-sample") as AudioClip;
 		audio.Play ();
