@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeatsToActivateCross: 3
   ArrowPrefab: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
+  OtherArrowPrefab: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
   pos: 37
   player: 0
   superpower: 0
@@ -724,6 +725,7 @@ MonoBehaviour:
   gemPrefab: {fileID: 400004, guid: 47d60bdc3f94249d9bc2c0f556bb8a8e, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
   Combo: 0
+  updateCombo: 0
 --- !u!212 &121997725
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6850,6 +6852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeatsToActivateCross: 3
   ArrowPrefab: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
+  OtherArrowPrefab: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
   pos: 2
   player: 1
   superpower: 0
@@ -8562,6 +8565,10 @@ Prefab:
       propertyPath: ArrowPrefab
       value: 
       objectReference: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
+    - target: {fileID: 11400000, guid: f14d29d692b9a824c8a92a2d060a45a8, type: 2}
+      propertyPath: OtherArrowPrefab
+      value: 
+      objectReference: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f14d29d692b9a824c8a92a2d060a45a8, type: 2}
   m_RootGameObject: {fileID: 1030369500}
@@ -11579,6 +11586,7 @@ MonoBehaviour:
   gemPrefab: {fileID: 400004, guid: 36c0585269a0a4bc897c3f9af927b5cd, type: 2}
   neutralGemPrefab: {fileID: 400004, guid: c82d023ac34744e8c86638bfb7e4bf7f, type: 2}
   Combo: 0
+  updateCombo: 0
 --- !u!212 &1888808215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11692,6 +11700,10 @@ Prefab:
       propertyPath: ArrowPrefab
       value: 
       objectReference: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
+    - target: {fileID: 11400000, guid: bbb4728e9818fe14c9997201a8fd8629, type: 2}
+      propertyPath: OtherArrowPrefab
+      value: 
+      objectReference: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbb4728e9818fe14c9997201a8fd8629, type: 2}
   m_RootGameObject: {fileID: 73635509}
@@ -13309,6 +13321,8 @@ MonoBehaviour:
   white: {fileID: 100000, guid: 68718533a15a616408369083b5feb5d4, type: 2}
   skin: {fileID: 11400000, guid: 540dea5ca52be49559365b8021195d6c, type: 2}
   maxScore: 4000
+  maxCombo: 0
+  HasSendStat: 0
 --- !u!81 &2025391099
 AudioListener:
   m_ObjectHideFlags: 0

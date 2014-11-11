@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeatsToActivateCross: 3
   ArrowPrefab: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
+  OtherArrowPrefab: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
   pos: 37
   player: 0
   superpower: 0
@@ -5514,6 +5515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeatsToActivateCross: 3
   ArrowPrefab: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
+  OtherArrowPrefab: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
   pos: 2
   player: 1
   superpower: 0
@@ -6097,6 +6099,10 @@ Prefab:
       propertyPath: ArrowPrefab
       value: 
       objectReference: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
+    - target: {fileID: 11400002, guid: 5a4248d91453bc24f96d564b651ca704, type: 2}
+      propertyPath: OtherArrowPrefab
+      value: 
+      objectReference: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a4248d91453bc24f96d564b651ca704, type: 2}
   m_RootGameObject: {fileID: 73635509}
@@ -11012,6 +11018,7 @@ MonoBehaviour:
   skin: {fileID: 11400000, guid: 540dea5ca52be49559365b8021195d6c, type: 2}
   maxScore: 4000
   maxCombo: 0
+  HasSendStat: 0
 --- !u!81 &2025391099
 AudioListener:
   m_ObjectHideFlags: 0
@@ -11168,6 +11175,10 @@ Prefab:
       propertyPath: ArrowPrefab
       value: 
       objectReference: {fileID: 100002, guid: f41c49f2747f71c47a5b18c07d0fd524, type: 2}
+    - target: {fileID: 11400002, guid: 230673551dc32f74cbc763955a2d342b, type: 2}
+      propertyPath: OtherArrowPrefab
+      value: 
+      objectReference: {fileID: 100002, guid: b2131fb0270228d4595f6de8f9d04e24, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 230673551dc32f74cbc763955a2d342b, type: 2}
   m_RootGameObject: {fileID: 1030369500}

@@ -10,6 +10,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 	private bool haveToAdjustBeat = false;
 	//arrow prefab for feedback
 	public GameObject ArrowPrefab;
+	public GameObject OtherArrowPrefab;
 
     MeshRenderer rend;
 	private LineRenderer linerenderer;
@@ -72,6 +73,7 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
                 }
             }
             continuetogototheinfinityandbeyong(snake);
+			ShowOtherArrowPrefabToo(other);
         }
         else if (curr & !isMe)
         {
@@ -93,11 +95,43 @@ public class CursorScript : MonoBehaviour, IBeatReceiver
 		Debug.Log ("NumBeats: " + BeatManager.Instance.speedT +  "BeatActive : " + BeatsToActivateCross);
 	}
 
+	private void ShowOtherArrowPrefabToo(BeatEnum o){
+		if(o == BeatEnum.Missed) {
+			//Spawn X
+			ArrowFade newArrow = ((GameObject)Instantiate (OtherArrowPrefab)).GetComponentInChildren<ArrowFade>();
+			newArrow.ChangeOrientation(-1);
+		} else {
+			ArrowFade newArrow;
+			switch (o) {
+			case BeatEnum.Up:
+				//SpawnArrow
+				newArrow = ((GameObject)Instantiate (OtherArrowPrefab)).GetComponentInChildren<ArrowFade>();
+				newArrow.ChangeOrientation(2);
+				break;
+			case BeatEnum.Down:
+				//SpawnArrow
+				newArrow = ((GameObject)Instantiate (OtherArrowPrefab)).GetComponentInChildren<ArrowFade>();
+				newArrow.ChangeOrientation(3);
+				break;
+			case BeatEnum.Right:
+				//SpawnArrow
+				newArrow = ((GameObject)Instantiate (OtherArrowPrefab)).GetComponentInChildren<ArrowFade>();
+				newArrow.ChangeOrientation(0);
+				break;
+			case BeatEnum.Left:
+				//SpawnArrow
+				newArrow = ((GameObject)Instantiate (OtherArrowPrefab)).GetComponentInChildren<ArrowFade>();
+				newArrow.ChangeOrientation(1);
+				break;
+			}
+		}
+	}
+
     private void continuetogototheinfinityandbeyong(BeatEnum p)
     {
         if(p == BeatEnum.Missed)
         {
-			//SpawnArrow
+			//Spawn X
 			ArrowFade newArrow = ((GameObject)Instantiate (ArrowPrefab)).GetComponentInChildren<ArrowFade>();
 			newArrow.ChangeOrientation(-1);
 
